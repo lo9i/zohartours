@@ -22,8 +22,8 @@ class HotelBeds(object):
 
     def __init__(self, search):
         self._url = "https://api.test.hotelbeds.com/hotel-api/1.0/hotels"
-        self._secret = '4ceb50f312'
-        self._api_key = '8a50c8a6a7d48103f13121a56117f9da'
+        self._secret = 'AAAAAAAAAAA'
+        self._api_key = 'AAAAAAAAAAA'
         self._search = search
         self._days = create_range(self._search.check_in.date(), self._search.check_out.date())
         self._user = self._search.user

@@ -3,11 +3,11 @@ parameters:
     db.port: null
     db.name: zohartours
     db.user: zohar_user
-    db.password: ge84kinaFE
+    db.password: AAAAAAAAAAA
     mail.transport: smtp
-    mail.host: 'web37.dnchosting.com'
-    mail.user: 'reservations@zohartours.com'
-    mail.password: 'ge84k##1@inaFE'
+    mail.host: 'AAAAAAAAAAA.AAAAAAAAAAA.com'
+    mail.user: 'AAAAAAAAAAA@AAAAAAAAAAA.com'
+    mail.password: 'AAAAAAAAAAA'
     mail.port: 26
     mail.encryption: null
     bookarg.secret: asdqwe123

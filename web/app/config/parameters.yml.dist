@@ -6,11 +6,11 @@ parameters :
     db.port                 : null
     db.name                 : 'client'
     db.user                 : 'root'
-    db.password             : 'r4e3w2q1'
+    db.password             : 'AAAAAAAAAAA'
     mail.transport          : 'smtp'
     mail.host               : 'smtp.gmail.com'
     mail.user               : 'no-reply@client.com'
-    mail.password           : '?XB0r21F670FhVA'
+    mail.password           : 'AAAAAAAAAAA'
     mail.port               : 465
     mail.encryption         : 'ssl'
     bookarg.secret          : 'saraza123'
