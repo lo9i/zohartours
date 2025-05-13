@@ -1,0 +1,14 @@
+{% form_theme form _self %}
+{% block _gushh_corebundle_client_file_item_entry_widget %}
+    <tr class="invoiceItemRow">
+        <td>{{ form_widget(form.detail) }}</td>
+        <td>{{ form_widget(form.provider) }}</td>
+        <td>{{ form_widget(form.amount_sale, { 'attr': {'class': 'has-to-be-number sale'}}) }}</td>
+        <td>{{ form_widget(form.amount_net, { 'attr': {'class': 'has-to-be-number net'}}) }}</td>
+        <td class="text-right gross_profit text-success">0.00</td>
+        <td>{{ form_widget(form.amount_commission, { 'attr': {'class': 'has-to-be-number commission'}}) }}</td>
+        <td class="text-right net_profit text-success">0.00</td>
+        <td style="text-align: center;"><i class="icon wb-trash itemRemove" aria-hidden="true" onclick="removeItem('__name__');"></i></td>
+    </tr>
+</div>
+{% endblock %}

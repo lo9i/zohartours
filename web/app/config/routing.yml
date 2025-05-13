@@ -1,0 +1,25 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix:   /resetting
+
+gushh_core:
+    resource: "@GushhCoreBundle/Controller/"
+    type:     annotation
+
+gushh_frontend:
+    resource: "@GushhFrontendBundle/Controller/"
+    type:     annotation 
+
+gushh_backend:
+    resource: "@GushhBackendBundle/Controller/"
+    type:     annotation
+
+fos_user_profile_show:
+    path: "/user/profile/"
+    defaults: { _controller: GushhBackendBundle:Profile:index }
+    requirements:
+        methods: GET

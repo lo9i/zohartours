@@ -1,0 +1,120 @@
+cruices:
+    title: Cruices
+
+development:
+    home: 'Go Home'
+    soon: 'Available soon'
+    working: 'We are working'
+
+footer:
+    address: Address
+    contact: 'Contact Us'
+    email: Email
+    hourly: 'Open Monday to Friday'
+    login: Login
+    logout: Logout
+    outOfNYC: 'Out of NYC'
+    reservations: Reservations
+    translate: 'English version'
+
+home:
+    allEuropeDestinations: 'All <span>Europe</span> <em>Destinations</em>'
+    allUsaDestinations: 'All <span>USA</span> <em>Destinations</em>'
+    allMexicoDestinations: 'All <span>Mexico</span> <em>Destinations</em>'
+    allArgentinaDestinations: 'All <span>Argentina</span> <em>Destinations</em>'
+    europe: 'Europe <span>-</span>'
+    mexico: 'Mexico <span>-</span>'
+    argentina: 'Argentina <span>-</span>'
+    title: Home
+    usa: 'Usa <span>-</span>'
+
+hotels:
+    allEuropeDestinations: 'All <span>Europe</span> <em>Destinations</em>'
+    allUsaDestinations: 'All <span>USA</span> <em>Destinations</em>'
+    allMexicoDestinations: 'All <span>Mexico</span> <em>Destinations</em>'
+    allArgentinaDestinations: 'All <span>Argentina</span> <em>Destinations</em>'
+    destinationsHotels: 'Destinations <span>hotel</span><i>-</i>'
+    details: '<span>Hotel</span> details'
+    europe: 'Europe <span>-</span>'
+    goBack: '<span>Go</span> <span>Back</span> <em><span>Hotels</span></em>'
+    hotelDetails: '<span>Hotel</span> details'
+    hotelList: '<span>Hotel</span> list'
+    hotels: Hotels
+    hotelsIn: 'Hotels in'
+    title: Hotels
+    usa: 'Usa <span>-</span>'
+    mexico: 'Mexico <span>-</span>'
+    search:
+        adults: Adults
+        agencyCommmision: 'Agency Commission'
+        any: Any
+        anyCity: 'Any City'
+        appliesPenalty: 'Applies a penalty of'
+        available: Available
+        book: Book
+        request: Request
+        bookingTotal: 'Booking Total'
+        cancellationPolicy: 'Cancellation Policies'
+        checkIn: Check-in
+        checkOut: Check-out
+        children: Children
+        childrenAge: 'Child Age(s)'
+        city: City
+        country: Country
+        from: From
+        hotelPolicy: 'Hotel policy'
+        hotelsAvailableIn: 'Hotels available in'
+        includedServices: 'Included Services'
+        mandatoryServices: 'Mandatory Services'
+        nights: Nights
+        noCancellable: 'No cancellable'
+        nonCancellableNonRefundableNonChangable: 'Non refundable, non changeable, non cancellable'
+        onRequest: 'On request'
+        oneOrMoreChildrenWereTakenAsAdults: 'One or more children were taken as adults'
+        onlyAgenciesCanBook: 'Only agencies can book!'
+        outOf: 'out of'
+        perNight: 'Per night'
+        avgPerNight: 'Average per night'
+        price: Price
+        promoDiscount: 'Promo Discount'
+        results: Results
+        rooms: Rooms
+        subtotal: Subtotal
+        tax: Tax
+        withoutPenaltyUntil: 'Without penalty until'
+        earlyDeparture: 'In case of early departure or no show there will not be any refund for the unused nights'
+    searchForm:
+        adults: Adults
+        checkIn: Check-in
+        checkOut: Check-out
+        children: Children
+        childrenAge: 'Child Age(s)'
+        destination: Destination
+        night: Night
+        nights: Nights
+        hotel: Hotel
+        allHotels: 'All Hotels'
+        allCities: 'All Cities'
+        search: Search
+        selectPeriod: 'Select a period'
+
+continent:
+    usa: Usa
+    europe: Europe
+
+menu:
+    agency: Agency
+    myReservations: 'My Reservations'
+    backend: Backend
+    home: Home
+    hotels: Hotels
+    login: Login
+    logout: Logout
+    tours: Tours
+    transfers: Transfers
+
+tours:
+    title: Tours
+
+transfers:
+    title: Transfers

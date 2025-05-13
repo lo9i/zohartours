@@ -1,0 +1,70 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Reservations</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li>
+            <a href="{{ path('backend_reservation_show', {'id': reservation.id } ) }}">Reservation</a>
+          </li>
+          <li class="active">Payment</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_reservation_show', { 'id': reservation.id }) }}"
+             class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+
+          {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+          <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+            <i class="icon fa-trash" aria-hidden="true"></i> Delete
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <h4 class="text-center">Payment Information</h4>
+            <div class="col-sm-12">
+              <table class="table table-hover dataTable table-striped width-full" id="paymentsTable">
+                <thead>
+                <tr>
+                  <th width="200px">Date</th>
+                  <th width="200px">Amount</th>
+                  <th>Internal Reference</th>
+                  <th>User</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{ entity.createdAt| date('d M Y - H:i A')}}</td>
+                      <td>{{ currency ~ ' ' ~ entity.amount|number_format(2, '.', ',') }}</td>
+                      <td>{{ entity.reference }}</td>
+                      <td>{{ entity.user.name ~ ' ' ~ entity.user.lastName }}</td>
+                    </tr>
+                </tbody>
+              </table>
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+{% endblock %}

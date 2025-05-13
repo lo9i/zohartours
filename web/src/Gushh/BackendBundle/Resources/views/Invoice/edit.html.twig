@@ -1,0 +1,250 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+  
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Invoices</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_invoices') }}">Invoices</a></li>
+          <li><a href="{{ path('backend_invoices') }}">{{ entity.id }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_invoices') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+            <i class="icon fa-trash" aria-hidden="true"></i> Delete
+          </a>
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+              <h4 class="text-center">Payer Information</h4>
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label class="control-label">Name</label>
+                    {{ form_widget(form.payerName) }}
+                </div>
+                <div class="form-group col-sm-2">
+                  <label class="control-label">Taxpayer ID</label>
+                    {{ form_widget(form.payerTaxId) }}
+                </div>
+              </div>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">{{ 'backend.form.address'|trans|title }}</label>
+                        {{ form_widget(form.payerAddress, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label class="control-label">{{ 'backend.form.zipCode'|trans|title }}</label>
+                        {{ form_widget(form.payerZipCode, { 'id': 'postal_code' } ) }}
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">{{ 'backend.form.city'|trans|title }}</label>
+                        {{ form_widget(form.payerCity, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="control-label">{{ 'backend.form.state'|trans|title }}</label>
+                        {{ form_widget(form.payerState, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label class="control-label">{{ 'backend.form.country'|trans|title }}</label>
+                        {{ form_widget(form.payerCountry, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label class="control-label">{{ 'backend.form.notes'|trans|title }}</label>
+                        {{ form_widget(form.notes, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                </div>
+
+              <!-- Panel Payments -->
+              <div class="panel">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4 class="text-center">{{ 'backend.invoices.items'|trans }}</h4>
+                    </div>
+                  </div>
+
+                  <div class="col-md-10">
+                    <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                      <thead>
+                      <tr>
+                        <th>Detail</th>
+                        <th width="200px">Amount</th>
+                        <th width="50px" ></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {% if entity.items|length > 0 %}
+                      {% for item in form.items %}
+                        <tr class="invoiceItemRow">
+                          <td>{{ form_widget(item.detail) }}</td>
+                          <td>{{ form_widget(item.amount) }}</td>
+                          <td style="text-align: center;"><i class="icon wb-trash itemRemove" aria-hidden="true" onclick="removeItem('{{ loop.index0 }}');"></i></td>
+                        </tr>
+                      {% endfor %}
+                          {% else %}
+                        <tr id="noItems">
+                          <td colspan="3" class="text-center"><strong>No items yet</strong></td>
+                        </tr>
+                      {% endif %}
+                      </tbody>
+                      <tfoot>
+                      <tr style="font-weight: bold;">
+                        <td>Total</td>
+                        <td id="theTotal" style="text-align: right;"> $ {{ entity.total }} </td>
+                        <td></td>
+                      </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <div class="col-md-2 text-center">
+                    <button type="button" class="btn btn-default" id="addItem">Add item</button>
+                    <div id="items" data-prototype="
+                    {% filter escape %}
+                        {{ include('GushhBackendBundle:Invoice/partials:invoiceItem.html.twig', { 'form': form.items.vars.prototype }) }}
+                    {% endfilter %}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Panel Payments -->
+
+
+              <div class="form-group text-center">
+                  <a href="{{ path('backend_invoice_show', { 'id': entity.id }) }}" class="btn btn-outline btn-default">Cancel</a>
+                <button type="submit" class="btn btn-success" id="saveInvoice">Save Invoice</button>
+              </div>
+                {{ form_rest(form) }}
+
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+{#/  {{ include('GushhBackendBundle::Modals/deleteInvoiceModal.html.twig', { 'deleteForm': deleteForm, 'entity': entity }) }}#}
+  <!-- End Modal -->
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script type="text/javascript">
+      $(function () {
+
+          var $collectionHolder = $('#itemsTable > tbody');
+          $('#addItem').on('click', function (e) {
+
+              e.preventDefault();
+
+              $collectionHolder.find('#noItems').remove();
+              var index = $('.invoiceItemRow').length;
+              var prototype = $('#items').data('prototype');
+
+              // Replace '$$name$$' in the prototype's HTML to
+              // instead be a number based on how many items we have
+
+              // Display the form in the page in an li, before the "Add a tag" link li
+              $collectionHolder.append(prototype.replace(/__name__/g, index))
+
+              $('#gushh_corebundle_invoice_items_' + index + '_amount').keydown(function (e) {
+                  checkIsNumber(e);
+              });
+
+              $('#gushh_corebundle_invoice_items_' + index + '_amount').keyup(function (e) {
+                  updateTotal(e);
+              });
+
+//              $('#gushh_corebundle_invoice_items_' + index + '_detail').keyup(function (e) {
+//                  updateButton(e);
+//              });
+          });
+
+          $('.has-to-be-number').keydown(function (e) {
+              checkIsNumber(e);
+          });
+
+          $('.has-to-be-number').keyup(function (e) {
+              updateTotal(e);
+          });
+      });
+
+      function checkIsNumber(e) {
+          // Allow: backspace, delete, tab, escape, enter and .
+          if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+              // Allow: Ctrl/cmd+A
+              (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+              // Allow: Ctrl/cmd+C
+              (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+              // Allow: Ctrl/cmd+X
+              (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+              // Allow: home, end, left, right
+              (e.keyCode >= 35 && e.keyCode <= 39)
+              // Allow: -
+              (e.keyCode == 189)
+          ) {
+              // let it happen, don't do anything
+              return;
+          }
+          // Ensure that it is a number and stop the keypress
+          if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+              e.preventDefault();
+          }
+      }
+
+      function updateTotal(e) {
+
+          var totalFinal = 0;
+          var numbers =  $('.has-to-be-number');
+          for(var i = 0; i < numbers.length; i++) {
+              totalFinal += parseFloat($(numbers[i]).val());
+          }
+
+          if( isNaN(totalFinal) ) {
+              $('#theTotal').html('0.00');
+              $('#saveInvoice').attr('disabled', 'disabled')
+          }
+          else {
+              $('#theTotal').html(totalFinal.toFixed(2).replace(/./g, function (c, i, a) {
+                  return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+              }));
+              $('#saveInvoice').removeAttr('disabled')
+          }
+      }
+
+      function removeItem(index) {
+          $('#gushh_corebundle_invoice_items_' + index + '_detail').closest('.invoiceItemRow').remove();
+
+          if($('.invoiceItemRow').length == 0) {
+              $('#itemsTable > tbody').append('<tr id="noItems"><td colspan="3" class="text-center"><strong>No items yet</strong></td></tr>');
+          }
+
+          updateTotal();
+      }
+  </script>
+{% endblock %}

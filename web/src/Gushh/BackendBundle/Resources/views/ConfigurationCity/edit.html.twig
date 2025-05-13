@@ -1,0 +1,80 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/dropify/dropify.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('dashboard') }}">Configuration</a></li>
+          <li><a href="{{ path('dashboard') }}">Site</a></li>
+          <li><a href="{{ path('backend_configuration_city_images') }}">City Images</a></li>
+          <li><a href="{{ path('backend_configuration_city_images') }}">{{ entity.city }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_configuration_city_images') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          {% if entity.path != 'default.png' %}
+            <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+              <i class="icon fa-trash" aria-hidden="true"></i> Delete
+            </a>       
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Upload Images</h4>
+
+                <div class="form-group">
+                  <label class="control-label">File</label>
+                  {{ form_widget(form.file, { 'attr': {'data-default-file': asset(entity.getWebPath), 'data-disable-remove': 'true' } } ) }}
+                </div>
+
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_configuration_city_images') }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveCityImage">Save Image</button>
+                </div>
+                
+                {{ form_rest(form) }}
+
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/deleteImageModal.html.twig', { 'deleteForm': deleteForm, 'entity': entity }) }}
+  <!-- End Modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/dropify.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/dropify/dropify.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/configuration-city/formValidation.min.js') }}"></script>
+{% endblock %}

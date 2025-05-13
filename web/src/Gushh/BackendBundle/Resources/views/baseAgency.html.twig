@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+<head>
+  {# NO INDEX #}
+  <meta name="robots" content="noindex">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  {# <meta name="description" content="bootstrap admin template"> #}
+  <meta name="author" content="Anibal Fernández">
+  <title>{% block title %}{{ brand }} | {{ 'backend.dashboard.title'|trans }} {% endblock %}</title>
+
+  {# <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}"> #}
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ asset('backend/global/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/css/bootstrap-extend.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/css/site.min.css') }}">
+  <!-- Plugins -->
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/animsition/animsition.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/asscrollable/asScrollable.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/switchery/switchery.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/intro-js/introjs.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/slidepanel/slidePanel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/jquery-mmenu/jquery-mmenu.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/flag-icon-css/flag-icon.min.css') }}">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="{{ asset('backend/global/fonts/web-icons/web-icons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/fonts/font-awesome/font-awesome.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('backend/global/fonts/brand-icons/brand-icons.min.css') }}"> -->
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+  <!--[if lt IE 9]>
+    <script src="{{ asset('backend/global/vendor/html5shiv/html5shiv.min.js') }}"></script>
+    <![endif]-->
+  <!--[if lt IE 10]>
+    <script src="{{ asset('backend/global/vendor/media-match/media.match.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/respond/respond.min.js') }}"></script>
+    <![endif]-->
+
+  {% block styles %}{% endblock %}
+
+  <!-- Scripts -->
+  <script src="{{ asset('backend/global/vendor/modernizr/modernizr.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
+  <script>
+  Breakpoints();
+  </script>
+</head>
+<body class="site-navbar-small {% if app.request.cookies.has('menubar') %}site-menubar-unfold site-menubar-keep{% endif %}" {% block inline_body %}{% endblock %}>
+  <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
+      data-toggle="menubar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse"
+      data-toggle="collapse">
+        <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+      </button>
+      <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+        <!-- <img class="navbar-brand-logo" src="../assets/images/logo.png" title="Remark"> -->
+        <span class="navbar-brand-text"> {{ app.user.agency }}</span>
+      </div>
+    </div>
+    <div class="navbar-container container-fluid">
+      <!-- Navbar Collapse -->
+      <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+        <!-- Navbar Toolbar -->
+        <ul class="nav navbar-toolbar">
+          <li class="hidden-float" id="toggleMenubar">
+            <a data-toggle="menubar" href="#" role="button">
+              <i class="icon hamburger hamburger-arrow-left">
+                  <span class="sr-only">Toggle menubar</span>
+                  <span class="hamburger-bar"></span>
+                </i>
+            </a>
+          </li>
+          <li class="hidden-xs">
+            <a href="{{ path('home') }}" target="_blank" role="button">
+              <i class="icon fa-desktop"></i> {{ 'backend.visitSite'|trans }}
+            </a>
+          </li>
+        </ul>
+        <!-- End Navbar Toolbar -->
+        <!-- Navbar Toolbar Right -->
+        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+          <li class="dropdown">
+            {% set route = app.request.get('_route') %}
+            {% set params = app.request.get('_route_params') %}
+            {% set locale = app.request.locale %}
+            {% if  params['_locale'] == 'en' %}
+              {% set params = params|merge({'_locale': 'es'}) %}
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up"
+              aria-expanded="false" role="button">
+                <span class="flag-icon flag-icon-us"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation">
+                  <a href="{{ path(route, params ) }}" role="menuitem">
+                    <span class="flag-icon flag-icon-ar"></span> {{ 'backend.spanish'|trans({}, "messages", 'es') }}</a>
+                </li>
+              </ul>
+            {% else %}
+              {% set params = params|merge({'_locale': 'en'}) %}
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up"
+              aria-expanded="false" role="button">
+                <span class="flag-icon flag-icon-ar"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation">
+                  <a href="{{ path(route, params ) }}" role="menuitem">
+                    <span class="flag-icon flag-icon-us"></span> {{ 'backend.english'|trans({}, "messages", 'en') }}</a>
+                </li>
+              </ul>
+            {% endif %}
+          </li>
+          <li class="dropdown">
+            <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"
+            data-animation="scale-up" role="button">
+              <span class="avatar avatar-online">
+                <img src="{{ asset('img/avatars/default.png') }}" alt="{{ app.user }}">
+                <i></i>
+              </span>
+              {{ app.user }} <i class="icon wb-chevron-down-mini" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li role="presentation">
+                <a href="{{ path('fos_user_security_logout') }}" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> {{ 'backend.logout'|trans }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- End Navbar Toolbar Right -->
+      </div>
+      <!-- End Navbar Collapse -->
+    </div>
+  </nav>
+  <div class="site-menubar">
+    <ul class="site-menu">
+      <li class="site-menu-item">
+        <a href="{{ path('client_dashboard') }}">
+          <i class="site-menu-icon icon fa-dashboard" aria-hidden="true"></i>
+          <span class="site-menu-title">{{ 'backend.dashboard.title'|trans }}</span>
+        </a>
+      </li>
+      <li class="site-menu-item">
+        <a href="{{ path('client_reservations') }}">
+          <i class="site-menu-icon icon fa-ticket" aria-hidden="true"></i>
+          <span class="site-menu-title">{{ 'backend.reservations.title'|trans }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="site-gridmenu">
+    <div>
+      <div>
+        <ul>
+          <li>
+            <a href="{{ path('client_dashboard') }}">
+              <i class="icon icon fa-dashboard"></i>
+              <span>{{ 'backend.dashboard.title'|trans }}</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('client_reservations') }}">
+              <i class="icon fa-ticket" aria-hidden="true"></i>
+              <span class="site-menu-title">{{ 'backend.reservations.title'|trans }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Page -->
+  {% block content %}{% endblock %}
+  <!-- End Page -->
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="site-footer-legal">
+          {{ "now" | date('Y') }} - {{ 'app.version'|trans }} {{ version }}
+        </div>
+      </div>
+      <div class="col-lg-4">
+{#         <div class="site-footer-switcher">
+          {% if app.request.locale == 'en' %}
+            <a href="{{ path(app.request.get('_route', { _locale: 'es' } )) }}">
+              <span class="flag-icon flag-icon-ar"></span>
+            </a>
+          {% else %}
+            <a href="{{ path(app.request.get('_route', { _locale: 'en' } )) }}">
+              <span class="flag-icon flag-icon-us"></span> asd
+            </a>
+          {% endif %}
+        </div> #}
+      </div>
+      <div class="col-lg-4">
+        <div class="site-footer-right">
+          {{ 'app.developedBy'|trans }} <a href="{{ 'app.developedByInternalUrl' }}" target="_blank">{{ 'app.developedByInternalLabel' }}</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Core  -->
+  <script src="{{ asset('backend/global/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/animsition/animsition.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/asscroll/jquery-asScroll.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/asscrollable/jquery.asScrollable.all.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js') }}"></script>
+  <!-- Plugins -->
+  <script src="{{ asset('backend/global/vendor/jquery-mmenu/jquery.mmenu.min.all.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/switchery/switchery.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/intro-js/intro.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/screenfull/screenfull.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/js-cookie/js.cookie.min.js') }}"></script>
+  <!-- Scripts -->
+  <script src="{{ asset('backend/global/js/core.min.js') }}"></script>
+  <script src="{{ asset('backend/js/site.min.js') }}"></script>
+  <script src="{{ asset('backend/js/sections/menu.min.js') }}"></script>
+  <script src="{{ asset('backend/js/sections/menubar.min.js') }}"></script>
+  <script src="{{ asset('backend/js/sections/gridmenu.min.js') }}"></script>
+  <script src="{{ asset('backend/js/sections/sidebar.min.js') }}"></script>
+  {# <script src="{{ asset('backend/global/js/configs/config-colors.min.js') }}"></script> #}
+  {# <script src="{{ asset('backend/js/configs/config-tour.min.js"></script> #}
+  <script src="{{ asset('backend/global/js/components/asscrollable.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/animsition.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/slidepanel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/switchery.min.js') }}"></script>
+
+
+  <script>
+    (function(document, window, $) {
+      'use strict';
+      var Site = window.Site;
+      $(document).ready(function() {
+        Site.run();
+      });
+    })(document, window, jQuery);
+  </script>
+
+  {% block footer_js %}
+  {% endblock %}
+</body>
+</html>

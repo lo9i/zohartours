@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ brand }} | {{ 'forgotPassword.title'|trans }}{% endblock %}
+
+{% block inline_body %}class="page-forgot-password layout-full"{% endblock %}
+
+{% block body %}
+  <div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content vertical-align-middle">
+      <h2>{{ 'forgotPassword.title'|trans }}</h2>
+      <p>{{ 'forgotPassword.subtitle'|trans }}</p>
+      <form action="{{ path('fos_user_resetting_send_email') }}" method="post" role="form">
+          <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="{{ 'forgotPassword.email'|trans }}">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">{{ 'forgotPassword.reset'|trans }}</button>
+          </div>
+          {% if invalid_username is defined %}
+            <p>{{ 'forgotPassword.username'|trans }} <strong>{{ invalid_username }}</strong> {{ 'forgotPassword.notFound'|trans }}.</p>
+          {% endif %}
+      </form>
+      <footer class="page-copyright">
+        <p>{{ brand }} © {{ "now"|date('Y') }}. <a href="http://bookarg.com" target="_blank">BookARG</a> {{ 'app.developedBy'|trans|lower }}  Trescraneos.</p>
+      </footer>
+    </div>
+  </div>
+{% endblock %}

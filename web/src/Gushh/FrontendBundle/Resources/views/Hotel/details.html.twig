@@ -1,0 +1,267 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+{% set citySlug       = hotel.city|lower|replace({' ' : "-"}) %}
+{% set city           = hotel.city %}
+{% set state          = hotel.state %}
+{% set continentSlug  = hotel.continent|lower|replace({' ' : "-"}) %}
+{% set continent      = hotel.continent %}
+{% set countrySlug    = hotel.country|lower|replace({' ' : "-"}) %}
+{% set regionSlug     = hotel.region %}
+{% set country        = hotel.country %}
+{# {% set hotelCount    = hotels|length %} #}
+
+
+{% block title %}{{ brand }} | {{ 'hotels.details'|trans }} - {{ hotel.name|title ~ ' - ' ~ hotel.city|title ~ ', ' ~ hotel.state|title }}{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('frontend/css/slider-pro.min.css') }}">
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+
+    <div class="clearfix"></div>
+
+    {% set slug = hotel.city|lower|replace({' ' : "-"}) %}
+
+    <div class="row">
+      <div class="col-sm-12">
+        <ol class="Breadcrum">
+          <li>
+            <a href="{{ path('hotels') }}">{{ 'hotels.hotels'|trans|raw }}</a>
+          </li>
+          {% if continentSlug == 'europe' %}
+            {% set continentLang = 'continent.' ~ continentSlug %}
+            <li>
+              <a href="{{ path('hotels_list_continent', {'region': regionSlug, 'continent': continentSlug}) }}">
+                {{ continentLang|trans }}
+              </a>
+            </li>
+          {% endif %}
+          <li>
+            <a href="{{ path('hotels_list_country', {'region': regionSlug, 'continent': continentSlug, 'country': countrySlug}) }}">
+              {{ country }}
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('hotels_list_city', {'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug}) }}">
+              {{ city }}
+            </a>
+          </li>
+          <li class="active">{{ hotel|title }}</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <aside class="col-md-4">
+        <div class="CityCard" style="background-image: url('{{ asset(hotel.cityImage.image.getWebPath) }}')">
+          <div class="CityCard-wall">
+            <h3 class="CityCard-wall-title">{{ 'hotels.hotelDetails'|trans|raw }}</h3>
+            <h2 class="CityCard-wall-city">
+              {{ city }}
+              {% if continentSlug == 'america' %}
+                <span>{{ state }}</span>
+              {% elseif continentSlug == 'europe' %}
+                <span>{{ country }}</span>
+              {% endif %}
+              -
+            </h2>
+            <a href="{{ path('hotels_list_city', {'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug}) }}" class="CityCard-link">
+              <
+              <span></span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+      <section class="col-md-8">
+        <div class="row HotelDescription">
+{#          <div class="col-lg-12">
+            <div class="HotelDescription-stars">
+              {% for i in 1..hotel.stars %}
+                <i class="glyphicon glyphicon-star"></i>
+              {% endfor %}
+            </div>
+          </div> #}
+          <div class="col-sm-12">
+            <h2 class="HotelDescription-title">{{ hotel.name|title ~ ' ' ~ hotel.subtitle|title }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- Nav tabs -->
+            <ul class="HotelDescription-tab" role="tablist">
+              <li role="presentation" class="active"><a href="#go" aria-controls="go" role="tab" data-toggle="tab">Go</a></li>
+
+              {# ROOMS NAV #}
+              <li role="presentation"><a href="#rooms" aria-controls="profile" role="tab" data-toggle="tab">Rooms</a></li>
+
+
+
+              <li role="presentation"><a href="#amenities" aria-controls="amenities" role="tab" data-toggle="tab">Amenities</a></li>
+
+              <li role="presentation"><a href="#terms" aria-controls="terms" role="tab" data-toggle="tab">General Info</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="HotelDescription-tab-content tab-content">
+              {# SLIDER TAB #}
+              <div role="tabpanel" class="tab-pane active" id="go">
+
+                {% if hotel.images|length > 0 %}
+
+                    <div id="img_carousel" class="slider-pro">
+                        <div class="sp-slides">
+
+                            {% for image in hotel.images %}
+                                <div class="sp-slide">
+                                    <img alt="{{ hotel.name }}" class="sp-image" src="{{ asset('frontend/css/images/blank.gif') }}"
+                                    data-src="{{ asset(image.getWebPath) }}"
+                                    >
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="sp-thumbnails">
+                            {% for image in hotel.images %}
+                                <img alt="{{ hotel.name }}" class="sp-thumbnail" src="{{ asset(image.getWebPath) }}">
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% else %}
+                    <div>
+                        <img alt="{{ hotel.name }}" src="{{ asset('img/no-image.png') }}" class="HotelDescription-image">
+                    </div>
+                {% endif %}
+
+                {% if hotel.enDescription != '' %}
+                  <div class="row HotelDescription-container">
+                    <div class="col-xxs-12 col-xs-4">
+                      <div class="HotelDescription-hotel-name">
+                        <h2>
+                          {{ hotel.name }} <span>{{ hotel.subtitle }}</span>
+                        </h2>
+                      </div>
+                    </div>
+                    {# REFACTOR #}
+
+                    <div class="col-xxs-12 col-xs-8">
+                      {% if app.request.locale == 'en' and hotel.enDescription != '' %}
+                        <p class="HotelDescription-description">
+                          {{ hotel.enDescription|raw }}
+                        </p>
+                      {% elseif app.request.locale == 'es' and hotel.esDescription != '' %}
+                        <p class="HotelDescription-description">
+                          {{ hotel.esDescription|raw }}
+                        </p>
+                      {% else %}
+                        <p class="HotelDescription-description">
+                          {{ hotel.enDescription|raw }}
+                        </p>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              {# ROOMS TAB #}
+              <div role="tabpanel" class="tab-pane fade" id="rooms">
+                <section class="row">
+                  {% for room in hotel.rooms %}
+                    <article class="col-lg-12 RoomItem">
+                      <div class="RoomItem-header">
+                        <h2>{{ room.name }}</h2>
+                      </div>
+                      {% if room.enDescription != '' %}
+                        <p class="RoomItem-description">
+                          {{ room.enDescription|raw }}
+                        </p>
+                      {% endif %}
+                      {% if room.esDescription != '' %}
+                        <p class="RoomItem-description">
+                          {{ room.esDescription|raw }}
+                        </p>
+                      {% endif %}
+                      <p class="RoomItem-description">
+                        <span class="zoharicon-circle-dimension"></span> {{ room.squareFeet }} ft<sup>2</sup> - Max occupancy: {{ room.capacity }} pax.
+                      </p>
+                    </article>
+                  {% endfor %}
+                </section>
+              </div>
+
+
+
+              {# AMENITIES TAB #}
+              <div role="tabpanel" class="tab-pane fade" id="amenities">
+                <h2>Amenities</h2>
+              </div>
+
+              {# TERMS TAB #}
+              <div role="tabpanel" class="tab-pane fade" id="terms">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="RoomItem">
+                      {% if hotel.services|length > 0 %}
+                        {% for service in hotel.services %}
+                          <p class="RoomItem-service">
+                            {{ service.name }}: {{ service.description }}. {% if service.price == 0 %}<span class="label label-success">Free</span>{% else %}${{ service.price }} + {{ service.tax }}% (tax). {{ service.servicePayType }}.{% endif %}
+                          </p>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                    <ul class="IconDescription">
+                      <li class="IconDescription-item">
+                        <span class="zoharicon-check-in IconDescription-icon"></span>
+                        <p class="IconDescription-text">
+                          {{ hotel.checkIn|date('h:i A') }}
+                        </p>
+                      </li>
+                      <li class="IconDescription-item">
+                        <span class="zoharicon-check-out IconDescription-icon"></span>
+                        <p class="IconDescription-text">
+                          {{ hotel.checkOut|date('h:i A') }}
+                        </p>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('frontend/js/jquery.sliderPro.min.js') }}"></script>
+  <script type="text/javascript">
+    $( document ).ready(function( $ ) {
+      $('#img_carousel').sliderPro({
+        width: 960,
+        height: 500,
+        fade: true,
+        arrows: true,
+        buttons: false,
+        fullScreen: true,
+        smallSize: 500,
+        startSlide: 0,
+        mediumSize: 1000,
+        largeSize: 3000,
+        thumbnailArrows: true,
+        autoplay: false
+      });
+    });
+  </script>
+{% endblock %}

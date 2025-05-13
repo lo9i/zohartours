@@ -1,0 +1,649 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/fullcalendar/fullcalendar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/fullcalendar/custom-calendar.min.css') }}">
+    {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+    <style>
+        #dateTable {
+            table-layout: fixed;
+            word-wrap: break-word;
+
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% set currency = entity.hotel.currency.symbol %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="page-header page-header-bordered">
+                <h1 class="page-title">Hotels</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('dashboard') }}">Backend</a></li>
+                    <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+                    <li><a href="{{ path('backend_hotel_show', {'hid': entity.hotel.id } ) }}">{{ entity.hotel }}</a>
+                    </li>
+                    <li><a href="{{ path('backend_hotel_show', {'hid': entity.hotel.id, 'tab': 'rooms' } ) }}">Rooms</a>
+                    </li>
+                    <li class="active">{{ entity }}</li>
+                </ol>
+                <div class="page-header-actions">
+                    <a href="{{ path('backend_hotel_show', {'hid': entity.hotel.id, 'tab': 'rooms' } ) }}"
+                       class="btn btn-default">
+                        <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+                    </a>
+                    <a href="{{ path('backend_room_edit', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                       class="btn btn-success">
+                        <i class="icon fa-pencil" aria-hidden="true"></i> Room
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs nav-tabs-line">
+                                <li class="active">
+                                    <a href="#details" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-info" aria-hidden="true"></i> Details
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#services" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-glass" aria-hidden="true"></i> Services
+                                    </a>
+                                </li>
+                                {# <li>
+                                  <a href="#calendar" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                    <i class="icon fa-calendar" aria-hidden="true"></i> Calendar
+                                  </a>
+                                </li> #}
+                                <li>
+                                    <a href="#rates" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-money" aria-hidden="true"></i> Rates
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dates" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-calendar" aria-hidden="true"></i> Dates
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#images" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-photo" aria-hidden="true"></i> Images
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#promotions" data-toggle="tab" href="javascript:void(0)" role="tab">
+                                        <i class="icon fa-tags" aria-hidden="true"></i> Promotions
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tab-content padding-top-20">
+                                {# Room Details #}
+                                <div class="tab-pane active" id="details" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <table class="table table-hover table-striped width-full">
+                                                <tbody>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <td>{{ entity.name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description <span
+                                                                class="label label-outline label-default">EN</span></th>
+                                                    <td>{{ entity.enDescription|raw }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description <span
+                                                                class="label label-outline label-default">ES</span></th>
+                                                    <td>{{ entity.esDescription|raw }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Capacity</th>
+                                                    <td>{{ entity.capacity }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Contract Type</th>
+                                                    <td>{{ entity.contractType.name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Square Feet</th>
+                                                    <td>{{ entity.squareFeet }}<sup>ft2</sup></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {% if entity.enabled == false %}
+                                                <div class="alert dark alert-alt alert-danger" role="alert">
+                                                    This hotel is not enabled.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_hotel_edit', { 'hid': entity.id } ) }}#gushh_corebundle_hotel_enabled"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-pencil" aria-hidden="true"></i> Hotel
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.rates|length == 0 %}
+                                                <div class="alert dark alert-alt alert-danger" role="alert">
+                                                    This room has no rates.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_room_rate_new', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Rate
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.hotel.policies|length == 0 %}
+                                                <div class="alert dark alert-alt alert-danger" role="alert">
+                                                    This hotel has no policies.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_hotel_cancellation_policy_new', { 'hid': entity.hotel.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Policy
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.rates|length > 0 and entity.hotel.policies|length > 0 and entity.dates|length == 0 %}
+                                                <div class="alert dark alert-alt alert-danger" role="alert">
+                                                    This room has no dates.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_room_date_new', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Date
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.services|length == 0 %}
+                                                <div class="alert dark alert-alt alert-info" role="alert">
+                                                    This room has no services.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_room_service_new', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Service
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.images|length == 0 %}
+                                                <div class="alert dark alert-alt alert-info" role="alert">
+                                                    This room has no images.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_room_image_new', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Image
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.promotions|length == 0 %}
+                                                <div class="alert dark alert-alt alert-info" role="alert">
+                                                    This room has no promos.
+                                                    <p class="margin-top-10 text-center">
+                                                        <a href="{{ path('backend_room_promotion_new', { 'hid': entity.hotel.id, 'rid': entity.id } ) }}"
+                                                           class="btn btn-default btn-outline btn-xs">
+                                                            <i class="icon fa-plus" aria-hidden="true"></i> Promotion
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Room Services #}
+                                <div class="tab-pane" id="services" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <table class="table table-hover dataTable table-striped width-full"
+                                                   id="serviceTable">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>Cost</th>
+                                                    <th>Profit</th>
+                                                    <th>Type</th>
+                                                    <th>Pay Type</th>
+                                                    <th>Sale Price</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                {% for service in entity.services %}
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{{ path('backend_room_service_edit', { 'hid': entity.hotel.id, 'rid': entity.id, 'sid': service.id }) }}">{{ service }}</a>
+                                                        </td>
+                                                        <td>
+                                                            <p data-toggle="tooltip" data-placement="right"
+                                                               data-original-title="{{ service.description }}">
+                                                                {{ service.description | truncate(15, true) }}
+                                                            </p>
+                                                        </td>
+                                                        <td>{{ currency }} {{ service.netCost }}</td>
+                                                        <td>{{ currency }} {{ service.netProfit }}</td>
+                                                        <td>{{ service.serviceType }}</td>
+                                                        <td>{{ service.servicePayType }}</td>
+                                                        <td>{{ currency }} {{ service.salePrice }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <a href="{{ path('backend_room_service_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}"
+                                               class="btn btn-primary">
+                                                <i class="icon fa-plus" aria-hidden="true"></i> Service
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Room Rates #}
+                                <div class="tab-pane" id="rates" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <table class="table table-hover dataTable table-striped width-full"
+                                                   id="rateTable">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Single/Double</th>
+                                                    {% if entity.capacity > 2 %}
+                                                        <th>Triple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 3 %}
+                                                        <th>Quad</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 4 %}
+                                                        <th>Quintuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 5 %}
+                                                        <th>Sextuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 6 %}
+                                                        <th>Septuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 7 %}
+                                                        <th>Octuple</th>
+                                                    {% endif %}
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                {% for rate in entity.rates %}
+                                                    {% if rate.enabled == true %}
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{ path('backend_room_rate_edit', { 'hid': entity.hotel.id, 'rid': entity.id, 'raid': rate.id }) }}">
+                                                                    <span class="label label-{{ rate.label.class }}">{{ rate }}</span>
+                                                                </a>
+                                                            </td>
+                                                            {% set blacked = rate.price == 0 %}
+                                                            {% for i in 2..entity.capacity %}
+                                                                <td>
+                                                                    {% if blacked == true %}
+                                                                        <span class="tooltip-{{ rate.label.class }}"
+                                                                              data-toggle="tooltip"
+                                                                              data-placement="bottom"
+                                                                              data-original-title="Black Out">Black Out</span>
+                                                                    {% else %}
+                                                                        {% set theCost   = '<dl><dt>Cost</dt><dd>' ~ currency ~ ' ' ~ rate.netCost(i)|number_format(2)  ~ '</dd>' %}
+                                                                        {% set theProfit = '<dt>Profit</dt><dd>' ~ currency ~ ' ' ~ rate.netProfit(i)|number_format(2) ~ '</dd></dl>' %}
+                                                                        {% set theInfo = theCost ~ theProfit %}
+                                                                        <span class="tooltip-{{ rate.label.class }}"
+                                                                              data-toggle="tooltip"
+                                                                              data-placement="bottom"
+                                                                              data-original-title="{{ theInfo }}">
+                                                                                {{ currency }} {{ rate.salePrice(i)|number_format(2) }}
+                                                                        </span>
+                                                                    {% endif %}
+                                                                </td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <a href="{{ path('backend_room_rate_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}"
+                                               class="btn btn-primary">
+                                                <i class="icon fa-plus" aria-hidden="true"></i> Rate
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Room Dates #}
+                                <div class="tab-pane" id="dates" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <table class="table table-hover dataTable table-striped width-full"
+                                                   id="dateTable">
+                                                <thead>
+                                                <tr>
+                                                    <th title="Stop Sell" style="text-align: center">S</th>
+                                                    <th>Name</th>
+                                                    <th>Single/Double</th>
+                                                    {% if entity.capacity > 2 %}
+                                                        <th>Triple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 3 %}
+                                                        <th>Quad</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 4 %}
+                                                        <th>Quintuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 5 %}
+                                                        <th>Sextuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 6 %}
+                                                        <th>Septuple</th>
+                                                    {% endif %}
+                                                    {% if entity.capacity > 7 %}
+                                                        <th>Octuple</th>
+                                                    {% endif %}
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for date in entity.dates if date|date('Y-m-d') > "-30 day"|date("Y-m-d") %}
+                                                    {% set blacked = date.rate.price == 0 %}
+                                                    <tr>
+                                                        <td style="text-align: center" dateId="{{ date.id }}">
+                                                            {% if date.stopSell == true %}
+                                                                <i style='color:green;cursor:pointer;' 
+                                                                    class='fa fa-thumbs-o-up' 
+                                                                    aria-hidden='true' 
+                                                                    data-toggle='modal' 
+                                                                    data-target='#cancelStopSellForm'>
+                                                                    </i>
+
+                                                            {% else %}
+                                                                <i style='color:red;cursor:pointer;' class='fa fa-hand-paper-o' aria-hidden='true' data-toggle='modal' data-target='#stopSellForm'></i>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ path('backend_room_date_edit', { 'hid': entity.hotel.id, 'rid': entity.id, 'did': date.id }) }}">
+                                                                <span class="hide">{{ date|date('Y-m-d') }}</span> <span
+                                                                        class="label label-{{ date.rate.label.class }}">{{ date|date('d M Y') }}</span>
+                                                                <span class="label label-{{ date.rate.label.class }}">{{ date|date('D') }}</span>
+                                                                {% if date.premiumDate == true %}
+                                                                    <span class="label label-dark tooltip-dark"
+                                                                          data-toggle="tooltip" data-placement="bottom"
+                                                                          data-original-title="Premium Date">P</span>
+                                                                {% endif %}
+                                                                {% if date.stopSell == true %}
+                                                                    <span class="stopCell label label-warning tooltip-warning"
+                                                                          data-toggle="tooltip" data-placement="bottom"
+                                                                          data-original-title="Stop Sell Date">S</span>
+                                                                {% endif %}
+                                                            </a>
+                                                        </td>
+                                                        {% for i in 2..entity.capacity %}
+                                                            <td>
+                                                                {% if blacked == true %}
+                                                                    <span class="tooltip-{{ date.rate.label.class }}"
+                                                                          data-toggle="tooltip" data-placement="bottom"
+                                                                          data-original-title="Black Out">Black Out</span>
+                                                                {% else %}
+                                                                    {% set theCost   = '<dl><dt>Cost</dt><dd>' ~ currency ~ ' ' ~ date.rate.netCost(i)|number_format(2)  ~ '</dd>' %}
+                                                                    {% set theProfit = '<dt>Profit</dt><dd>' ~ currency ~ ' ' ~ date.rate.netProfit(i)|number_format(2) ~ '</dd></dl>' %}
+                                                                    {% set theInfo = theCost ~ theProfit %}
+                                                                    <span class="tooltip-{{ date.rate.label.class }}"
+                                                                          data-toggle="tooltip" data-placement="bottom"
+                                                                          data-original-title="{{ theInfo }}">
+                                                                            {{ currency }} {{ date.rate.salePrice(i)|number_format(2) }}
+                                                                    </span>
+                                                                {% endif %}
+                                                            </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            {% if entity.rates|length == 0 %}
+                                                <div class="alert dark alert-alt alert-danger text-left" role="alert">
+                                                    Before create a new date, you need <a class="alert-link"
+                                                                                          href="{{ path('backend_room_rate_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}">create
+                                                        at least a rate</a>
+                                                </div>
+                                            {% endif %}
+                                            {% if entity.hotel.policies|length == 0 %}
+                                                <div class="alert dark alert-alt alert-danger text-left" role="alert">
+                                                    Before create a new date, you need <a class="alert-link"
+                                                                                          href="{{ path('backend_hotel_cancellation_policy_new', { 'hid': entity.hotel.id }) }}">create
+                                                        at least a cancellation policy</a>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if entity.hotel.policies|length > 0 and entity.rates|length > 0 %}
+                                                <a href="{{ path('backend_room_date_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}"
+                                                   class="btn btn-primary">
+                                                    <i class="icon fa-plus" aria-hidden="true"></i> Date(s)
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Room Images #}
+                                <div class="tab-pane" id="images" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            {% if entity.images|length > 0 %}
+                                                <div class="row">
+                                                    {% for image in entity.images %}
+                                                        <div class="col-sm-4">
+                                                            <div class="panel">
+                                                                <figure class="overlay overlay-hover animation-hover">
+                                                                    <img class="caption-figure"
+                                                                         src="{{ asset(image.getWebPath) }}">
+                                                                    <figcaption
+                                                                            class="overlay-panel overlay-background overlay-fade text-center vertical-align">
+
+                                                                        <a href="{{ path('backend_room_image_edit', { 'hid': entity.hotel.id, 'rid': entity.id, 'iid': image.id }) }}"
+                                                                           class="btn btn-outline btn-success project-button">
+                                                                            <i class="icon wb-edit"
+                                                                               aria-hidden="true"></i>
+                                                                        </a>
+
+                                                                    </figcaption>
+                                                                </figure>
+                                                                <div class="time pull-right">{{ image.createdAt | date('M j, Y - H:i A') }}</div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <a href="{{ path('backend_room_image_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}"
+                                               class="btn btn-primary">
+                                                <i class="icon fa-plus" aria-hidden="true"></i> Image
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                {# Room Promotions #}
+                                <div class="tab-pane" id="promotions" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <table class="table table-hover dataTable table-striped width-full"
+                                                   id="promotionTable">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>Valid</th>
+                                                    <th>Applies to period</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for promotion in entity.promotions %}
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{{ path('backend_room_promotion_show', {'hid': entity.hotel.id, 'rid': entity.id, 'pid': promotion.id } ) }}">
+                                                                {{ promotion }}
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ promotion.description }}</td>
+                                                        <td>
+                                                            {{ promotion.validFrom|date('d M Y') ~ ' to ' ~ promotion.validTo|date('d M Y') }}
+                                                        </td>
+                                                        <td>
+                                                            {{ promotion.periodFrom|date('d M Y') ~ ' to ' ~ promotion.periodTo|date('d M Y') }}
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <a href="{{ path('backend_room_promotion_new', { 'hid': entity.hotel.id, 'rid': entity.id }) }}"
+                                               class="btn btn-primary">
+                                                <i class="icon fa-plus" aria-hidden="true"></i> Promotion
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {# STOP SELL MODAL #}
+    <div class="modal fade modal-fade-in-scale-u" id="stopSellForm" aria-hidden="true" aria-labelledby="stopSellForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Stop Sell</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="confirmStopSell();">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# CANCEL STOP SELL MODAL #}
+    <div class="modal fade modal-fade-in-scale-u" id="cancelStopSellForm" aria-hidden="true" aria-labelledby="cancelStopSellForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Cancel Stop Sell</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="confirmCancelStopSell();">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+    {#<script src="{{ asset('backend/js/pages/room/dataTable.min.js') }}"></script>#}
+    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <script src="{{ asset('backend/js/pages/room/dataTable.js') }}"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+    <script src="{{ asset('backend/global/vendor/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
+
+    <script>
+        var stopSellDate = null; // This is set in datatables.js
+        var theDiv = null;
+
+        function confirmStopSell() {
+            var path = "{{ path('backend_room_date_stop', {'hid': entity.hotel.id }) }}";
+            var realPath = path.replace('/0/', '/' + stopSellDate + '/');
+            $.ajax({
+                type: "POST",
+                url: realPath,
+                success: function (response) {
+                    $('#stopSellForm').modal('toggle');
+                    theDiv.append('<span class="stopCell label label-warning tooltip-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Stop Sell Date">S</span>')
+                },
+                fail: function () {
+
+                }
+            });
+        }
+        function confirmCancelStopSell() {
+            var path = "{{ path('backend_room_date_stop', {'hid': entity.hotel.id }) }}";
+            var realPath = path.replace('/0/', '/' + stopSellDate + '/');
+            $.ajax({
+                type: "POST",
+                url: realPath,
+                success: function (response) {
+                    $('#cancelStopSellForm').modal('toggle');
+                    theDiv.find('.stopCell').remove();
+                },
+                fail: function () {
+
+                }
+            });
+        }
+
+    </script>
+
+    {% if app.request.get('tab') is not empty %}
+        <script>
+            $(function () {
+                $('a[href="#{{ app.request.get('tab') }}"]').tab('show');
+
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}
+

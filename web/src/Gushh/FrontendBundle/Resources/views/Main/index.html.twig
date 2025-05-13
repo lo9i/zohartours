@@ -1,0 +1,488 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}">
+	<link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker3.css') }}">
+  	<link rel="stylesheet" href="{{ asset('frontend/css/slider-pro.min.css') }}">
+    <style>
+    .destinations {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .DestinationNextMini-title span {
+        font-size: 23px;
+    }
+    .DestinationNextMini-title em {
+        font-size: 0.45em;
+    }
+    </style>
+{% endblock %}
+
+{% block title %}{{ brand }} | {{ 'home.title'|trans|title }}{% endblock %}
+
+{% block inline_body %} class="green" {% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			<div id="Home-Slider" class="slider-pro">
+			    <div class="sp-slides">
+		            <div class="sp-slide">
+		                <img alt="Home" class="sp-image" src="{{ asset('frontend/css/images/blank.gif') }}" data-src="{{ asset('img/slides/a.jpg') }}" />
+		            </div>
+		            <div class="sp-slide">
+		                <img alt="Home" class="sp-image" src="{{ asset('frontend/css/images/blank.gif') }}" data-src="{{ asset('img/slides/b.jpg') }}" />
+		            </div>
+		            <div class="sp-slide">
+		                <img alt="Home" class="sp-image" src="{{ asset('frontend/css/images/blank.gif') }}" data-src="{{ asset('img/slides/c.jpg') }}" />
+		            </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding-left: 0; padding-right: 0;padding-top: 10px">
+
+		{# INCLUDE SEARCHFORM #}
+		{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_AGENCY') or is_granted('ROLE_VIEWER') %}
+			{{ include('GushhFrontendBundle::Main/includes/searchForm.html.twig') }}
+		{% endif %}
+
+		<div class="row">
+			<div class="col-md-4 destinations">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="Title Util-text-center">
+							{{ 'home.usa'|trans|raw }}
+						</h2>
+					</div>
+				</div>
+
+				<section class="row no-gutter">
+
+                    {% set city = cities[0] %}
+                    {% set regionSlug 			= city.region %}
+                    {% set continentSlug 	= city.continent|lower|replace({' ' : "-"}) %}
+                    {% set countrySlug 		= city.country|lower|replace({' ' : "-"}) %}
+                    {% set citySlug 			= city.city|lower|replace({' ' : "-"}) %}
+
+                    <div class="col-xxs-12 col-xs-4">
+                        <article class="DestinationMini-item" style="background-image: url('{{ asset(city.cityImage.image.getWebPath) }}')">
+                            <div class="DestinationMini-info">
+                                <h2 class="DestinationMini-title">{{ city.city }} <em>{{ city.state }}</em> <span>-</span></h2>
+                                <div class="DestinationMini-arrow-box">></div>
+                                <a href="{{ path('hotels_list_city', { 'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug } )}}" class="DestinationMini-link">></a>
+                            </div>
+                        </article>
+                    </div>
+
+					<div class="col-xxs-12 col-xs-4">
+						<article class="DestinationNextMini-item">
+							<h3 class="DestinationNextMini-title">
+								{{ 'home.allUsaDestinations'|trans|raw }}
+							</h3>
+							<a href="{{ path('hotels_list_continent', {'region': 'United-States', 'continent': 'america'}) }}" class="DestinationNextMini-link">></a>
+						</article>
+					</div>
+
+                    {% set city = cities[1] %}
+                    {% set regionSlug 		= city.region %}
+                    {% set continentSlug 	= city.continent|lower|replace({' ' : "-"}) %}
+                    {% set countrySlug 		= city.country|lower|replace({' ' : "-"}) %}
+                    {% set citySlug 			= city.city|lower|replace({' ' : "-"}) %}
+
+                    <div class="col-xxs-12 col-xs-4">
+                        <article class="DestinationMini-item" style="background-image: url('{{ asset(city.cityImage.image.getWebPath) }}')">
+                            <div class="DestinationMini-info">
+                                <h2 class="DestinationMini-title">{{ city.city }} <em>{{ city.state }}</em> <span>-</span></h2>
+                                <div class="DestinationMini-arrow-box">></div>
+                                <a href="{{ path('hotels_list_city', { 'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug } )}}" class="DestinationMini-link">></a>
+                            </div>
+                        </article>
+                    </div>
+				</section>
+			</div>
+            <div class="col-md-4 destinations">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="Title Util-text-center">
+                            {{ 'home.argentina'|trans|raw }}
+                        </h2>
+                    </div>
+                </div>
+                <section class="row no-gutter">
+                    {% set city = argCities[0] %}
+                    {% set regionSlug 		= city.region %}
+                    {% set continentSlug 	= city.continent|lower|replace({' ' : "-"}) %}
+                    {% set countrySlug 		= city.country|lower|replace({' ' : "-"}) %}
+                    {% set citySlug 		= city.city|lower|replace({' ' : "-"}) %}
+
+                    <div class="col-xxs-12 col-xs-6">
+                        <article class="DestinationMini-item" style="background-image: url('{{ asset(city.cityImage.image.getWebPath) }}')">
+                            <div class="DestinationMini-info">
+                                <h2 class="DestinationMini-title">{{ city.city }} <em>{{ city.country }}</em> <span>-</span></h2>
+                                <div class="DestinationMini-arrow-box">></div>
+                                <a href="{{ path('hotels_list_city', { 'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug } )}}" class="DestinationMini-link">></a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xxs-12 col-xs-6">
+                        <article class="DestinationNextMini-item">
+                            <h3 class="DestinationNextMini-title">
+                                {{ 'home.allArgentinaDestinations'|trans|raw }}
+                            </h3>
+                            <a href="{{ path('hotels_list_continent', {'region': regionSlug, 'continent': continentSlug}) }}" class="DestinationNextMini-link">></a>
+                        </article>
+                    </div>
+                 </section>
+            </div>
+            <div class="col-md-4 destinations">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="Title Util-text-center">
+                            {{ 'home.europe'|trans|raw }}
+                        </h2>
+                    </div>
+                </div>
+                <section class="row no-gutter">
+                    {% set country = countries[0] %}
+                    {% set regionSlug 		= country.region %}
+                    {% set continentSlug 	= country.continent|lower|replace({' ' : "-"}) %}
+                    {% set countrySlug 		= country.country|lower|replace({' ' : "-"}) %}
+                    {% set citySlug 		= country.city|lower|replace({' ' : "-"}) %}
+
+                    <div class="col-xxs-12 col-xs-6">
+                        <article class="DestinationMini-item" style="background-image: url('{{ asset(country.cityImage.image.getWebPath) }}')">
+                            <div class="DestinationMini-info">
+                                <h2 class="DestinationMini-title">{{ country.city }} <em>{{ country.country }}</em> <span>-</span></h2>
+                                <div class="DestinationMini-arrow-box">></div>
+                                <a href="{{ path('hotels_list_city', { 'region': regionSlug, 'continent': continentSlug, 'country': countrySlug, 'city': citySlug } )}}" class="DestinationMini-link">></a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xxs-12 col-xs-6">
+                        <article class="DestinationNextMini-item">
+                            <h3 class="DestinationNextMini-title">
+                                {{ 'home.allEuropeDestinations'|trans|raw }}
+                            </h3>
+                            <a href="{{ path('hotels_list_continent', {'region': 'Europe', 'continent': 'europe'}) }}" class="DestinationNextMini-link">></a>
+
+                        </article>
+                    </div>
+                </section>
+            </div>
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block footer_js %}
+	<script src="{{ asset('frontend/js/jquery.sliderPro.min.js') }}"></script>
+	<script type="text/javascript">
+	  $(function () {
+	    $('#Home-Slider').sliderPro({
+	      width   : 1920,
+	      height  : 400,
+	      arrows  : true,
+	      fade    : true,
+	      buttons : false,
+	    });
+	  });
+	</script>
+
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+
+	{# JS QUE HACE FUNCIONAR EL FORMULARIO DE BUSQUEDA #}
+	{#{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_AGENCY')  or is_granted('ROLE_VIEWER') %}#}
+  	<script src="{{ asset('frontend/js/bootstrap-datepicker.min.js') }}"></script>
+  	{% set nightLang = 'hotels.searchForm.night'|trans %}
+  	{% set nightsLang = 'hotels.searchForm.nights'|trans %}
+
+    <script type="text/javascript">
+
+			$(function () {
+				moment.locale('{{ app.request.locale }}');
+                $('#sandbox-container.input-daterange').datepicker({
+                    language: '{{ app.request.locale }}',
+                    format: "dd M yyyy",
+                    startDate: "+0d",
+                    endDate: "+3y",
+                    autoclose: true
+                });
+
+                var hotels = [
+                    {% for hotel in hotels %}
+                        { region: "{{ hotel.region }}",  
+                          continent: "{{ hotel.continent }}",  
+                          country: "{{ hotel.country }}", 
+                          state: "{{ hotel.state }}", 
+                          cityName: "{{ hotel.city }}", 
+                          city: "{{ hotel.city }},{{ hotel.state }},{{ hotel.country }},{{ hotel.continent }},{{ hotel.region }}", 
+                          hotelName: "{{ hotel.name }}", 
+                          hotelId: {{ hotel.id }}, 
+                          enabled: {% if hotel.enabled %}true{% else %}false{% endif %} 
+                        },
+                    {% endfor %}
+                ];
+
+                var nightLang = "{{ nightLang }}",
+					nightsLang = "{{ nightsLang }}";
+
+                setFormDefaultValues();
+                $('#sandbox-container.input-daterange').datepicker().on('changeDate', checkDates);
+                checkDates();
+
+				$('#searchForm_rooms'              ).on('change', function () {$('#gushh_corebundle_search_rooms').val($(this).val());});
+				$('#searchForm_room1_adults'       ).on('change', function () {$('#gushh_corebundle_search_room1Adults').val($(this).val());});
+				$('#searchForm_room1_children'     ).on('change', function () {$('#gushh_corebundle_search_room1Children').val($(this).val());});
+				$('#searchForm_room1_children'     ).on('change', room1Children);
+				$('#searchForm_room1_children1_age').on('change', room1Children);
+				$('#searchForm_room1_children2_age').on('change', room1Children);
+				$('#searchForm_room1_children3_age').on('change', room1Children);
+				$('#searchForm_room1_children4_age').on('change', room1Children);
+				$('#searchForm_room1_children5_age').on('change', room1Children);
+				$('#searchForm_room1_children6_age').on('change', room1Children);
+
+                $('#searchForm_region'    ).on('change', setCitiesForSelectedRegion);
+                $('#searchForm_destination').on('change', setHotelsForSelectedCity);
+                $('#searchForm_hotel'      ).on('change', function (){ $('#gushh_corebundle_search_hotel').val($(this).val()); });
+
+                setCitiesForSelectedRegion();
+
+                function checkDates() {
+
+                    var start = $("#datepickerStart").datepicker('getFormattedDate', 'dd-mm-yyyy');
+                    var end = $("#datepickerEnd").datepicker('getFormattedDate', 'dd-mm-yyyy');
+
+                    $('#gushh_corebundle_search_checkIn').val(start);
+                    $('#gushh_corebundle_search_checkOut').val(end);
+
+
+                    var fullStart = $("#datepickerStart").datepicker('getDate');
+                    var fullEnd = $("#datepickerEnd").datepicker('getDate');
+
+                    var startDate = moment(fullStart);
+                    var endDate = moment(fullEnd);
+                    var nights = endDate.diff(startDate, 'days');
+
+                    if (nights == 0) {
+                        var newEndDate = new Date(fullEnd);
+                        newEndDate.setDate(newEndDate.getDate() + 3);
+
+                        $('#datepickerEnd').datepicker('setDate', newEndDate);
+                    } else if (nights == 1) {
+                        $('#nights').html('1 ' + nightLang + '.');
+                    } else {
+                        $('#nights').html(nights + ' ' + nightsLang + '.');
+                    }
+                }
+
+                function room1Children() {
+                    switch($('#searchForm_room1_children').val()) {
+                        case '1':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').hide().val('0');
+                            $('#searchForm_room1_children3_age').hide().val('0');
+                            $('#searchForm_room1_children4_age').hide().val('0');
+                            $('#searchForm_room1_children5_age').hide().val('0');
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                        case '2':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').show();
+                            $('#searchForm_room1_children3_age').hide().val('0');
+                            $('#searchForm_room1_children4_age').hide().val('0');
+                            $('#searchForm_room1_children5_age').hide().val('0');
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                        case '3':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').show();
+                            $('#searchForm_room1_children3_age').show();
+                            $('#searchForm_room1_children4_age').hide().val('0');
+                            $('#searchForm_room1_children5_age').hide().val('0');
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                        case '4':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').show();
+                            $('#searchForm_room1_children3_age').show();
+                            $('#searchForm_room1_children4_age').show();
+                            $('#searchForm_room1_children5_age').hide().val('0');
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                        case '5':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').show();
+                            $('#searchForm_room1_children3_age').show();
+                            $('#searchForm_room1_children4_age').show();
+                            $('#searchForm_room1_children5_age').show();
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                        case '6':
+                            $('#oneRoomChildrenAge').show();
+                            $('#searchForm_room1_children1_age').show();
+                            $('#searchForm_room1_children2_age').show();
+                            $('#searchForm_room1_children3_age').show();
+                            $('#searchForm_room1_children4_age').show();
+                            $('#searchForm_room1_children5_age').show();
+                            $('#searchForm_room1_children6_age').show();
+                            break;
+                        default:
+                            $('#oneRoomChildrenAge').hide();
+                            $('#searchForm_room1_children1_age').hide().val('0');
+                            $('#searchForm_room1_children2_age').hide().val('0');
+                            $('#searchForm_room1_children3_age').hide().val('0');
+                            $('#searchForm_room1_children4_age').hide().val('0');
+                            $('#searchForm_room1_children5_age').hide().val('0');
+                            $('#searchForm_room1_children6_age').hide().val('0');
+                            break;
+                    }
+
+                    $('#gushh_corebundle_search_room1ChildrenAge').val(
+                            [
+                             $('#searchForm_room1_children1_age').val()
+                            ,$('#searchForm_room1_children2_age').val()
+                            ,$('#searchForm_room1_children3_age').val()
+                            ,$('#searchForm_room1_children4_age').val()
+                            ,$('#searchForm_room1_children5_age').val()
+                            ,$('#searchForm_room1_children6_age').val()
+                            ]
+                        );
+                }
+
+                function setCitiesForSelectedRegion() {
+
+                    var selectedRegion = $('#searchForm_region').val();
+                    if ( selectedRegion == undefined )
+                        return;
+                    
+                    var selectedContinent = selectedRegion.toUpperCase() == 'EUROPE' ? 'europe' : 'america';
+                    $('#gushh_corebundle_search_continent').val(selectedContinent);
+
+                    var citiesSelect = $('#searchForm_destination');
+                    citiesSelect.find('option').remove();
+
+                    var selectedCountry = (selectedRegion.toUpperCase() == 'UNITED STATES' || selectedRegion.toUpperCase() == 'MEXICO' || selectedRegion.toUpperCase() == 'ARGENTINA') ? selectedRegion : '';
+                    citiesSelect.append('<option value=",,' + selectedCountry + ',' + selectedContinent + ',' + selectedRegion +'" selected="selected">{{ 'hotels.searchForm.allCities'|trans }}</option>');
+
+                    var currentState = '';
+                    var currentCity = '';
+                    for (var i = 0; i < hotels.length; i++) {
+                        if(!hotels[i].enabled)
+                            continue;
+                            
+                        if (hotels[i].region.toUpperCase() != selectedRegion.toUpperCase() || hotels[i].continent.toUpperCase() != selectedContinent.toUpperCase())
+                            continue;
+
+                        if(selectedCountry != '')
+                        {
+                            if(selectedCountry.toUpperCase() !=  hotels[i].country.toUpperCase())
+                                continue;
+                        }
+                        if(currentState != hotels[i].state) {
+                            citiesSelect.append('<option style="font-weight: bold;" value=",'                            + hotels[i].state + ',' + hotels[i].country + ',' + selectedContinent + ',' + selectedRegion +'">' + hotels[i].state.toUpperCase() + '</option>');
+                            currentState = hotels[i].state;
+                            currentCity = ''
+                        }
+
+                        if(currentCity != hotels[i].cityName) {
+                            citiesSelect.append('<option style="padding-left: 10px;" value="' + hotels[i].cityName + ',' + hotels[i].state + ',' + hotels[i].country + ',' + selectedContinent + ',' + selectedRegion +'">' + hotels[i].cityName + '</option>');
+                            currentCity = hotels[i].cityName;
+                        }
+                    }
+
+                	setHotelsForSelectedCity();
+				}
+
+                function setHotelsForSelectedCity() {
+                    var hotelSelect = $('#searchForm_hotel');
+                    hotelSelect.find('option').remove().end().append('<option value="0" selected="selected">{{ 'hotels.searchForm.allHotels'|trans }}</option>');
+
+
+                    var selectedRegion = $('#searchForm_region').val();
+                    var selectedContinent = selectedRegion.toUpperCase() == 'EUROPE' ? 'europe' : 'america';
+                    var selectedCountry = (selectedRegion.toUpperCase() == 'UNITED STATES' || selectedRegion.toUpperCase() == 'MEXICO' || selectedRegion.toUpperCase() == 'ARGENTINA') ? selectedRegion : '';
+                    var selectedCity = $('#searchForm_destination').val();
+
+					for (var i = 0; i < hotels.length; i++) {
+                        if (hotels[i].continent.toUpperCase() != selectedContinent.toUpperCase())
+                            continue;
+
+                        if(selectedCountry != '' && hotels[i].country.toUpperCase() != selectedCountry.toUpperCase())
+                            continue;
+
+						var cityStateCountryContinentRegion = selectedCity.split(',');
+                        if((cityStateCountryContinentRegion[0].length == 0 && cityStateCountryContinentRegion[1].length == 0)
+							|| cityStateCountryContinentRegion[0].length == 0 && selectedCity.toUpperCase() == (',' + hotels[i].state + ',' + hotels[i].country + ',' + hotels[i].continent + ',' + hotels[i].region).toUpperCase()
+							|| hotels[i].city.toUpperCase() == selectedCity.toUpperCase())
+	                        hotelSelect.append('<option value="' + hotels[i].hotelName + '">' + hotels[i].hotelName + '</option>');
+					}
+                    setCountryStateAndCityForDestination();
+                }
+
+                function setCountryStateAndCityForDestination (){
+                    var destination = $('#searchForm_destination').val().split(',');
+                    $('#gushh_corebundle_search_city').val(destination[0]);
+                    $('#gushh_corebundle_search_state').val(destination[1]);
+                    $('#gushh_corebundle_search_country').val(destination[2]);
+                    $('#gushh_corebundle_search_continent').val(destination[3]);
+                    $('#gushh_corebundle_search_region').val(destination[4]);
+                }
+
+                function setFormDefaultValues() {
+
+                    var today = new Date();
+                    var current = moment($("#datepickerStart").datepicker('getDate'));
+                    if( current.isValid() == false ||  current.diff(today, 'days') < 1 ){
+                        today.setDate(today.getDate() + 1);
+                        $("#datepickerStart").datepicker('setDate', today);
+                    }
+
+                    if($('#gushh_corebundle_search_room1Adults').val() == '' )
+                        $('#gushh_corebundle_search_room1Adults').val($('#searchForm_room1_adults').val());
+
+                    if($('#gushh_corebundle_search_room1Children').val() == '' )
+                        $('#gushh_corebundle_search_room1Children').val($('#searchForm_room1_children').val());
+
+                    if($('#gushh_corebundle_search_rooms').val() == '' )
+                        $('#gushh_corebundle_search_rooms').val($('#searchForm_rooms').val());
+
+                    $('#oneRoomChildrenAge').hide();
+
+                    if($('#searchForm_room1_children1_age').val() == '' )
+                        $('#searchForm_room1_children1_age').val('0');
+
+                    if($('#searchForm_room1_children2_age').val() == '' )
+                        $('#searchForm_room1_children2_age').val('0');
+                    if($('#searchForm_room1_children3_age').val() == '' )
+                        $('#searchForm_room1_children3_age').val('0');
+                    if($('#searchForm_room1_children4_age').val() == '' )
+                        $('#searchForm_room1_children4_age').val('0');
+                    if($('#searchForm_room1_children5_age').val() == '' )
+                        $('#searchForm_room1_children5_age').val('0');
+                    if($('#searchForm_room1_children6_age').val() == '' )
+                        $('#searchForm_room1_children6_age').val('0');
+
+                    if($('#gushh_corebundle_search_room1ChildrenAge').val() == [] )
+                        $('#gushh_corebundle_search_room1ChildrenAge').val([0,0,0,0,0,0]);
+
+                    $('#searchForm_room1_children1_age').hide();
+                    $('#searchForm_room1_children2_age').hide();
+                    $('#searchForm_room1_children3_age').hide();
+                    $('#searchForm_room1_children4_age').hide();
+                    $('#searchForm_room1_children5_age').hide();
+                    $('#searchForm_room1_children6_age').hide();
+                }
+			});
+		</script>
+	{#{% endif %}#}
+
+{% endblock %}
+

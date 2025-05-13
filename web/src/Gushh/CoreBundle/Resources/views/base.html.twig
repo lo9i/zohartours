@@ -1,0 +1,357 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="description" content="ZoharTours">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Site Properities -->
+        <title>{% block title %}ZoharTours | Backend{% endblock %}</title>
+        
+        <!-- Facebook OG -->
+                    
+        <!-- for Twitter -->          
+        
+        {# <link rel="stylesheet" href="{{ asset('css/normalize.css') }}"> #}
+
+        <!-- Latest compiled and minified CSS -->
+        {# <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"> #}
+        {# <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}"> #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+
+        <link rel="stylesheet" href="{{ asset('css/html5semantic.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+        {% block styles %}{% endblock %}
+            
+        {# <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> #}
+
+        <!-- Include the plugin's CSS and JS: -->       
+        <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    </head>
+    <body {% block inline_body %}{% endblock %}>
+        <div id="wrapper">
+            
+            {# NAVBAR MENU #}
+            <div class="ui menu">
+                {# <div class="item">
+                    <img src="{{ asset('img/logo.png') }}" alt="ZoharTours logo"/>
+                </div> #}
+
+                <div class="link item {% if activePage is defined and activePage == 'home' %}active{% endif %}">
+                    <a href="{{ path('backend_index') }}">
+                        Dashboard
+                    </a>
+                </div>
+
+                {# PRODCUTS #}
+                <div class="ui simple dropdown link item">
+                    Products <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item {% if activePage is defined and activePage == 'hotels' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Hotels 
+                            </a>     
+                        </div>
+                        
+                        {# 
+                        <div class="item {% if activePage is defined and activePage == 'aparts' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Aparts 
+                            </a>     
+                        </div> 
+                        #}
+
+                        <div class="item {% if activePage is defined and activePage == 'transfers' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Transfers 
+                            </a>
+                        </div>
+
+                        {# 
+                        <div class="item {% if activePage is defined and activePage == 'tours' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Tours 
+                            </a>
+                        </div>
+
+                        <div class="item {% if activePage is defined and activePage == 'cruises' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Cruises 
+                            </a>
+                        </div> 
+                        #}
+
+                    </div>
+                </div>
+
+
+                {# RESERVATIONS #}
+                <div class="ui simple dropdown link item">
+                    Reservations <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item {% if activePage is defined and activePage == 'reservation_all' %}active{% endif %}">
+                            <a href="{{ path('backend_reservations') }}">
+                                All 
+                            </a>     
+                        </div>
+
+                        <div class="item {% if activePage is defined and activePage == 'reservation_pending' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Pending 
+                            </a>
+                        </div>
+
+                        <div class="item {% if activePage is defined and activePage == 'reservation_on_request' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                On Request 
+                            </a>
+                        </div>
+                        
+                        <div class="item {% if activePage is defined and activePage == 'reservation_complete' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Complete 
+                            </a>
+                        </div>
+
+                        <div class="item {% if activePage is defined and activePage == 'reservation_cancelled' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Cancelled 
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {# FINANCES #}
+                <div class="ui simple dropdown link item">
+                    Documents <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item {% if activePage is defined and activePage == 'invoices' %}active{% endif %}">
+                            <a href="{{ path('backend_invoices') }}">
+                                Invoices 
+                            </a>     
+                        </div>
+
+                        <div class="item {% if activePage is defined and activePage == 'vouchers' %}active{% endif %}">
+                            <a href="{{ path('backend_invoices') }}">
+                                Vouchers 
+                            </a>     
+                        </div>
+
+                        {# <div class="item {% if activePage is defined and activePage == 'stats' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Stats 
+                            </a>
+                        </div> #}
+
+                    </div>
+                </div>
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                {# USERS #}
+                <div class="ui simple dropdown link item">
+                    Users <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item {% if activePage is defined and activePage == 'users_agencies' %}active{% endif %}">
+                            <a href="{{ path('backend_users_agencies') }}">
+                                Agencies 
+                            </a>     
+                        </div>
+                        <div class="item {% if activePage is defined and activePage == 'users_admins' %}active{% endif %}">
+                            <a href="{{ path('backend_users_admins') }}">
+                                Administrators 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                {# CONFIGURATIONS #}
+                <div class="ui simple dropdown link item">
+                    Configurations <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item {% if activePage is defined and activePage == 'configuration_invoices' %}active{% endif %}">
+                            <a href="{{ path('backend_configuration_invoices') }}">
+                                Invoices 
+                            </a>     
+                        </div>
+                        <div class="item {% if activePage is defined and activePage == 'configuration_currencies' %}active{% endif %}">
+                            <a href="{{ path('backend_configuration_currencies') }}">
+                                Currencies
+                            </a>
+                        </div>
+                        <div class="item {% if activePage is defined and activePage == 'some1' %}active{% endif %}">
+                            <a href="{{ path('backend_hotels') }}">
+                                Some option
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+                {# PROFILE #}
+                <div class="ui right simple dropdown item">
+                    {# <img class="ui avatar image" src="{{ asset('img/avatars/gushh.jpg') }}"> #} 
+                    <i class="user icon"></i> {{ app.user }} <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">
+                            <a href="#">
+                                {# <i class="user icon"></i> #} Profile
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {# <i class="power icon"></i> #} Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="ui grid">
+                <div class="row">
+                    {# <div class="four wide column">
+                        <!-- MENU -->
+                        <div class="ui vertical menu">
+                            <div class="item">
+                                <div class="header">Products</div>
+                                <div class="menu">
+                                    <a href="{{ path('backend_hotels') }}" class="item {% if activePage is defined and activePage == 'hotels' %}active{% endif %}">
+                                        Hotels <i class="building icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Transfers <i class="taxi icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Tours <i class="suitcase icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Cruises <i class="ship icon"></i> 
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="item">
+                                <div class="header">Reservations</div>
+                                <div class="menu">
+                                    <a class="item">
+                                        All <div class="ui teal mini label">432</div> 
+                                    </a>
+                                    <a class="item">
+                                        Pending <div class="ui yellow mini label">132</div> 
+                                    </a>
+                                    <a href="" class="item">
+                                        Complete <div class="ui green mini label">201</div> 
+                                    </a>
+                                    <a href="" class="item">
+                                        Cancelled <div class="ui red mini label">101</div> 
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="header">Finances</div>
+                                <div class="menu">
+                                    <a href="{{ path('backend_invoices') }}" class="item {% if activePage is defined and activePage == 'invoices' %}active{% endif %}">
+                                        Invoices <i class="file outline icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Stats <i class="line chart icon"></i> 
+                                    </a>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="header">Users</div>
+                                <div class="menu">
+                                    <a class="item">
+                                        Agencies <i class="user icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Administrators <i class="desktop icon"></i> 
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="header">Configurations</div>
+                                <div class="menu">
+                                    <a class="item">
+                                        Some option <i class="options icon"></i> 
+                                    </a>
+                                    <a class="item">
+                                        Some option <i class="options icon"></i> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> #}
+                    <div class="sixteen wide column">
+                        <div class="ui stacked segment">
+                            {# <div class="ui secondary pointing menu">
+                              <a class="item active">
+                                <i class="info icon"></i> Details
+                              </a>
+                              <a class="item">
+                                <i class="cocktail icon"></i> Services
+                                
+                              </a>
+                              <a class="item">
+                                <i class="privacy icon"></i> Rooms
+                              </a>
+                              <div class="right menu">
+                                <a class="ui item">
+                                    <i class="users icon"></i> Contacts
+                                </a>
+                              </div>
+                            </div> #}
+                            {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
+        <!-- Latest compiled and minified JavaScript -->
+         <script src="{{ asset('js/semantic.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+
+        <script src="{{ asset('js/jquery.tablesort.min.js') }}"></script>
+        
+        <script>
+            $(function(){
+                $('.ui.dropdown').dropdown();
+            })
+        </script>
+
+        {% block footer_js %}
+        {% endblock %}
+
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-XXXXXX-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+</body>
+</html>

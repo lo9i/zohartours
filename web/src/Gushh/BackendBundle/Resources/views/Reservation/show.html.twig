@@ -1,0 +1,363 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+    {#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+<style>
+    .ResultHotelRoom-priceTableDetails {
+        text-align: center;
+        table-layout: fixed;
+        border: solid 1px rgb(228, 234, 236);
+    }
+    .ResultHotelRoom-priceTableDetails th {
+        text-align: center;
+    }
+    .ResultHotelRoom-priceTableDetails td {
+        text-align: center;
+        border: none !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="page-header page-header-bordered">
+                <h1 class="page-title">{{ 'backend.reservations.title'|trans }}</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('dashboard') }}">{{ 'backend.dashboard.title'|trans }}</a></li>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('backend_reservations') }}">{{ 'backend.reservations.title'|trans }}</a></li>
+                    {% elseif is_granted('ROLE_AGENCY') %}
+                    <li><a href="{{ path('client_reservations') }}">{{ 'backend.reservations.title'|trans }}</a></li>
+                    {% endif %}
+                    <li class="active">{{ entity.code }}</li>
+                </ol>
+
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_AGENCY') %}
+                    <div class="page-header-actions">
+                      {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                          <a href="{{ path('backend_reservations') }}" class="btn btn-default"> <i class="icon fa-chevron-left" aria-hidden="true"></i> Back </a>
+                         {% if canceled == false %}
+                              <a href="{{ path('backend_reservation_voucher', {'coid': entity.checkOutProcess.id}) }}" class="btn btn-info" target="_blank"> Voucher </a>
+                         {% endif %}
+                          <div class="btn btn-default" data-toggle="modal" data-target="#resendEmailForm"> {{ canceled ? 'Resend Cancellation' : 'Resend Confirmation' }} </div>
+                      {% else %}
+                          <a href="{{ path('client_reservations') }}" class="btn btn-default"> <i class="icon fa-chevron-left" aria-hidden="true"></i> Back </a>
+                          {% if canceled == false and paid == true %}
+                            <a href="{{ path('backend_reservation_voucher', {'coid': entity.checkOutProcess.id}) }}" class="btn btn-info" target="_blank"> Voucher </a>
+                          {% endif %}
+                      {% endif %}
+                      {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                      {#{% if modifiable == true %}#}
+                            <a href="{{ path('backend_reservation_edit', {'id': entity.id}) }}" class="btn btn-primary">
+                                <i class="icon fa-edit" aria-hidden="true"></i> Reservation
+                            </a>
+                      {#{% else %}#}
+                            {#<a href="#" class="btn btn-primary" disabled title="Reservation can not be modified at this time!">#}
+                                {#<i class="icon fa-edit" aria-hidden="true"></i> Reservation#}
+                            {#</a>#}
+                      {% endif %}
+                      {% if canceled == false and entity.hotelFileId %}
+                            <a href="{{ path('backend_reservation_invoice', {'rid': entity.id}) }}" class="btn btn-info" target="_blank"> Invoice </a>
+                      {% endif %}
+			</div>
+                {% endif %}
+            </div>
+
+            <!-- Panel Reservation Information -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.reservation.title'|trans }} {{ ' - ' ~ entity.code }}</h4>
+                        </div>
+                    </div>
+
+                    <div class="pearls row">
+                        <div class="pearl done col-xs-3">
+                            <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.reservation.request'|trans }}</span>
+                        </div>
+                        <div class="pearl {{ entity.status == 'Completed' ? 'done' : 'current' }} col-xs-3">
+                            <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.reservation.confirmed'|trans }}</span>
+                        </div>
+                        <div class="pearl {{ entity.paymentStatus == 'Paid' ? 'done' : 'current' }} col-xs-3">
+                            <div class="pearl-icon"><i class="icon fa-credit-card" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.reservation.payment'|trans }}</span>
+                        </div>
+                        <div class="pearl current col-xs-3">
+                            <div class="pearl-icon"><i class="icon fa-thumbs-o-up" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.reservation.complete'|trans }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped width-full" style="table-layout: fixed;">
+                                <tbody>
+                                {% for guest in entity.checkOutProcess.guests %}
+                                  <tr>
+                                    <td>
+                                      <h6>{{ 'backend.checkout.passenger.ptitle'|trans }}</h6>
+                                      <small>{{ guest.title.name }}</small>
+                                    </td>
+                                    <td>
+                                      <h6>{{'backend.checkout.passenger.name'|trans }}</h6>
+                                      <small>{{ guest.name }}</small>
+                                    </td>
+                                    <td>
+                                      <h6>{{ 'backend.checkout.passenger.lastname'|trans }}</h6>
+                                      <small>{{ guest.lastName }}</small>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td>
+                                        <h6>{{ 'backend.checkout.hotel'|trans }}</h6>
+                                        <small>{{ entity.hotel.name }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.checkout.room'|trans }}</h6>
+                                        <small>{{ entity.room.name }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>Promos</h6>
+                                        <small>
+                                            {% if entity.promotionsNames|length %}
+                                                <span class="label label-success">{{ entity.promotionsNames }}</span>
+                                            {% endif %}
+                                        </small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>{{ 'backend.form.city'|trans }}</h6>
+                                        <small>{{ entity.hotel.city }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.form.state'|trans }}</h6>
+                                        <small>{{ entity.hotel.state }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.form.country'|trans }}</h6>
+                                        <small>{{ entity.hotel.country }}</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>{{ 'backend.form.checkIn'|trans }}</h6>
+                                        <small>{{ entity.checkOutProcess.search.checkIn|date('d M Y') }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.form.checkOut'|trans }}</h6>
+                                        <small>{{ entity.checkOutProcess.search.checkOut|date('d M Y') }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.form.nights'|trans }}</h6>
+                                        <small>{{ entity.checkOutProcess.search.nights }}</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>Pax</h6>
+                                        <small>{{ entity.checkOutProcess.search.room1Adults + entity.checkOutProcess.search.room1Children }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.checkout.adults'|trans }}</h6>
+                                        <small>{{ entity.checkOutProcess.search.room1Adults }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.checkout.children'|trans }}</h6>
+                                        <small>{{ entity.checkOutProcess.search.room1Children }}</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>{{ 'backend.reservation.hotelFileId'|trans }}</h6>
+                                        <span>{{ entity.hotelFileId }}</span>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.reservation.paymentStatus'|trans }}</h6>
+                                        <span class="label label-{{ entity.paymentStatus.class }}">{{ entity.paymentStatus }}</span>
+                                    </td>
+                                    <td>
+                                        <h6>{{ 'backend.reservation.status'|trans }}</h6>
+                                        <span class="label label-{{ entity.status.class }}">{{ entity.status }}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="text-right pull-right">
+                                <h4>
+                                    Total: <span>{{ currency  ~ ' ' ~ entity.total|number_format(2, '.', ',') }}</span>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="text-right pull-right">
+                                <h4>
+                                    Payments: <span>{{ '- ' ~ currency  ~ ' ' ~  paymentsAmount|number_format(2, '.', ',') }}</span>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="text-right pull-right">
+                                <h3>
+                                    Balance: <span class="label label-{{ entity.paymentStatus.class }}" >{{ currency  ~ ' ' ~  (entity.balance)|number_format(2, '.', ',') }}</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Panel Reservation Information -->
+
+            <!-- Panel Remarks -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.reservation.remarks'|trans }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered" >
+                        <tbody>
+                          <tr><td> {{ entity.remarks }} </td></tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Dates -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.reservation.dates'|trans }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{ calendar|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Payments -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.reservation.payments'|trans }}</h4>
+                        </div>
+                    </div>
+
+                    {% if entity.balance != 0  and canceled == false %}
+                        <div class="col-md-10">
+                    {% else %}
+                        <div class="col-md-12">
+                    {% endif %}
+                        <table class="table table-hover dataTable table-striped width-full" id="paymentsTable">
+                            <thead>
+                                <tr>
+                                    <th width="200px">Date</th>
+                                    <th width="200px">Amount</th>
+                                    <th>Internal Reference</th>
+                                    <th>User</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                        {% if entity.payments|length > 0 %}
+                            {% for payment in entity.payments %}
+                                <tr>
+                                    <td><a href="{{ path('backend_reservation_payment_show', { 'rid': entity.id, 'pid': payment.id }) }}">{{ payment.createdAt| date('d M Y - H:i A')}}</a></td>
+                                    <td>{{ currency ~ ' ' ~ payment.amount|number_format(2, '.', ',') }}</td>
+                                    <td>{{ payment.reference }}</td>
+                                    <td>{{ payment.user.name ~ ' ' ~ payment.user.lastName }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center"><strong>No payments yet</strong></td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                        </table>
+                    </div>
+
+                    {% if entity.balance != 0 and canceled == false %}
+                        <div class="col-md-2 text-center">
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                                <a href="{{ path('backend_reservation_payment_new', { 'rid': entity.id}) }}" class="btn btn-primary">
+                                    <i class="icon fa-plus" aria-hidden="true"></i>  Payment
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- End Panel Payments -->
+
+        </div>
+    </div>
+
+  {# STOP SELL MODAL #}
+  <div class="modal fade modal-fade-in-scale-u" id="resendEmailForm" aria-hidden="true" aria-labelledby="resendEmailForm"
+       role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+
+          <h4 class="modal-title">Resend {{ canceled ? 'Cancellation' : 'Confirmation' }} Email</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" onclick="confirmResend();">Send</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+    <script src="{{ asset('backend/js/pages/reservation/dataTable.min.js') }}"></script>
+
+      <script>
+      function confirmResend() {
+          var path = "{{ canceled == true ? path('backend_reservation_resend_cancel', {'coid': entity.checkOutProcess.id})
+                                  : path('backend_reservation_resend_confirmation', {'coid': entity.checkOutProcess.id}) }}";
+          $('#resendEmailForm').modal('toggle');
+          $.ajax({
+              type: "POST",
+              url: path,
+              success: function (response) {
+              },
+              fail: function() {
+
+              }
+          });
+      }
+
+  </script>
+
+{% endblock %}

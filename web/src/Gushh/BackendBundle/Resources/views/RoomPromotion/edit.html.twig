@@ -1,0 +1,438 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <style type="text/css">
+        .validationPeriodRemove {
+            float: left;
+            padding-top: 10px;
+            padding-left: 6px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': entity.room.hotel.id } ) }}">{{ entity.room.hotel }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'rooms' } ) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id } ) }}">{{ entity.room }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'promotions' } ) }}">Promotions</a></li>
+          <li><a href="{{ path('backend_room_promotion_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id } ) }}">{{ entity }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_promotion_show', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id }) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+            <i class="icon fa-trash" aria-hidden="true"></i> Delete
+          </a>           
+        </div>
+      </div>
+
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Basic Promotion Information</h4>
+                {{ form_errors(form) }}
+
+
+                <div class="form-group">
+                  <label class="control-label">Name</label>
+                  {{ form_widget(form.name) }}
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Description</label>
+                  {{ form_widget(form.description) }}
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                    <label class="control-label">Validity period</label>
+                    <div class="input-daterange col-sm-12" data-plugin="datepicker">
+                      <div class="row">
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon">
+                            <i class="icon wb-calendar" aria-hidden="true"></i>
+                          </span>
+                          {{ form_widget(form.validFrom, { 'attr': {'name': 'start'} }) }}
+                        </div>
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon">to</span>
+                          {{ form_widget(form.validTo, { 'attr': {'name': 'end'} }) }}
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="col-sm-5">
+                    <label class="control-label">Applies to period</label>
+                    <div class="input-daterange col-sm-12" data-plugin="datepicker">
+                      <div class="row">
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon">
+                            <i class="icon wb-calendar" aria-hidden="true"></i>
+                          </span>
+                          {{ form_widget(form.periodFrom, { 'attr': {'name': 'start'} }) }}
+                        </div>
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon">to</span>
+                          {{ form_widget(form.periodTo, { 'attr': {'name': 'end'} }) }}
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                    <div class="col-sm-1">
+                        <!-- Cut Off -->
+                        <label class="control-label">Cut Off</label>
+                        {{ form_widget(form.cutOff) }}
+                    </div>
+                </div>
+
+              <!-- Exceptions -->
+              <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                  <label class="control-label">Exception period</label>
+                  <button type="button" class="btn btn-default" id="addExceptionPeriod">Add exception
+                    Period
+                  </button>
+                  <div id="exceptions" style="padding-top: 10px;" data-prototype="
+                    {% filter escape %}
+                        {{ include('GushhBackendBundle:RoomPromotion/partials:promotionExceptionPeriod.html.twig', { 'form': form.exceptions.vars.prototype }) }}
+                    {% endfilter %}">
+                      {% for exception in form.exceptions %}
+                          <div class="input-daterange col-sm-12 exeptionRow" data-plugin="datepicker">
+                              <div class="row">
+                                  <div class="input-group col-sm-6">
+                                      <span class="input-group-addon"><i class="icon wb-calendar" aria-hidden="true"></i></span>
+                                      {{ form_widget(exception.periodFrom) }}
+                                  </div>
+                                  <div class="input-group col-sm-6">
+                                      <span class="input-group-addon">to</span>
+                                      {{ form_widget(exception.periodTo, { 'attr' : { 'style': 'width:93%' } })}}<i class="icon wb-trash validationPeriodRemove" aria-hidden="true" onclick="removeExceptionPeriod('{{ loop.index0 }}');"></i></span>
+                                  </div>
+                              </div>
+                          </div>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+ 
+              <h4 class="text-center">Available Days</h4>
+
+                <div class="row seven-cols">
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableMonday) }}
+                      <label for="gushh_corebundle_promotion_availableMonday">Monday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableTuesday) }}
+                      <label for="gushh_corebundle_promotion_availableTuesday">Tuesday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableWednesday) }}
+                      <label for="gushh_corebundle_promotion_availableWednesday">Wednesday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableThursday) }}
+                      <label for="gushh_corebundle_promotion_availableThursday">Thursday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableFriday) }}
+                      <label for="gushh_corebundle_promotion_availableFriday">Friday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableSaturday) }}
+                      <label for="gushh_corebundle_promotion_availableSaturday">Saturday</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableSunday) }}
+                      <label for="gushh_corebundle_promotion_availableSunday">Sunday</label>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="text-center">Cancellation Policy</h4>
+                <div class="form-group">
+                  <div class="checkbox-custom checkbox-primary">
+                    {{ form_widget(form.nonRefundable) }}
+                    <label for="gushh_corebundle_promotion_nonRefundable">this promotion is non-refundable/non-cancellable</label>
+                  </div>
+                </div>                
+
+                <h4 class="text-center">Options Promotion</h4>
+
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.combinable) }}
+                      <label for="gushh_corebundle_promotion_combinable">this promotion is combinable with other promotions</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableInPremiumDates) }}
+                      <label for="gushh_corebundle_promotion_availableInPremiumDates">this promotion is available in premium dates</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.availableInStopSellDates) }}
+                      <label for="gushh_corebundle_promotion_availableInStopSellDates">this promotion is available in stop sell dates</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.enabled) }}
+                      <label for="gushh_corebundle_promotion_enabled">Enabled</label>
+                    </div>
+                  </div>
+                </div>
+             
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_room_promotion_show', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id }) }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveRoomPromotion">Save Promotion</button>
+                </div>
+                
+                {{ form_rest(form) }}
+                
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/deletePromotionModal.html.twig', { 'deleteForm': deleteForm, 'entity': entity }) }}
+  <!-- End Modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room-promotion/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            moment.locale('{{ app.request.locale }}');
+
+            function isThereExceptionOverlap(exceptions, exStart, exEnd) {
+
+                if(exceptions.length < 1)
+                    return -1;
+
+                for(var i = 0; i < exceptions.length; i++) {
+
+                    var exception = exceptions[i];
+                    if(exStart.isBetween(exception.periodFrom, exception.periodTo))
+                        return i;
+
+                    if(exEnd.isBetween(exception.periodFrom, exception.periodTo))
+                        return i;
+                }
+
+                return -1;
+            }
+
+            function checkIsInsidePromotion(e) {
+
+                $( "#roomPromotionForm" ).data('formValidation').resetForm();
+                var pStart = $("#gushh_corebundle_promotion_periodFrom").datepicker('getDate')
+                var pEnd = $("#gushh_corebundle_promotion_periodTo").datepicker('getDate');
+                var promotionStart = moment(pStart);
+                var promotionEnd = moment(pEnd);
+
+                var theDate = moment($('#' + e.target.id).datepicker('getDate'));
+                if(theDate.isBefore(promotionStart) || theDate.isAfter(promotionEnd)) {
+                    alert('Date must me between: ' + promotionStart.format('MM/DD/YYYY') + ' and ' +  promotionEnd.format('MM/DD/YYYY'));
+
+                    if(e.target.id.indexOf('periodFrom') >= 0) {
+                        theDate = promotionStart.add(1,'d');
+                        $('#' + e.target.id).datepicker().on('changeDate', null);
+                        $('#' + e.target.id).datepicker('setDate',theDate.toDate());
+                        $('#' + e.target.id).datepicker().on('changeDate', checkIsInsidePromotion);
+
+                        setEndDate(e.target.id);
+                    } else {
+                        $('#' + e.target.id).datepicker().on('changeDate', null);
+                        $('#' + e.target.id).datepicker('setDate',pEnd);
+                        $('#' + e.target.id).datepicker().on('changeDate', checkIsInsidePromotion);
+                    }
+                    return false;
+                }
+
+                if(e.target.id.indexOf('periodFrom') >= 0)
+                    setEndDate(e.target.id);
+                return true;
+            }
+
+            function setEndDate(startId) {
+                var id = startId.replace('periodFrom', 'periodTo');
+                $('#' + id).datepicker().on('changeDate', null);
+                $('#' + id).datepicker('setDate', $('#' +startId).datepicker('getDate'));
+                $('#' + id).datepicker().on('changeDate', checkIsInsidePromotion);
+            }
+
+            $("#roomPromotionForm").submit( function(eventObj) {
+
+                var pStart = $("#gushh_corebundle_promotion_periodFrom").datepicker('getDate')
+                var pEnd = $("#gushh_corebundle_promotion_periodTo").datepicker('getDate');
+                var promotionStart = moment(pStart);
+                var promotionEnd = moment(pEnd);
+
+                var exceptions = [];
+                for(var i = 0; i < $('.exeptionRow').length; i++) {
+
+                    var exStart = moment($('#gushh_corebundle_promotion_exceptions_' + i + '_periodFrom').datepicker('getDate'));
+                    if(!exStart.isValid()) {
+                        alert('Exception period (start date) is invalid (period: ' + i + ')');
+                        return false;
+                    }
+
+                    var exEnd = moment($('#gushh_corebundle_promotion_exceptions_' + i + '_periodTo').datepicker('getDate'));
+                    if(!exEnd.isValid()) {
+                        alert('Exception period (end date) is invalid (period: ' + i + ')');
+                        return false;
+                    }
+
+                    if (exEnd.isBefore(exStart)) {
+                        alert('Exception period end date must be after start (period: ' + i + ')');
+                        return false;
+                    }
+
+                    if(exStart.isBefore(promotionStart)) {
+                        alert('Exception period start date must be between: ' + promotionStart.format('MM/DD/YYYY') + ' and ' +  promotionEnd.format('MM/DD/YYYY') + ' (period: ' + i + ')');
+                        return false;
+                    }
+                    if(exStart.isAfter(promotionEnd)) {
+                        alert('Exception period start date must be between: ' + promotionStart.format('MM/DD/YYYY') + ' and ' +  promotionEnd.format('MM/DD/YYYY') + ' (period: ' + i + ')');
+                        return false;
+                    }
+
+                    if(exEnd.isBefore(promotionStart)) {
+                        alert('Exception period end date must be between: ' + promotionStart.format('MM/DD/YYYY') + ' and ' +  promotionEnd.format('MM/DD/YYYY') + ' (period: ' + i + ')');
+                        return false;
+                    }
+
+                    if(exEnd.isAfter(promotionEnd)) {
+                        alert('Exception period end date must be between: ' + promotionStart.format('MM/DD/YYYY') + ' and ' +  promotionEnd.format('MM/DD/YYYY') + ' (period: ' + i + ')');
+                        return false;
+                    }
+
+                    var overlapIndex = isThereExceptionOverlap(exceptions, exStart, exEnd);
+                    if(overlapIndex > -1) {
+                        alert('Exception periods can\'t overlap (period: ' + i + ' and ' + overlapIndex + ')');
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            $('.input-daterange.exeptionRow').datepicker({
+                language: '{{ app.request.locale }}',
+                format: "dd M yyyy",
+                startDate: "-1y",
+                endDate: "+3y",
+                autoclose: true}).on('changeDate', checkIsInsidePromotion);
+
+            var $collectionHolder = $('#exceptions');
+            $('#addExceptionPeriod').on('click', function (e) {
+
+                e.preventDefault();
+
+                var index = $('.exeptionRow').length;
+                var prototype = $collectionHolder.data('prototype');
+
+                // Replace '$$name$$' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                $collectionHolder.append(newForm)
+
+                var start = index == 0 ? $("#gushh_corebundle_promotion_periodFrom").datepicker('getDate')
+                    : $('#gushh_corebundle_promotion_exceptions_' + (index -1) + '_periodTo').datepicker('getDate');
+
+
+                var pEnd = $("#gushh_corebundle_promotion_periodTo").datepicker('getDate');
+                var promotionEnd = moment(pEnd);
+
+                var exceptionStart = moment(start)
+                exceptionStart.add(1,'d');
+                if(exceptionStart.isAfter(promotionEnd))
+                    exceptionStart = moment(promotionEnd);
+
+                var startWidget = $('#gushh_corebundle_promotion_exceptions_' + index + '_periodFrom').datepicker({
+                    language: '{{ app.request.locale }}',
+                    format: "dd M yyyy",
+                    startDate: "-1y",
+                    endDate: "+3y",
+                    autoclose: true});
+
+                var endWidget = $('#gushh_corebundle_promotion_exceptions_' + index + '_periodTo').datepicker({
+                    language: '{{ app.request.locale }}',
+                    format: "dd M yyyy",
+                    startDate: "-1y",
+                    endDate: "+3y",
+                    autoclose: true});
+
+                startWidget.datepicker('setDate', exceptionStart.toDate());
+
+//                exceptionStart.add(1,'d');
+//                if(exceptionStart.isAfter(promotionEnd))
+//                    exceptionStart = moment(promotionEnd);
+
+                endWidget.datepicker('setDate', exceptionStart.toDate());
+
+                startWidget.on('changeDate', checkIsInsidePromotion);
+                endWidget.on('changeDate', checkIsInsidePromotion);
+
+            });
+        });
+        function removeExceptionPeriod(index) {
+            $('#gushh_corebundle_promotion_exceptions_' + index + '_periodFrom').closest('.exeptionRow').remove();
+        }
+    </script>
+{% endblock %}

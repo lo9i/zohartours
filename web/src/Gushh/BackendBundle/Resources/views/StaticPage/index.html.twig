@@ -1,0 +1,69 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Static Pages</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li class="active">Static Pages</li>
+        </ol>
+         <div class="page-header-actions">
+          <a href="{{ path('backend_static_page_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Static Page
+          </a>
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="staticPageTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entity in entities %}
+                <tr>
+                  {% if params['_locale'] == 'es' %}
+                    <td><a href="{{ path('backend_static_page_edit', { 'id': entity.id }) }}">{{ entity.esTitle }}</a></td>
+                    <td>{{ entity.esSlug }}</td>
+                  {% else %}
+                    <td><a href="{{ path('backend_static_page_edit', { 'id': entity.id }) }}">{{ entity.enTitle }}</a></td>
+                    <td>{{ entity.enSlug }}</td>
+                  {% endif %}
+                  <td>{{ entity.enabled }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/static-page/dataTable.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+#    security.exception_listener.class: Gushh\CoreBundle\Security\Firewall\ExceptionListener
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    # gushh_core.password_resetting:
+    #     class: Gushh\CoreBundle\EventListener\PasswordResettingListener
+    #     arguments: [@router]
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+    app.form.type.html5time:
+        class: Gushh\CoreBundle\Form\HTML5TimeType
+        tags:
+            - { name: form.type, alias: html5time }
+
+    app.form.type.html5date:
+        class: Gushh\CoreBundle\Form\HTML5DateType
+        tags:
+            - { name: form.type, alias: html5date }
+
+    app.form.type.html5color:
+        class: Gushh\CoreBundle\Form\HTML5ColorType
+        tags:
+            - { name: form.type, alias: html5color }
+
+    twig.extension.text:
+           class: Twig_Extensions_Extension_Text
+           tags:
+               - { name: twig.extension }
+
+    app.searchcore.class:
+       class: Gushh\CoreBundle\Classes\SearchCore
+       arguments: [ @doctrine.orm.entity_manager ]
+
+    # app.mailcore.class:
+    #    class: Gushh\CoreBundle\Classes\MailCore
+    #    arguments: [ @doctrine.orm.entity_manager ]
+    
+    # app.email.class:
+    #     class: Gushh\CoreBundle\Classes\Email
+    #     arguments: ['@service_container', '@doctrine.orm.entity_manager']       

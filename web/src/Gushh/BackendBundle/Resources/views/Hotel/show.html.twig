@@ -1,0 +1,532 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+{% endblock %}
+
+{% block content %}
+  {% set currency = entity.currency.symbol %}
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">{{ 'backend.hotels.title'|trans|title }}</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">{{ 'backend.dashboard.title'|trans|title }}</a></li>
+          <li><a href="{{ path('backend_hotels') }}">{{ 'backend.hotels.title'|trans|title }}</a></li>
+          <li class="active">{{ entity }}</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_hotels') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> {{ 'backend.form.back'|trans|title }}
+          </a>
+          <a href="{{ path('backend_hotel_edit', { 'hid': entity.id } ) }}" class="btn btn-success">
+            <i class="icon fa-pencil" aria-hidden="true"></i>  {{ 'backend.hotels.singular'|trans|title }}
+          </a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-tabs nav-tabs-line">
+                <li class="active">
+                  <a href="#details" data-toggle="tab" role="tab">
+                    <i class="icon fa-info" aria-hidden="true"></i> {{ 'backend.form.details'|trans|title }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" data-toggle="tab" role="tab">
+                    <i class="icon fa-glass" aria-hidden="true"></i> {{ 'backend.form.services'|trans|title }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#rooms" data-toggle="tab" role="tab">
+                    <i class="icon fa-hotel" aria-hidden="true"></i> {{ 'backend.form.rooms'|trans|title }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#images" data-toggle="tab" role="tab">
+                    <i class="icon fa-photo" aria-hidden="true"></i> {{ 'backend.form.images'|trans|title }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#policies" data-toggle="tab" role="tab">
+                    <i class="icon fa-file-text" aria-hidden="true"></i> {{ 'backend.form.policies'|trans|title }}
+                  </a>
+                </li>
+                <li>
+                  <a href="#contacts" data-toggle="tab" role="tab">
+                    <i class="icon fa-users" aria-hidden="true"></i> {{ 'backend.form.contacts'|trans|title }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tab-content padding-top-20">
+                {# Hotel Details #}
+                <div class="tab-pane active" id="details" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover table-striped width-full">
+                        <tbody>
+                          <tr>
+                            <th>{{ 'backend.form.currency'|trans|title }}</th>
+                            <td>{{ entity.currency }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.stars'|trans|title }}</th>
+                            <td>
+                              <div class="rating" data-score="{{ entity.stars }}"
+                                data-number="{{ entity.stars|round }}" data-read-only="true"
+                                data-plugin="rating">
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.name'|trans|title }}</th>
+                            <td>{{ entity }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.subtitle'|trans|title }}</th>
+                            <td>{{ entity.subtitle }}</td>
+                          </tr>
+                          <tr>
+                            <th>
+                              {{ 'backend.form.description'|trans|title }}
+                              <span class="label label-outline label-default">EN</span>
+                            </th>
+                            <td>{{ entity.enDescription|raw }}</td>
+                          </tr>
+                          <tr>
+                            <th>
+                              {{ 'backend.form.description'|trans|title }}
+                              <span class="label label-outline label-default">ES</span>
+                            </th>
+                            <td>{{ entity.esDescription|raw }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.amenities'|trans|title }}</th>
+                            <td>
+                              <ul>
+                                {% for amenity in entity.amenities %}
+                                  <li>{{ amenity }}</li>
+                                {% endfor %}
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.address'|trans|title }}</th>
+                            <td>{{ entity.address }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.phone'|trans|title }}</th>
+                            <td>{{ entity.phone }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.city'|trans|title }}</th>
+                            <td>{{ entity.city }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.state'|trans|title }}</th>
+                            <td>{{ entity.state }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.zipCode'|trans|title }}</th>
+                            <td>{{ entity.zipCode }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.country'|trans|title }}</th>
+                            <td>{{ entity.country }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.reservationEmail'|trans|title }}</th>
+                            <td>
+                              <a href="mailto:{{ entity.reservationEmail }}" title="{{ entity.reservationEmail }}">
+                                {{ entity.reservationEmail }}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.cancellationEmail'|trans|title }}</th>
+                            <td>
+                              <a href="mailto:{{ entity.cancellationEmail }}" title="{{ entity.cancellationEmail }}">
+                                {{ entity.cancellationEmail }}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.web'|trans|title }}</th>
+                            <td>
+                              <a href="{{ entity.website }}" target="_blank" title="{{ entity }}">
+                                {{ entity.website }}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.checkIn'|trans|title }}</th>
+                            <td>{{ entity.checkIn|date('H:i A') }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.checkOut'|trans|title }}</th>
+                            <td>{{ entity.checkOut|date('H:i A') }}</td>
+                          </tr>
+                          <tr>
+                            <th>{{ 'backend.form.freeChildrenAge'|trans|title }}</th>
+                            <td>{{ entity.childAge }} {{ 'backend.form.years'|trans|title }}</td>
+                          </tr>
+                          <tr>
+                            <th>External Hotel?</th>
+                            <td>{% if entity.hotelbedsId %} 
+                                Yes, rates obtained from hotelbeds api with ID: <strong>{{ entity.hotelbedsId }}</strong>
+                                {% else %}
+                                No, this is internal, with direct contract with Zohartours.
+                                {% endif %}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-md-2">
+                      {% if entity.enabled == false %}
+                        <div class="alert dark alert-alt alert-danger" role="alert">
+                          {{ 'backend.hotels.isNotEnabled'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="{{ path('backend_hotel_edit', { 'hid': entity.id } ) }}#gushh_corebundle_hotel_enabled" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-pencil" aria-hidden="true"></i> {{ 'backend.hotels.singular'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                      {% if entity.policies|length == 0 %}
+                        <div class="alert dark alert-alt alert-danger" role="alert">
+                          {{ 'backend.hotels.hasNoPolicies'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="{{ path('backend_hotel_cancellation_policy_new', { 'hid': entity.id } ) }}" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-plus" aria-hidden="true"></i> {{ 'backend.form.policy'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                      {% if entity.rooms|length == 0 %}
+                        <div class="alert dark alert-alt alert-danger" role="alert">
+                          {{ 'backend.hotels.hasNoRooms'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="{{ path('backend_room_new', { 'hid': entity.id } ) }}" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-plus" aria-hidden="true"></i> {{ 'backend.form.room'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                      {% if entity.images|length == 0 %}
+                        <div class="alert dark alert-alt alert-info" role="alert">
+                          {{ 'backend.hotels.hasNoImages'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="{{ path('backend_hotel_image_new', { 'hid': entity.id } ) }}" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-plus" aria-hidden="true"></i> {{ 'backend.form.image'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                      {% if entity.services|length == 0 %}
+                        <div class="alert dark alert-alt alert-info" role="alert">
+                          {{ 'backend.hotels.hasNoServices'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="{{ path('backend_hotel_service_new', { 'hid': entity.id } ) }}" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-plus" aria-hidden="true"></i> {{ 'backend.form.service'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                      {% if entity.contacts|length == 0 %}
+                        <div class="alert dark alert-alt alert-info" role="alert">
+                          {{ 'backend.hotels.hasNoContacts'|trans }}
+                          <p class="margin-top-10 text-center">
+                            <a href="#" data-target="#infoForm" data-toggle="modal" class="btn btn-default btn-outline btn-xs">
+                              <i class="icon fa-plus" aria-hidden="true"></i> {{ 'backend.form.contact'|trans|title }}
+                            </a>
+                          </p>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                {# Hotel Services #}
+                <div class="tab-pane" id="services" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover dataTable table-striped width-full" id="serviceTable">
+                        <thead>
+                          <tr>
+                            <th>{{ 'backend.form.name'|trans|title }}</th>
+                            <th>{{ 'backend.form.description'|trans|title }}</th>
+                            <th>{{ 'backend.form.cost'|trans|title }}</th>
+                            <th>{{ 'backend.form.profit'|trans|title }}</th>
+                            <th>{{ 'backend.form.type'|trans|title }}</th>
+                            <th>{{ 'backend.form.payType'|trans|title }}</th>
+                            <th>{{ 'backend.form.salePrice'|trans|title }}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for service in entity.services %}
+                            <tr>
+                              <td>
+                                <a href="{{ path('backend_hotel_service_edit', { 'hid': entity.id, 'sid': service.id }) }}">{{ service }}</a>
+                              </td>
+                              <td>
+                                <p data-toggle="tooltip" data-placement="right" data-original-title="{{ service.description }}">
+                                  {{ service.description | truncate(15, true) }}
+                                </p>
+                              </td>
+                              <td>{{ currency }} {{ service.netCost }}</td>
+                              <td>{{ currency }} {{ service.netProfit }}</td>
+                              <td>{{ service.serviceType }}</td>
+                              <td>{{ service.servicePayType }}</td>
+                              <td>{{ currency }} {{ service.salePrice }}</td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                      </table>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_hotel_service_new', { 'hid': entity.id }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.form.service'|trans|title }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {# Hotel Rooms #}
+                <div class="tab-pane" id="rooms" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover dataTable table-striped width-full" id="roomTable">
+                        <thead>
+                          <tr>
+                            <th>{{ 'backend.form.name'|trans|title }}</th>
+                            <th>{{ 'backend.form.capacity'|trans|title }}</th>
+                            <th>{{ 'backend.form.squareFeet'|trans|title }}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for room in entity.rooms %}
+                            <tr>
+                              <td><a href="{{ path('backend_room_show', { 'hid': entity.id, 'rid': room.id } ) }}">{{ room }}</a></td>
+                              <td>{{ room.capacity }}</td>
+                              <td>{{ room.squareFeet }}</td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                      </table>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_room_new', { 'hid': entity.id }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.form.room'|trans|title }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {# Hotel Images #}
+                <div class="tab-pane" id="images" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      {% if entity.images|length > 0 %}
+                        <div class="row">
+                          {% for image in entity.images %}
+                            <div class="col-sm-4">
+                              <div class="panel">
+                                <figure class="overlay overlay-hover animation-hover">
+                                  <img class="caption-figure" src="{{ asset(image.getWebPath) }}">
+                                  <figcaption class="overlay-panel overlay-background overlay-fade text-center vertical-align">
+                                    <a href="{{ path('backend_hotel_image_edit', { 'hid': entity.id, 'iid': image.id }) }}" class="btn btn-outline btn-success project-button">
+                                      <i class="icon wb-edit" aria-hidden="true"></i>
+                                    </a>
+                                  </figcaption>
+                                </figure>
+                                <div class="time pull-right">{{ image.createdAt | date('d M Y - H:i A') }}</div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_hotel_image_new', { 'hid': entity.id }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.form.image'|trans|title }}
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+                {# Hotel Contacts #}
+                <div class="tab-pane" id="contacts" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="#" data-target="#infoForm" data-toggle="modal" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.form.contact'|trans|title }}
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+                {# Hotel Policies #}
+                <div class="tab-pane" id="policies" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover dataTable table-striped width-full" id="policyTable">
+                        <thead>
+                          <tr>
+                            <th>{{ 'backend.form.name'|trans|title }}</th>
+                            <th>{{ 'backend.form.cutOff'|trans|title }}</th>
+                            <th>{{ 'backend.form.penalty'|trans|title }}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for policy in entity.policies %}
+                            <tr>
+                              <td>
+                                <a href="{{ path('backend_hotel_cancellation_policy_edit', { 'hid': entity.id, 'cpid': policy.id }) }}">{{ policy }}</a>
+                              </td>
+                              <td>
+                                {% if policy.cutOff == 1 %}
+                                  {{ policy.cutOff }} {{ 'backend.form.day'|trans|title }}
+                                {% else %}
+                                  {{ policy.cutOff }} {{ 'backend.form.days'|trans|title }}
+                                {% endif %}
+                              </td>
+                              <td>
+                                {% if policy.cancellationPolicyType.slug == 'net' %}
+                                  {{ currency }} {{ policy.penalty }}
+                                {% elseif policy.cancellationPolicyType.slug == 'percent' %}
+                                  {{ policy.penalty }} %
+                                {% else %}
+                                  {% if policy.penalty == 1 %}
+                                    {{ policy.penalty|number_format }} {{ 'backend.form.night'|trans|title }}
+                                  {% else %}
+                                    {{ policy.penalty|number_format }} {{ 'backend.form.nights'|trans|title }}
+                                  {% endif %}
+                                {% endif %}
+                              </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                      </table>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_hotel_cancellation_policy_new', { 'hid': entity.id }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.form.policy'|trans|title }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {# Hotel Promotions #}
+                {# <div class="tab-pane" id="promotions" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover table-striped width-full">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        {% if entity.promotions|length > 0 %}
+                          <tbody>
+                            {% for promotion in entity.promotions %}
+                              <tr>
+                                <td><a href="{{ path('backend_hotel_promotion_edit', { 'hid': entity.id, 'pid': promotion.id }) }}">{{ promotion }}</a></td>
+                                <td>{{ promotion.description }}</td>
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        {% endif %}
+                      </table>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_hotel_promotion_new', { 'hid': entity.id }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i>  Promotion
+                      </a>
+                    </div>
+                  </div>
+                </div> #}
+
+                {# Hotel Policies #}
+                {# <div class="tab-pane" id="policies" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover table-striped width-full">
+                        <thead>
+                          <tr>
+                            <th>Cut Off</th>
+                            <th>Penalty Nights</th>
+                          </tr>
+                        </thead>
+                        {% if entity.cancellationPolicy|length > 0 %}
+                          <tbody>
+                            <tr>
+                              <td><a href="{{ path('backend_cancellation_policy_edit', { 'hid': entity.id, 'cpid': entity.cancellationPolicy.id }) }}">{{ entity.cancellationPolicy.cutOff }}</a></td>
+                              <td>{{ entity.cancellationPolicy.penalyNights }}</td>
+                            </tr>
+                          </tbody>
+                        {% endif %}
+                      </table>
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_cancellation_policy_edit', { 'hid': entity.id, 'cpid': entity.cancellationPolicy.id }) }}" class="btn btn-success">
+                        <i class="icon fa-pencil" aria-hidden="true"></i>  Policy
+                      </a>
+                    </div>
+                  </div>
+                </div> #}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/comingSoonModal.html.twig') }}
+  <!-- End Modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/hotel/dataTable.min.js') }}"></script>
+
+  <script src="{{ asset('backend/global/vendor/raty/jquery.raty.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/raty.min.js') }}"></script>
+
+  {% if app.request.get('tab') is not empty %}
+    <script>
+      $(function () {
+        $('a[href="#{{ app.request.get('tab') }}"]').tab('show');
+      });
+    </script>
+  {% endif %}
+
+{% endblock %}

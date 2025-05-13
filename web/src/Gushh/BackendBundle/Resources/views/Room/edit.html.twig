@@ -1,0 +1,118 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', { 'hid': entity.hotel.id }) }}">{{ entity.hotel }}</a></li>
+          <li><a href="{{ path('backend_hotel_show', { 'hid': entity.hotel.id, 'tab': 'rooms' }) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', { 'hid': entity.hotel.id, 'rid': entity.id }) }}">{{ entity }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_show', { 'hid': entity.hotel.id, 'rid': entity.id }) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          <a href="#" class="btn btn-success" id="saveRoomTop">
+            <i class="icon fa-check" aria-hidden="true"></i> Save Room
+          </a>
+        </div>
+      </div>
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Basic Room Information</h4>
+                <div class="row">
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Name</label>
+                    {{ form_widget(form.name) }}
+                  </div>
+                  <div class="form-group col-sm-2">
+                    <label class="control-label">Capacity</label>
+                    {{ form_widget(form.capacity) }}
+                  </div>
+                  <div class="form-group col-sm-2">
+                    <label class="control-label">Square Feet</label>
+                    {{ form_widget(form.squareFeet) }}
+                  </div>
+                  <div class="form-group col-sm-2">
+                    <label class="control-label">Stock Warning</label>
+                    {{ form_widget(form.lowStockWarning) }}
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Contract Type</label>
+                      {{ form_widget(form.contractType) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Description</label>
+                  {{ form_widget(form.enDescription) }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Descripcion</label>
+                  {{ form_widget(form.esDescription) }}
+                </div>
+
+                <h4 class="text-center">{{ 'backend.form.status'|trans|title }}</h4>
+                <div class="form-group">
+                  <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.enabled) }}
+                    <label for="gushh_corebundle_hotel_enabled">
+                        {{ 'backend.form.enabled'|trans|title }}
+                    </label>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group text-center">
+                  <a href="#" class="btn btn-outline btn-danger pull-left" data-target="#deleteForm" data-toggle="modal">
+                    <i class="icon fa-trash" aria-hidden="true"></i> Delete
+                  </a>
+                  <a href="{{ path('backend_room_show', { 'hid': entity.hotel.id, 'rid': entity.id }) }}" class="btn btn-outline btn-default">
+                    <i class="icon fa-close" aria-hidden="true"></i> Cancel
+                  </a>
+                  <button type="submit" class="btn btn-success" id="saveRoom">
+                    <i class="icon fa-check" aria-hidden="true"></i> Save Room
+                  </button>
+                </div>
+
+                {{ form_rest(form) }}
+
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/deleteRoomModal.html.twig', { 'deleteForm': deleteForm, 'entity': entity }) }}
+  <!-- End Modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room/formValidation.min.js') }}"></script>
+{% endblock %}

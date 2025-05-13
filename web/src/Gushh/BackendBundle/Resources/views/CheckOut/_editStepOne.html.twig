@@ -1,0 +1,69 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <div class="pearls row">
+            <h4 class="text-center">Checkout</h4>
+            <hr>
+            <div class="pearl current col-xs-6">
+              <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.checkout.passengerInformation'|trans }}<</span>
+            </div>
+            <div class="pearl disabled col-xs-6">
+              <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.checkout.completed'|trans }}<</span>
+            </div>
+          </div>
+
+          <!-- Form -->
+          {{ form_start(form) }}
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label class="control-label">Title</label>
+                {{ form_widget(form.guestTitle) }}
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">Name</label>
+                {{ form_widget(form.guestName) }}
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">Last Name</label>
+                {{ form_widget(form.guestLastname) }}
+              </div>
+            </div>
+
+            <div class="form-group text-center">
+              <a href="{{ path('search_hotels', {'continent': location.continent, 'country': location.country, 'city': location.city, 'scode': search.code }) }}" class="btn btn-default pull-left">Back to Search</a>
+              <button type="submit" class="btn btn-primary pull-right" id="saveCheckOut">Continue</button>
+            </div>
+            
+            {{ form_rest(form) }}
+            
+          {{ form_end(form) }}
+          <!-- End Form -->
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+      
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/checkout/formValidation.min.js') }}"></script>
+{% endblock %}

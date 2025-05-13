@@ -1,0 +1,127 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}"> 
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/select2/select2.min.css') }}"> 
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Search</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('client_dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('client_search') }}">Search</a></li>
+          <li class="active">Hotels</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('client_dashboard') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {# {{ form_start(form) }} #}
+              <form action="#">
+                <h4 class="text-center">Search Hotels</h4>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="control-label">Destination</label>
+                    <select class="form-control" data-plugin="select2">
+                      {% if cities.usa|length > 0 %}
+                        <optgroup label="USA">
+                          {% for city in cities.usa %}
+                            <option value="{{ city.city }},{{ city.state }},{{ city.country }}">{{ city.city }}, {% if city.state != null %}{{ city.state }},{% endif %} {{ city.country }}</option>
+                          {% endfor %}                    
+                        </optgroup>
+                      {% endif %}
+
+                      {% if cities.europe|length > 0 %}
+                        <optgroup label="EUROPE">
+                          {% for city in cities.europe %}
+                            <option value="{{ city.city }},{{ city.state }},{{ city.country }}">{{ city.city }}, {% if city.state != null %}{{ city.state }},{% endif %} {{ city.country }}</option>
+                          {% endfor %}                    
+                        </optgroup>
+                      {% endif %}
+                    </select> 
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="row input-daterange" data-plugin="datepicker">
+                      <div class="col-sm-6">                       
+                        <label class="control-label">Check-in</label>
+                        <input type="text" class="form-control" name="start"> 
+                      </div>
+                      <div class="col-sm-6">
+                        <label class="control-label">Check-out</label>
+                        <input type="text" class="form-control" name="end"> 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="row">
+                      <div class="col-sm-6 form-group">
+                        
+                        <label class="control-label">Adults</label>
+                        <select class="form-control" name="" id="">
+                          {% for k in 1..8 %}
+                            <option value="{{ k }}">{{ k }}</option>
+                          {% endfor %}                            
+                        </select>
+
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label class="control-label">Children</label>
+                        <select class="form-control" name="" id="">
+                          {% for k in 1..8 %}
+                            <option value="{{ k }}">{{ k }}</option>
+                          {% endfor %}                            
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                            
+
+ 
+                <div class="form-group text-center">
+                  <a href="{{ path('client_dashboard') }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveDate">Save Date</button>
+                </div>
+                
+                {# {{ form_rest(form) }} #}
+                
+              {# {{ form_end(form) }} #}
+              </form>
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/search/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/bootstrap-datepicker.js') }}"></script>
+  
+  <script src="{{ asset('backend/global/vendor/select2/select2.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/select2.min.js') }}"></script>
+{% endblock %}

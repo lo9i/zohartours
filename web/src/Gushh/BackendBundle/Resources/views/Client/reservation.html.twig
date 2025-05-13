@@ -1,0 +1,75 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">{{ 'backend.reservations.title'|trans }}</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('client_dashboard') }}">{{ 'backend.dashboard.title'|trans }}</a></li>
+          <li class="active">{{ 'backend.reservations.title'|trans }}</li>
+        </ol>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="reservationTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{ 'backend.form.arrival'|trans|title }}</th>
+                <th>{{ 'backend.form.dateAndTime'|trans|title }}</th>
+                <th>{{ 'backend.form.passenger'|trans|title }}</th>
+                <th>{{ 'backend.form.hotel'|trans|title }}</th>
+                <th>{{ 'backend.form.status'|trans|title }}</th>
+                <th>{{ 'backend.form.payment'|trans|title }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entity in entities %}
+                <tr>
+                  <td>
+                    <a href="{{ path('backend_reservation_show', { id: entity.id }) }}">
+                      <span class="label label-{{ entity.status.class }}">{{ entity.code }}</span>
+                    </a>
+                  </td>
+                  <td><small>{{ entity.checkOutProcess.search.checkIn|date('d M Y') }}</small></td>
+                  <td><small>{{ entity.createdAt|date('d M Y h:i:s') }}</small></td>
+                  <td><small>{{ entity.checkOutProcess.guestFullName }}</small></td>
+                  <td>
+                    <h6>{{ entity.room.hotel| truncate(20, true) }}</h6>
+                  </td>
+                  <td class="text-center">
+                    <span class="label label-{{ entity.status.class }}">{{ entity.status }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="label label-{{ entity.paymentStatus.class }}">{{ entity.paymentStatus }}</span>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/moment/moment.min.js') }}"></script>
+  <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+  <script src="{{ asset('backend/js/pages/reservation/dataTable.js') }}"></script>
+{% endblock %}

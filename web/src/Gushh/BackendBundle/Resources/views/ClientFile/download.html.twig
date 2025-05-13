@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+<head>
+    <meta name="robots" content="noindex">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="author" content="Anibal Fernáez">
+    <title>ZoharTours | {{ entity.id }}</title>
+
+    <style>
+        .zohartours {
+            padding-top: 20px;
+            color: rgb(20,66,99);
+            font-size: 42px;
+            line-height: 20px;
+            font-family: sans-serif, serif, EmojiFont;
+            float: left;
+            width: 300px;
+        }
+
+        .itemLabel {
+            width: 200px;
+            font-style: italic;
+        }
+
+        .tableTitle {
+            padding: 30px 0 0 0;
+            font-style: italic;
+            font-family: Calibri;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .tableInfo {
+            margin-top: 20px;
+            border: 1px solid black;
+            padding:15px;
+        }
+
+        .tableInfo th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+<body leftmargin="0" topmargin="0" marginwidth="20" marginheight="0" >
+
+<div width="90%" style="padding-bottom:40px; padding-top: 40px;">
+    <div class="zohartours" style="padding-left: 20px;">zohartours</div>
+    <div style="float:right;padding-right: 20px;padding-top:20px;">
+        <div style="text-align:right;font-size: 12px;">407 LINCOLN ROAD - SUITE 11K - MIAMI BEACH, FL 33139</div>
+        <div style="text-align:right;font-size: 12px;">T +1 (212) 252-8690 - INFO@ZOHARTOURS.COM - ZOHARTOURS.COM</div>
+    </div>
+    <div style="clear: both;padding-top:5px;"></div>
+    <hr style="background:#7e808c; border:0; height:1px;">
+
+    <div style="float:right;padding-top: 20px;padding-right: 20px;">
+        <div style="text-align:right;font-size: 12px;font-weight: bold;">Zohar Tours Corp.</div>
+        <div style="text-align:right;font-size: 12px;">{{ entity.createdAt|date('F dS, Y') }}</div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<div style="width:100%;">
+    <div style="text-transform: uppercase;">{{ entity.payerName }}</div>
+    <div style="padding-top:10px;padding-bottom: 10px;">{{ entity.payerAddress }}</div>
+    <div>{{ entity.payerCity }}, {{ entity.payerZipCode }}</div>
+    {#<div>{{ entity.payerState }}</div>#}
+    {#<div style="text-transform: uppercase;">{{ entity.payerCountry }}</div>#}
+    {% if entity.payerTaxId|length > 0 %}
+    <div style="padding-top: 20px;"> CUIT: {{ entity.payerTaxId }}</div>
+    {% endif %}
+    <div style="text-align: right;padding-right: 40px;">INVOICE # {{ entity.id }} </div>
+    <!-- Panel Items -->
+    <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+        {% for item in entity.items %}
+            <tr>
+                <td>{{ item.detail|raw }}</td>
+                <td style="text-align: right;white-space: nowrap;" valign="bottom">{{'$ ' ~ item.amount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style="font-weight: bold;float: right;width: 155px;padding-top: 10px;">
+        <span>Total: </span>
+        <span>$ {{ entity.total }} </span>
+    </div>
+    <div style="clear: both;"></div>
+
+    <div style="text-decoration: underline; font-weight: bold; padding-top: 90px; ">ALL PRICES ARE IN U.S. DOLLARS</div>
+    {#<table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">#}
+        {#<tbody>#}
+        {#<tr><td class='itemLabel'>Notes:</td>#}
+            {#<td class="itemValue" colspan="3">{{ entity.notes  }}</td>#}
+        {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+</div>
+</body>
+</html>
+

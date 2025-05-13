@@ -1,0 +1,321 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+  
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="page-header page-header-bordered">
+                <h1 class="page-title">Client File</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('dashboard') }}">Backend</a></li>
+                    <li><a href="{{ path('backend_client_files') }}">Client Files</a></li>
+                    <li><a href="{{ path('backend_client_files') }}">{{ entity.id }}</a></li>
+                </ol>
+                <div class="page-header-actions">
+                    <a href="{{ path('backend_client_files') }}" class="btn btn-default">
+                        <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+                    </a>
+                    <a href="{{ path('backend_client_file_edit', {'id': entity.id}) }}" class="btn btn-primary">
+                        <i class="icon fa-edit" aria-hidden="true"></i> Client File
+                    </a>
+                    <a href="{{ path('backend_client_file_download', {'id': entity.id}) }}" class="btn btn-primary">
+                        <i class="icon fa-download" aria-hidden="true"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Panel Table Individual column searching -->
+            <div class="panel">
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="text-center">Payer Information</h4>
+                            <table class="table table-striped width-full" style="table-layout: fixed;">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <h6>Client Name</h6>
+                                        <small>{{ entity.clientName }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>Client Last Name</h6>
+                                        <small>{{ entity.clientLastName }}</small>
+                                    </td>
+                                    <td>
+                                        <h6>Agency</h6>
+                                        {% if entity.agency %}
+                                            <small>{{ entity.agency.name }}</small>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <h6>Notes</h6>
+                                        <small>{{ entity.notes }}</small>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel Payments -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.client_files.items'|trans }}</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                            <thead>
+                            <tr>
+                                <th>Detail</th>
+                                <th>Provider</th>
+                                <th width="150px">Sales Amount</th>
+                                <th width="150px">Purchase Value</th>
+                                <th width="150px">Gross Profit</th>
+                                <th width="150px">Commission</th>
+                                <th width="150px">Net Profit</th>
+                                {#<td width="1px">Status</td>#}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if entity.items|length > 0 %}
+                                {% for item in entity.items %}
+                                    <tr class="invoiceItemRow">
+                                        <td>{{ item.detail|raw }}</td>
+                                        <td>{{ item.provider.name }}</td>
+                                        <td style="text-align: right;vertical-align:bottom;">
+                                            $ {{ item.amountSale }}</td>
+                                        <td style="text-align: right;vertical-align:bottom;">
+                                            $ {{ item.amountNet }}</td>
+                                        <td style="text-align: right;vertical-align:bottom;">
+                                            $ {{ item.amountGrossProfit }}</td>
+                                        <td style="text-align: right;vertical-align:bottom;">
+                                            $ {{ item.amountCommission }}</td>
+                                        <td style="text-align: right;vertical-align:bottom;">
+                                            $ {{ item.amountNetProfit }}</td>
+                                        {#{% if item.status.slug == 'unpaid' %}#}
+                                            {#<td class="text-center">#}
+                                                {#<span class="label label-danger">Unpaid</span>#}
+                                            {#</td>#}
+                                        {#{% else %}#}
+                                            {#<td class="text-center">#}
+                                                {#<span class="label label-success">Paid</span>#}
+                                            {#</td>#}
+                                        {#{% endif %}#}
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr id="noItems">
+                                    <td colspan="7" class="text-center"><strong>No items yet</strong></td>
+                                </tr>
+                            {% endif %}
+                            </tbody>
+                            <tfoot>
+                            <tr style="font-weight: bold;">
+                                <td colspan="2">Totals</td>
+                                <td style="text-align: right;"> $ {{ entity.totalSale }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalNet }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalGrossProfit }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalCommission }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalNetProfit }} </td>
+                            </tr>
+                            <tr style="font-weight: bold;">
+                                <td colspan="2">Balance</td>
+                                <td style="text-align: right;"> $ {{ entity.balanceSale }} </td>
+                                <td style="text-align: right;"> $ {{ entity.balanceNet }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalGrossProfit }} </td>
+                                <td style="text-align: right;"> $ {{ entity.balanceCommission }} </td>
+                                <td style="text-align: right;"> $ {{ entity.totalNetProfit }} </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="text-center">Payments Received</h4>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <a href="#" data-target="#addPaymentReceivedForm" class="btn btn-primary"
+                               data-toggle="modal">
+                                <i class="icon fa-plus" aria-hidden="true"></i> Payment
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                            <thead>
+                            <tr>
+                                <th width="150px">Date</th>
+                                <th>Detail</th>
+                                <th width="150px">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if entity.paymentsReceived|length > 0 %}
+                            {% for item in entity.paymentsReceived %}
+                            <tr>
+                                <td>{{ item.date|date('d M Y') }}</td>
+                                <td>{{ item.detail|raw }}</td>
+                                <td class="text-right">{{ item.amount }}</td>
+                            </tr>
+                                {% endfor %}
+                                {% else %}
+                                    <tr><td colspan="3">No payments made yet</td></tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="text-center">Payments Made</h4>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <a href="#" data-target="#addPaymentMadeForm" class="btn btn-primary" data-toggle="modal">
+                                <i class="icon fa-plus" aria-hidden="true"></i> Payment
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                            <thead>
+                            <tr>
+                                <th width="150px">Date</th>
+                                <th width="150px">Provider</th>
+                                <th>Detail</th>
+                                <th width="150px">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% if entity.paymentsMade|length > 0 %}
+                                    {% for item in entity.paymentsMade %}
+                                        <tr>
+                                            <td>{{ item.date|date('d M Y') }}</td>
+                                            <td>{{ item.detail|raw }}</td>
+                                            <td>{{ item.provider.name }}</td>
+                                            <td class="text-right">{{ item.amount }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr><td colspan="4">No payments made yet</td></tr>
+                                {% endif %}
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="text-center">Commissions Paid</h4>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <a href="#" data-target="#addCommissionPaidForm" class="btn btn-primary"
+                               data-toggle="modal">
+                                <i class="icon fa-plus" aria-hidden="true"></i> Payment
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                            <thead>
+                            <tr>
+                                <th width="150px">Date</th>
+                                <th>Detail</th>
+                                <th width="150px">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if entity.commissionsPaid|length > 0 %}
+                                {% for item in entity.commissionsPaid %}
+                                    <tr>
+                                        <td>{{ item.date|date('d M Y') }}</td>
+                                        <td>{{ item.detail|raw }}</td>
+                                        <td class="text-right">{{ item.amount }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr><td colspan="3">No commissions paid yet</td></tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ include('GushhBackendBundle::ClientFilePaymentReceived/new.html.twig', { 'form': payment_received_form }) }}
+        {{ include('GushhBackendBundle::ClientFilePaymentMade/new.html.twig', { 'form': payment_made_form }) }}
+        {{ include('GushhBackendBundle::ClientFileCommissionPaid/new.html.twig', { 'form': commission_paid_form }) }}
+    </div>
+{% endblock %}
+
+    {% block footer_js %}
+        <script src="{{ asset('frontend/js/bootstrap-datepicker.min.js') }}"></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $('.date').datepicker({
+                    language: '{{ app.request.locale }}',
+                    format: "dd M yyyy",
+                    startDate: "+0d",
+                    endDate: "+3y",
+                    autoclose: true,
+                    zIndexOffset: 999
+                });
+            });
+
+            {#function add_payment(entity_id) {#}
+            {#var path = "{{ path('backend_client_file_pay', {'id': entity.id, 'iid': -1 }) }}";#}
+            {#var realPath = path.replace('-1', entity_id);#}
+            {#$.ajax({#}
+            {#type: "POST",#}
+            {#url: realPath,#}
+            {#success: function (response) {#}
+            {#window.location.reload();#}
+            {#},#}
+            {#fail: function () {#}
+            {##}
+            {#}#}
+            {#});#}
+            {#}#}
+            {##}
+            {#function cancel_payment(entity_id) {#}
+            {#var path = "{{ path('backend_client_file_cancel', {'id': entity.id, 'iid': -1 }) }}";#}
+            {#var realPath = path.replace('-1', entity_id);#}
+            {#$.ajax({#}
+            {#type: "POST",#}
+            {#url: realPath,#}
+            {#success: function (response) {#}
+            {#window.location.reload();#}
+            {#},#}
+            {#fail: function () {#}
+            {##}
+            {#}#}
+            {#});#}
+            {#}#}
+            {##}
+        </script>
+
+    {% endblock %}

@@ -1,0 +1,90 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_users') }}">Users</a></li>
+          <li><a href="{{ path('backend_user_viewers') }}">Viewers</a></li>
+          <li class="active">New</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_user_viewers') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Viewer Information</h4>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label">Name</label>
+                    {{ form_widget(form.name) }}
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label">Last Name</label>
+                    {{ form_widget(form.lastname) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Email</label>
+                  {{ form_widget(form.email ) }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Password</label>
+                  {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'data-fv-notempty': 'true', 'data-fv-notempty-message': 'The content is required and cannot be empty', 'data-fv-identical': 'true', 'data-fv-identical-field': 'gushh_corebundle_user_viewer[plainPassword][second]', 'data-fv-identical-message': 'The content and its confirm are not the same'} }) }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Confirm Password</label>
+                  {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirm Password', 'data-fv-notempty': 'true', 'data-fv-notempty-message': 'The content is required and cannot be empty', 'data-fv-identical': 'true', 'data-fv-identical-field': 'gushh_corebundle_user_viewer[plainPassword][first]', 'data-fv-identical-message': 'The content and its confirm are not the same'} }) }}
+                </div>
+              <div class="form-group">
+                <label class="control-label">Vip</label>
+                  {{ form_widget(form.vip) }}
+              </div>
+
+                <h4 class="text-center">Agency</h4>
+                <div class="form-group">
+                  <label class="control-label">Agency</label>
+                  {{ form_widget(form.agency ) }}
+                </div>
+
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_user_viewers') }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveUser">Save Viewer</button>
+                </div>
+                
+                {{ form_rest(form) }}
+
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/user/formValidation.min.js') }}"></script>
+{% endblock %}

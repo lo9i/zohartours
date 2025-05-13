@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ brand }} | {{ 'app.maintenance.title'|trans|title }}{% endblock %}
+
+{% block inline_body %}class="page-maintenance page-forgot-password layout-full"{% endblock %}
+
+{% block body %}
+  <div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content vertical-align-middle">
+      <i class="icon wb-settings icon-spin page-maintenance-icon" aria-hidden="true"></i>
+      <h2>{{ 'app.maintenance.title'|trans|upper }}</h2>
+      <p>{{ 'app.maintenance.description'|trans|upper }}</p>
+      <footer class="page-copyright">
+        <p>{{ brand }} {{ "now" | date('Y') }}. <a href="{{ 'app.developedByInternalUrl' }}" target="_blank">{{ 'app.developedByInternalLabel' }}</a>.</p>
+      </footer>
+    </div>
+  </div>
+{% endblock %}

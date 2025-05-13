@@ -1,0 +1,26 @@
+{% form_theme form _self %}
+{% block _gushh_corebundle_checkout_passenger_entry_widget %}
+<div class="input-daterange col-sm-12 passengerRow" >
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label class="control-label">{{ 'backend.checkout.passenger.ptitle'|trans }}</label>
+            {{ form_widget(form.title) }}
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="control-label">{{ 'backend.checkout.passenger.name'|trans }}</label>
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="control-label">{{ 'backend.checkout.passenger.lastname'|trans }}</label>
+            {{ form_widget(form.lastname) }}
+        </div>
+        <div class="form-group col-sm-3">
+            <label class="control-label">{{ 'backend.checkout.passenger.birthDate'|trans }}</label>
+            <div class="input-group  col-sm-12" style="width:100%">
+                <span class="input-group-addon"><i class="icon wb-calendar" aria-hidden="true"></i></span>
+                {{ form_widget(form.birthDate, { 'attr' : {'style': 'width:90%'}} ) }}<i class="icon wb-trash passengerRemove" style="padding: 8px 0 0 10px;" aria-hidden="true" onclick="removePassenger('__name__');"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

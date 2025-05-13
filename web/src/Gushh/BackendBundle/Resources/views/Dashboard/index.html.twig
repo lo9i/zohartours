@@ -1,0 +1,177 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="row">
+        {# <div class="col-xlg-3 col-lg-3 col-md-12">
+          <!-- Panel Web Designer -->
+          <div class="widget widget-shadow">
+            <div class="widget-content text-center bg-white padding-40">
+              <div class="avatar avatar-100 margin-bottom-20">
+                <img src="{{ asset('img/avatars/default.png') }}" alt="{{ app.user }}">
+              </div>
+              <p class="font-size-20 blue-grey-700">{{ app.user }}</p>
+              <p class="blue-grey-400 margin-bottom-20">{{ app.user.agency }}</p>
+            </div>
+          </div>
+          <!-- End Panel Web Designer -->
+        </div> #}
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-blue-800">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-building" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.usaHotels }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.hotelsInUsa'|trans }}</div>
+                    <a href="{{ path('backend_hotels') }}" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-blue-700">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-building" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.europeHotels }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.hotelsInEurope'|trans }}</div>
+                    <a href="{{ path('backend_hotels') }}" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>            
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-blue-600">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-bed" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.rooms }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.rooms'|trans }}</div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+{#           </div>
+
+          <div class="row"> #}
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-teal-800">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-tags" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.promotions }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.promotions'|trans }}</div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>            
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-teal-700">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-ticket" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.reservations }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.reservations'|trans }}</div>
+                    <a href="{{ path('backend_reservations') }}" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-teal-600">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-file" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.vouchers }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.vouchers'|trans }}</div>
+                    <a href="#" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+{#           </div>   
+
+          <div class="row"> #}
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-cyan-800">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-search" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.searches }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.searches'|trans }}</div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>            
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-cyan-700">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-users" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.operators }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.operators'|trans }}</div>
+                    <a href="{{ path('backend_user_operators') }}" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+            <div class="col-sm-4">
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-content padding-30 bg-cyan-600">
+                  <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-briefcase" aria-hidden="true"></i></div>
+                  <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                      <span class="counter-number">{{ stats.agencies }}</span>
+                    </div>
+                    <div class="counter-label">{{ 'backend.dashboard.agencies'|trans }}</div>
+                    <a href="{{ path('backend_agencies') }}" class="full-link"></a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Widget -->
+            </div>
+          </div>   
+
+        </div>  
+      </div>  
+    </div>
+  </div>
+
+{% endblock %}

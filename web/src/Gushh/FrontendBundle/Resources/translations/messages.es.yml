@@ -1,0 +1,119 @@
+cruices:
+    title: Cruceros
+
+development:
+    home: 'Volver al Inicio'
+    soon: 'Disponible pronto'
+    working: 'Estamos trabajando'
+
+footer:
+    address: Dirección
+    contact: Contacto
+    email: Correo
+    hourly: 'Abierto de Lunes a Viernes'
+    login: Entrar
+    logout: Salir
+    outOfNYC: 'Fuera de NYC'
+    reservations: Reservas
+    translate: 'Versión en español'
+
+home:
+    allEuropeDestinations: 'EUROPA <span>todos</span> <em>Los Destinos</em>'
+    allUsaDestinations: 'EE.UU. <span>todos</span> <em>Los Destinos</em>'
+    allEuropeDestinations: 'MEXICO <span>todos</span> <em>Los Destinos</em>'
+    allArgentinaDestinations: 'ARGENTINA <span>todos</span> <em>Los Destinos</em>'
+    europe: 'Europa <span>-</span>'
+    mexico: 'Mexico <span>-</span>'
+    argentina: 'Argentina <span>-</span>'
+    title: Inicio
+    usa: 'EE.UU. <span>-</span>'
+
+hotels:
+    allMexicoDestinations: 'Mexico <span>todos</span> <em>Los Destinos</em>'
+    allArgentinaDestinations: 'Argentina <span>todos</span> <em>Los Destinos</em>'
+    allEuropeDestinations: 'EUROPA <span>todos</span> <em>Los Destinos</em>'
+    allUsaDestinations: 'EE.UU. <span>todos</span> <em>Los Destinos</em>'
+    destinationsHotels: 'Destinos de <span>hoteles</span><i>-</i>'
+    details: '<span>Detalles</span> del hotel'
+    europe: 'Europa <span>-</span>'
+    goBack: '<span>Volver</span> <em><span>A Hoteles</span></em>'
+    hotelDetails: '<span>Detalles</span> del hotel'
+    hotelList: '<span>Lista</span> de hoteles'
+    hotels: Hoteles
+    hotelsIn: 'Hoteles en'
+    title: Hoteles
+    usa: 'EE.UU. <span>-</span>'
+    search:
+        adults: Adultos
+        agencyCommmision: 'Comisión Agencia'
+        any: Todas
+        anyCity: 'Todas las Ciudades'
+        appliesPenalty: 'aplica una penalidad de'
+        available: Disponible
+        book: Reservar
+        request: Solicitar
+        bookingTotal: 'Total reserva'
+        cancellationPolicy: 'Política de cancelación'
+        checkIn: Entrada
+        checkOut: Salida
+        children: Niños
+        childrenAge: 'Niño(s) Edad(es)'
+        city: Ciudad
+        country: País
+        from: Desde
+        hotelPolicy: 'Políticas del hotel'
+        hotelsAvailableIn: 'Hoteles disponibles en'
+        includedServices: 'Servicios incluidos'
+        mandatoryServices: Servicios
+        nights: Noches
+        noCancellable: 'No cancelable'
+        nonCancellableNonRefundableNonChangable: 'No reembolsable, sin cambios, no cancelable'
+        onRequest: 'On request'
+        oneOrMoreChildrenWereTakenAsAdults: 'Uno o más niños han sido considerados como adultos'
+        onlyAgenciesCanBook: 'Solo agencias pueden reservar!'
+        outOf: de
+        perNight: 'Por noche'
+        avgPerNight: 'Promedio por noche'
+        price: Precio
+        promoDiscount: 'Descuento Promo'
+        results: Resultados
+        rooms: Habitaciones
+        subtotal: Subtotal
+        tax: Impuestos
+        withoutPenaltyUntil: 'Sin penalidad hasta'
+        earlyDeparture: 'En caso de retirarse del hotel antes de terminar la estadia contratada (salida anticipada) o de no presentarse al hotel el dia previsto de arribo (no show) no aplicara ningun tipo de reembolso por las noches no utilizadas.'
+    searchForm:
+        adults: Adultos
+        checkIn: Entrada
+        checkOut: Salida
+        children: Niños
+        childrenAge: 'Niño(s) Edad(es)'
+        destination: Destino
+        night: Noche
+        nights: Noches
+        search: Buscar
+        hotel: Hotel
+        allHotels: 'Todos los Hoteles'
+        allCities: 'Todas las Ciudades'
+        selectPeriod: 'Seleccione periodo'
+
+continent:
+    usa: EE.UU
+    europe: Europa
+
+menu:
+    agency: Agencia
+    myReservations: 'Mis Reservas'
+    backend: Backend
+    home: Inicio
+    hotels: Hoteles
+    login: Entrar
+    logout: Salir
+    tours: Viajes
+    transfers: Traslados
+
+tours:
+    title: Viajes
+
+transfers:
+    title: Traslados

@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ brand }} | {{ 'checkEmail.title'|trans }} {% endblock %}
+
+{% block inline_body %}class="page-forgot-password layout-full"{% endblock %}
+
+{% block body %}
+  <div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content vertical-align-middle">
+      <p>{{ 'checkEmail.subtitle'|trans }}.</p>
+      <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-block">{{ 'checkEmail.login'|trans }}</a>
+      <footer class="page-copyright">
+        <p>{{ brand }} © {{ "now"|date('Y') }}. <a href="http://bookarg.com" target="_blank">BookARG</a> {{ 'app.developedBy'|trans|lower }} <Trescraneos.</p>
+      </footer>
+    </div>
+  </div>
+{% endblock %}

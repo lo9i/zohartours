@@ -1,0 +1,110 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-green-800">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-ticket" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.reservations }}</span>
+                  </div>
+                  <div class="counter-label">{{ 'backend.dashboard.reservations'|trans }}</div>
+                  <a href="{{ path('client_reservations') }}" class="full-link"></a>
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-green-700">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-search" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.searches }}</span>
+                  </div>
+                  <div class="counter-label">{{ 'backend.dashboard.searches'|trans }}</div>
+                  {# <a href="{{ path('client_search') }}" class="full-link"></a> #}
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>            
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-green-600">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-tags" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.promotions }}</span>
+                  </div>
+                  <div class="counter-label">{{ 'backend.dashboard.promotions'|trans }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>
+
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-blue-800">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-building" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.usaHotels }}</span>
+                  </div>
+                  <div class="counter-label">{{ 'backend.dashboard.hotelsInUsa'|trans }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-blue-700">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-building" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.europeHotels }}</span>
+                  </div>
+                  <div class="counter-label">{{ 'backend.dashboard.hotelsInEurope'|trans }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>            
+          <div class="col-sm-4">
+            <!-- Widget -->
+            <div class="widget">
+              <div class="widget-content padding-30 bg-blue-600">
+                <div class="widget-watermark darker font-size-60 margin-15"><i class="icon fa-bed" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                  <div class="counter-number-group">
+                    <span class="counter-number">{{ stats.rooms }}</span>
+                  </div>
+                  <div class="counter-label"><div class="counter-label">{{ 'backend.dashboard.rooms'|trans }}</div></div>
+                </div>
+              </div>
+            </div>
+            <!-- End Widget -->
+          </div>
+
+        </div>  
+      </div>  
+      
+    </div>
+  </div>
+
+{% endblock %}

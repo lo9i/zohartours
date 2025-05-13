@@ -1,0 +1,1668 @@
+@import 'nib'
+/*!
+ * ZoharTours Theme
+ * Copyright 2015 - lo9i labs
+ */
+global-reset()
+
+
+// Variables
+
+// Originales Tarjetas
+// dark-blue = #14405F
+// light-blue = #B4DDD9 
+// gray = #707173 
+// gold = #fabb00
+
+dark-blue = #144263
+light-blue = #019ac4 
+gray = #898A8A // #c5c6c8 original, no contrasta con fondo verde
+dark-gray = #77787a
+light-gray = #c5c6c8
+gold = #fabb00
+light-green = #B4DDD9 // white // #B4DDD9 // original tarjetas zohar
+
+
+*
+	box-sizing border-box
+	
+// Bootstrap tricks
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn 
+	transition: all 0.5s ease;
+
+.ui.zohar.button, .ui.zohar.buttons .button {
+    background-color: dark-blue;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
+}
+
+body
+	font-family 'Montserrat', sans-serif
+	font-weight 400
+	font-size 16px
+	background light-green
+	&.green
+		background light-green
+.Header
+	background dark-blue
+	height 91px
+	position: relative
+	&-arrow
+		width: 0;
+		height: 0;
+		border-left: .5em solid transparent;
+		border-right: .5em solid transparent;
+		border-top: .5em solid dark-blue
+		position: absolute;
+		bottom: -.5em;
+		text-align: center;
+		left: 50%;
+		margin-left: -.5em;
+		z-index: 99
+	&-logo
+		max-width 100%
+		padding 26px 22px 24px 0px
+
+	
+.Footer
+	&-logo
+		max-width 100%
+		margin-bottom 2em
+	&-top
+		padding 2em 0
+		background dark-blue
+		// height 320px
+		font-size 14px
+	// &-bottom
+	// 	height 85px
+	&-title
+		text-transform uppercase
+		color #fff
+		margin-bottom 1.5em
+		font-weight bold
+		line-height 3.5em
+
+.FooterItem
+	display block
+	margin .5em 0 1em
+	overflow hidden
+	&-title
+		color white
+		font-weight bold
+	&-description
+		font-size 12px
+		color #8aa1af
+		span
+			line-height 24px
+			&:last-child
+				padding-left 1.5em
+			&:first-child
+				margin-top -1px
+				margin-left -7px
+				font-size 24px
+				position absolute
+				color #fff
+		a
+			color #8aa1af
+			text-decoration none
+	&-link
+		text-align right
+		a
+			color #fff
+			font-size 12px
+			text-decoration none
+			line-height 1.25em
+	
+.SearchForm
+	
+	&-title
+		font-weight 700
+		color: #144263;
+		text-transform: uppercase;
+		font-size: 0.8em;
+		padding: 0.5em 0.25em		
+		text-align center
+	&-label
+		color dark-blue
+		text-transform uppercase
+		font-style italic
+		font-size .8em
+		padding .5em .25em
+	&-control
+		position relative
+		span
+			position: absolute;
+			right: .4em;
+			top: .4em;
+			font-size: 1.2em;
+			color: dark-gray;
+			&.fix-font
+				font-size: 2em;
+				top: 1px;
+				right: 1px;
+	&-input,
+	&-select
+		border-radius 0;
+		border 1px solid gray
+		color dark-gray
+		font-size .7em
+		line-height 1.8em
+	&-input	
+		&::-webkit-input-placeholder
+			color dark-gray
+		&:-moz-placeholder
+			color dark-gray
+		&::-moz-placeholder
+			color dark-gray
+		&:-ms-input-placeholder
+			color dark-gray
+	&-select
+		-webkit-appearance: none;
+		-moz-appearance none
+	&-submit
+		margin-top 1.75em
+		border-radius 1em 
+	&-nights
+		color: #144263;
+		text-transform: uppercase;
+		font-style: italic;
+		font-size: 0.5em;
+		text-align: right;
+		line-height: 2em;
+		font-weight: 700;		
+	
+.DestinationCard
+	box-sizing border-box
+	img
+		max-width 100%
+
+.FooterNav
+	font-size: 11px;
+	padding: 1.5em 0;
+	&-list
+		text-decoration none
+		text-align right
+	&-item
+		display: inline-block;
+		margin: 0.5em 0;
+		letter-spacing: 0.3em;
+		word-spacing: .5em;
+		&::after
+			display: inline-block;
+			content: '|';
+			font-size: 0.8em;
+			line-height: 16px;
+			margin: -0.3em 3em 0 2em;
+			vertical-align: top;
+		&:last-child
+			&::after
+				content ''
+				margin: 0;
+	&-link
+		color #124364
+		text-decoration none
+		&:active,
+		&:focus,
+		&:hover
+			outline none
+			text-decoration none
+
+.Navigation
+	display inline-block
+	height 100%
+	&-list
+		font-size 12px
+		text-decoration none
+		line-height: 73px;
+		text-align: right;
+	&-item
+		display inline-block
+		padding .5em 2em
+		position relative
+		&.active
+			.Navigation-link
+				border-bottom 2px solid #fff
+				&:active,
+				&:focus,
+				&:hover
+					outline none
+					color #fff
+			&:after
+				font-size 16px
+				content: '';
+				width: 0;
+				height: 0;
+				border-left: 0.5em solid transparent;
+				border-right: 0.5em solid transparent;
+				border-top: 0.5em solid dark-blue;
+				position: absolute;
+				bottom: -.9em;
+				text-align: center;
+				left: 50%;
+				margin-left: -0.5em;
+				z-index: 99;
+			&:first-child
+				&:after
+					font-size 0
+			
+	&-link
+		transition: color 0.5s ease;
+		color #fffeff
+		text-decoration none
+		text-transform uppercase
+		padding-bottom .5em
+		position: relative
+		&-login
+			margin-left 4em
+		span
+			font-size 1.5em
+			position: absolute;
+			top: -.1em;
+			right: -1.3em;
+		&:active,
+		&:focus,
+		&:hover
+			outline none
+			color #009bc3
+			text-decoration none
+			border-bottom 2px solid #009bc3
+			outline none
+			
+
+
+.SocialMedia
+	&-list
+		text-decoration none
+		text-align right
+	&-item
+		display inline-block
+		
+	&-link
+		color #fff
+		text-decoration none
+		font-size 2em
+		transition: color 0.5s ease;
+		span
+			display none
+		&:active,
+		&:focus,
+		&:hover
+			outline none
+			text-decoration none
+			color light-blue
+				
+#demoContainer
+	height 700px
+	background #f5f5f5
+
+
+.Util
+	&-arrow-bottom
+		width: 0; 
+		height: 0; 
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-bottom: 20px solid #f00; // dark-blue
+
+	&-hide-text
+		text-indent 100%
+	  white-space nowrap
+	  overflow hidden
+	
+	&-text-left
+		text-align left
+	
+	&-text-center
+		text-align center
+	
+	&-text-right
+		text-align right
+	
+	&-no-padding
+		padding 0 !important
+
+
+
+.Breadcrum
+	padding: .2em 1em 1em 0;
+	margin: 4em 0 1em;
+	list-style: none;
+	border-radius: .25em;
+	font-size: .75em;
+	> li
+		display inline-block
+		margin-bottom .5em
+		&:last-child
+			&::after
+				content ''
+		&::after
+			margin 0 1em
+			color gray
+			content '>'
+			font-size .8em
+		&.active
+			color gray
+
+.SearchResult
+	margin 3em 0 1em
+	&-title
+		color dark-blue
+		text-transform uppercase
+		font-weight 700
+		span
+			color light-blue
+			&:last-child
+				font-size: 1.5em;
+				float: right;
+				margin-right: 1em;
+
+.ResultCard
+	color #fff
+	text-transform uppercase
+	position relative
+	margin-bottom: 2em;
+	box-sizing: border-box;
+	font-weight 700
+	min-height 300px
+	background dark-blue
+	border 2px solid dark-blue
+	background-size cover
+	
+	&-title
+		display block
+		color light-blue
+		font-weight 700
+		padding 16px 24px
+		background-color #fff
+		span
+			color light-blue
+	&-info
+		padding 24px 24px 0px 24px
+		
+	&-label
+		font-size: 14px;
+		font-weight: 400;
+		font-style: italic;
+		margin-bottom: 24px;
+		color: light-blue
+		span
+			display: block;
+			line-height: 32px;
+			font-style: normal;
+			color #fff
+			font-size 12px
+			font-weight 700
+			
+	// &-wall
+	// 	position absolute
+	// 	top 0
+	// 	left 0
+	// 	height 100%
+	// 	width 100%
+	// 	background-color rgba(dark-blue, .75)
+	// 	&-city
+	// 		padding 0em 1.5em 1em
+	// 		font-size 2em
+	// 		span
+	// 			font-style italic
+	// 			color light-blue
+	// 			display block
+	// 			font-size .5em
+	// 			font-weight 500
+	// &-link
+	// 	display inline-block
+	// 	position relative
+	// 	color: #fff;
+	// 	font-size: 1em;
+	// 	border: 2px solid light-blue;
+	// 	padding: 1em 1.3em;
+	// 	font-weight: 700
+	// 	margin-left 3em
+	// 	transition all .5s ease			
+	// 	&:active,
+	// 	&:focus,
+	// 	&:hover
+	// 		color #fff
+	// 		background light-blue
+	// 		text-decoration none
+			
+	// &-image
+	// 	max-width 100%
+	// 	object-fit: cover;
+
+.CityCard
+	color #fff
+	text-transform uppercase
+	position relative
+	margin-bottom: 2em;
+	box-sizing: border-box;
+	font-weight 700
+	min-height 300px
+	background #ddd
+	background-size cover
+	
+	&-wall
+		position absolute
+		top 0
+		left 0
+		height 100%
+		width 100%
+		background-color rgba(dark-blue, .75)
+		&-title
+			padding 2em 3em
+			span
+				color light-blue
+		&-city
+			padding 0em 1.5em 1em
+			font-size 2em
+			span
+				font-style italic
+				color light-blue
+				display block
+				font-size .5em
+				font-weight 500
+	&-link
+		display inline-block
+		position relative
+		color: #fff;
+		font-size: 1em;
+		border: 2px solid light-blue;
+		padding: 1em 1.3em;
+		font-weight: 700
+		margin-left 3em
+		transition all .5s ease			
+		&:active,
+		&:focus,
+		&:hover
+			color #fff
+			background light-blue
+			text-decoration none
+			
+	&-image
+		max-width 100%
+		object-fit: cover;
+
+.RoomItem
+	box-sizing border-box
+	margin-bottom .5em
+	padding 0 3em 2em
+	&-item
+		border 2px solid red
+	&-description
+		color: dark-gray
+		font-size: 0.75em;
+		line-height: 1.5em;
+		font-weight: 400;
+		word-spacing: 0.5em;
+		border-bottom: 1px solid #c5c6c8;
+		text-align: justify;
+		padding-bottom 1em;
+		margin-bottom 1em
+		text-align: justify;
+		&:last-child
+			font-weight 700
+			border-bottom: none
+			padding 0
+			margin 0
+	&-service
+		color: dark-gray
+		font-size: 0.75em;
+		line-height: 1.5em;
+		font-weight: 400;
+		word-spacing: 0.5em;
+		border-bottom: 1px solid #c5c6c8;
+		text-align: justify;
+		padding-bottom .5em;
+		margin-bottom .5em
+		text-align: justify;
+		&:last-child
+			border-bottom: none
+			padding 0
+			margin 0
+		
+	&-header
+		text-transform uppercase
+		font-size 1.25em 
+		font-weight 700
+		color dark-blue
+		position relative
+		margin-bottom .5em
+	&-subtitle
+		font-size .75em 
+		font-weight 700
+		color dark-blue
+		position relative
+		margin-bottom .5em
+		// &::after
+		// 	width: 0;
+		// 	height: 0;
+		// 	border-top: .5em solid transparent;
+		// 	border-bottom: .5em solid transparent;
+		// 	border-left: .5em solid dark-blue;
+		// 	position: absolute;
+		// 	top: 50%;
+		// 	text-align: center;
+		// 	right: 0;
+		// 	margin-left: -0.5em;
+		// 	z-index: 99;
+		// 	content: '';
+		// 	margin-top: -0.5em;
+		// span
+		// 	display block
+		// 	color gray
+	
+.HotelCard
+	// border 1px solid light-gray
+	box-sizing border-box
+	margin-bottom .5em
+	background-color #fff
+	height 150px
+	&-description
+		padding-top .5em
+		&-address
+			color dark-gray
+			font-size 14px
+			padding .5rem 1.25rem
+			line-height: 1.4rem;
+			margin-left: 1rem;
+			span
+				font-size: 22px;
+				position: absolute;
+				margin-left: -22px;
+				color dark-gray
+	&-slider
+		max-width 100%
+		height 150px
+		object-fit: cover;
+	&-image
+		max-width 100%
+		height 150px
+		background-size: cover;
+	&-no-image
+		max-width 100%
+		height 150px
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: #175476;
+	&-stars
+		color: #fabb00;
+		padding: 0.7em 1em;
+	&-link
+		color light-blue
+		transition: color 0.5s ease;
+		&:active,
+		&:focus,
+		&:hover
+			color #fff
+			text-decoration none
+			span 
+				color light-blue
+		h2
+			padding: .7em 1em;
+	&-header
+		text-transform uppercase
+		font-size 1.25em 
+		font-weight 700
+		background dark-blue
+		color light-blue
+		position relative
+		&::before
+			width: 0;
+			height: 0;
+			border-top: .5em solid transparent;
+			border-bottom: .5em solid transparent;
+			border-right: .5em solid dark-blue;
+			position: absolute;
+			top: 50%;
+			text-align: center;
+			left: 0;
+			margin-left: -0.5em;
+			z-index: 99;
+			content: '';
+			margin-top: -0.5em;
+		span
+			display block
+			color #fff
+		// &:hover
+		// 	background light-blue
+	&-amenities
+		text-align: right;
+		padding: 15px
+		span
+			color dark-blue
+			font-size 2em
+
+.ResultHotelRoom
+	text-transform uppercase
+	font-size .8em
+	padding 16px
+	.btn
+		border-radius 16px
+	&-infoList
+		padding 16px
+		text-align center
+		margin-bottom 10px
+		li
+			display inline-block
+	&-priceTable
+		padding 16px 16px 0 16px
+		color dark-gray
+		margin-bottom 10
+		th,
+		td
+			padding 5px !important
+			text-align right
+
+		tr.total
+			th,
+			td
+				color dark-blue
+				font-weight 700
+				text-transform uppercase	
+	&-priceTableDetailsContainer
+		padding 0 16px
+	&-priceTableDetails
+		margin 10px 0
+		color dark-gray
+		border 1px solid #ddd
+		span
+			cursor pointer
+		span.label-warning
+			background #FFFF00
+			color dark-blue
+			
+		thead
+			th
+				font-weight 700
+				border-bottom 0 !important
+		th,
+		td
+			font-size 14px
+			padding 5px !important
+			text-align center !important
+			span
+				font-weight 400
+		th
+			font-size 12px
+			// font-weight 700
+	&-title
+		// text-decoration: underline;
+		margin-bottom: 12px;
+		color dark-blue
+		font-weight 700
+	&-alert
+		text-transform uppercase
+		padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+		a.btn-warning
+			background #FFFF00
+			color dark-blue
+			border-color #d6ff30
+			&:hover
+				background darken(#FFFF00, 7)
+		span.label-warning
+			background #FFFF00
+			color dark-blue
+		h2
+			font-size 2em
+		h3
+			font-size 1.75em
+		h4
+			font-size 1em
+		&.success
+			background-color: #dff0d8
+			color: #3c763d;
+			> .ResultHotelRoom-title
+				color #007500
+		&.info
+			background-color: #d9edf7
+			color #31708f
+		&.danger
+			background-color: #f2dede
+			color #a94442
+			> .ResultHotelRoom-title
+				color #a94442
+		&.warning
+			color: #8a6d3b;
+			background-color: #faebcc
+	&-messageList
+		> .ResultHotelRoom-message
+			margin-bottom 5px
+			line-height 1em
+	&-message
+		font-size .8em
+		padding 0
+	
+.ResultHotelCard
+	border 2px solid dark-blue
+	box-sizing border-box
+	margin-bottom .5em
+	background #fff
+	&-description
+		// padding-top .5em
+		&-address
+			color dark-gray
+			font-size 14px
+			line-height: 1.5em;
+			margin-left: 1rem;
+			margin-right: 1rem;
+			padding: 0 0 .5rem 1rem;
+			span
+				font-size: 22px;
+				position: absolute;
+				margin-left: -22px;
+				color dark-gray
+	&-title
+		text-transform uppercase
+		display block
+		color dark-blue
+		font-weight 700
+		padding 16px 24px
+		background-color #fff
+	&-slider
+		max-width 100%
+		height 150px
+		max-height 150px
+		// object-fit: cover;
+	&-image
+		max-width 100%
+		height 150px
+		background-size: cover;
+	&-stars
+		padding 16px 0 0 16px;
+		color gold
+	&-link
+		color dark-blue
+		transition: color 0.5s ease;
+		&:active,
+		&:focus,
+		&:hover
+			color light-blue
+			text-decoration none
+			span 
+				color light-blue
+		h2
+			padding: .7em 1em;
+		span
+			margin-bottom .5rem
+	&-no-result
+		color dark-blue
+		padding: .7em 1em;			
+	&-header
+		text-transform uppercase
+		font-size 1em 
+		font-weight 700
+		// background dark-blue
+		color light-blue
+		position relative
+		// &::before
+		// 	width: 0;
+		// 	height: 0;
+		// 	border-top: .5em solid transparent;
+		// 	border-bottom: .5em solid transparent;
+		// 	border-right: .5em solid dark-blue;
+		// 	position: absolute;
+		// 	top: 50%;
+		// 	text-align: center;
+		// 	left: 0;
+		// 	margin-left: -0.5em;
+		// 	z-index: 99;
+		// 	content: '';
+		// 	margin-top: -0.5em;
+		span
+			display inline-block
+			&.label 
+				margin-left: 16px;
+				font-size: 10px;
+				font-weight: normal;
+				padding: 5px 7px 3px;
+				margin-bottom: .5rem;
+
+		// &:hover
+		// 	background light-blue
+	&-amenities
+		padding: 8px 0 0 16px;
+		span
+			color dark-blue
+			font-size 2em
+	&-summary
+		margin-right -1px
+		position relative
+		min-height 150px
+		padding 16px
+		background dark-blue
+		color #fff
+	&-viewRooms
+		color #fff
+		text-transform uppercase
+		background light-blue
+		margin-top 1.75em
+		border-radius 16px 
+		&:active,
+		&:focus
+			color #fff
+		&:hover
+			color dark-blue
+			background #fff
+			text-decoration none
+	&-lowPrice
+		text-align right
+		color light-blue
+		font-size .75em
+		span
+			padding 8px 0
+			color #fff
+			font-size 2em
+			font-weight 700
+			display inline-block
+			text-align right
+			// border-bottom 2px solid #fff
+			small
+				font-size .75em
+				vertical-align middle
+				line-height 1em
+
+.BigItem
+	margin 3em 0
+	text-align center
+	&-link
+		transition all .5s ease-in
+		// width 150px
+		// height 45px
+		width 100%
+		height 275px
+		border 2px solid dark-blue
+		font-size 1em
+		text-transform uppercase
+		padding .8em 1em
+		display inline-block
+		&:active,
+		&:focus,
+		&:hover
+			text-decoration none
+			outline none
+			background dark-blue
+			color #fff
+	
+.Title
+	font-size 2em
+	color dark-blue
+	font-weight 700
+	padding 1em 0 .5em
+	text-transform uppercase
+	// margin 0 0 1em
+	span
+		display block
+		color light-blue
+
+.Subtitle
+	text-transform uppercase
+	letter-spacing .25em
+	font-size 1em
+	color gray
+	font-weight 700
+	padding 3em 0 0
+	span
+		color light-blue
+	i
+		display block
+	&-primary
+		span
+			color dark-blue
+
+.DestinationBack
+	margin 2em 0
+	&-item
+		background-color #fff
+		border 2px solid dark-blue
+		text-align: center;
+		display block
+		min-height 296px
+		position relative
+		transition all 1s ease-in
+		padding: 5em 0 0;
+		background-size cover
+		margin 2px 2px 2em 2px
+	&-title
+		font-size 2em
+		color dark-blue
+		font-weight 700
+		text-transform uppercase
+		display block
+		margin-bottom 1.5em
+		em
+			font-style italic
+			display block
+			font-size .5em
+		span
+			display block		
+	&-link
+		// position absolute
+		// right 2em
+		padding 1em 1.3em
+		font-weight 700
+		color dark-blue
+		border 2px solid dark-blue
+		text-decoration none
+		transition all .5s ease
+		&:hover
+			background dark-blue
+			color #fff
+			text-decoration none
+
+
+// .Destination
+// 	margin 2em 0
+// 	&-item
+// 		display block
+// 		min-height 275px
+// 		background #ddd
+// 		position relative
+// 		transition all 1s ease-in
+// 		background-size cover
+// 		margin-bottom 2em
+// 		overflow: hidden;
+// 		cursor: pointer;
+// 		height 300px
+// 		transform: translate3d(0,50%,0);
+// 		background-size cover
+// 		img
+// 			max-width 100%
+// 		&:active,
+// 		&:focus,
+// 		&:hover
+// 			outline none
+// 			.Destination-info
+// 				height 100%
+// 			.Destination-title
+// 				margin-top 2em
+// 			// .Destination-link
+// 			// 	&::before
+// 			// 		display inline-block
+// 			// 		content 'Hotels'
+// 			// 		position absolute
+// 			// 		left -4em
+// 			// 		left: -7em;
+// 			// 		padding: 1.3em 1.6em;
+// 			// 		top: -0.1em
+// 			// 		text-transform uppercase
+// 			// 		font-style italic
+// 			// 		font-weight normal
+// 			// 		font-size .7em
+				
+// 	&-info
+// 		width 100%
+// 		position absolute
+// 		bottom 0
+// 		padding 1.5em 2em
+// 		background rgba(dark-blue, .8)
+// 		box-sizing border-box
+// 		transition: all 0.5s ease;
+// 	&-title
+// 		font-size 1.5em
+// 		color white
+// 		text-transform uppercase
+// 		display inline-block
+// 		em
+// 			font-style italic
+// 			display block
+// 			color light-blue
+// 			font-size .5em
+// 		span
+// 			display block
+// 	&-link
+// 		position absolute
+// 		// right 2em
+// 		// bottom 1em
+// 		// padding .7em 1em
+// 		// font-weight bold
+// 		// color white
+// 		// border 2px solid light-blue
+// 		// text-decoration none
+// 		// transition: all 0.5s ease;
+// 		// position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		width: 100%;
+// 		height: 100%;
+// 		z-index: 1000;
+// 		text-indent: 200%;
+// 		white-space: nowrap;
+// 		font-size: 0;
+// 		opacity: 0;
+// 		// &:active,
+// 		// &:focus,
+// 		// &:hover
+// 		// 	outline none
+// 		// 	// background light-blue
+
+.Destination
+	margin 2em 0
+	&-item
+		display block
+		height 300px
+		background dark-blue
+		position relative
+		background-size cover
+		// cursor: pointer;
+		overflow hidden
+		border 2px solid light-green
+		&:hover
+			.Destination-info
+				bottom 0
+			.Destination-title
+				margin 2em 0 0
+			.Destination-link
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			.Destination-arrow-box
+				background light-blue
+				&::before
+					display inline-block
+					content 'Hotels'
+					position absolute
+					left -4em
+					left: -7em;
+					padding: 1.3em 1.6em;
+					top: -0.1em
+					text-transform uppercase
+					font-style italic
+					font-weight normal
+					font-size .7em					
+	&-info
+		width 100%
+		height 100%
+		position absolute
+		bottom -70%
+		padding 1.5em 1em 0em
+		background rgba(dark-blue, .9)
+		box-sizing border-box
+		transition: all .25s ease-in;
+	&-title
+		transition: all .75s ease;
+		font-size 1.25em
+		font-weight 700
+		color white
+		text-transform uppercase
+		display inline-block
+		em
+			font-style italic
+			display block
+			color light-blue
+			font-size .5em
+		span
+			display block
+	&-link
+		transition none
+		position absolute
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		text-indent: 200%;
+		white-space: nowrap;
+		font-size: 0
+	&-arrow-box
+		position absolute
+		right 2em
+		bottom 2em
+		padding .8em 1em .7em
+		font-weight bold
+		color white
+		border 2px solid light-blue
+		text-decoration none
+		transition: all 1.5s ease;
+		position: absolute;
+		
+
+
+.DestinationMini
+	margin 2em 0
+	&-item
+		display block
+		height 150px
+		background dark-blue
+		position relative
+		background-size cover
+		cursor: pointer;
+		overflow hidden
+		border 2px solid light-green
+		&:hover
+			.DestinationMini-info
+				bottom 0
+			.DestinationMini-title
+				margin-top 1em
+			.DestinationMini-arrow-box
+				background light-blue
+				&::before
+					display inline-block
+					content 'Hotels'
+					position absolute
+					left -4em
+					left: -7em;
+					padding: 1.3em 1.6em;
+					top: -0.1em
+					text-transform uppercase
+					font-style italic
+					font-weight normal
+					font-size .5em					
+	&-info
+		width 100%
+		height 100%
+		position absolute
+		bottom -55%
+		padding 1em 1em 0em
+		background rgba(dark-blue, .8)
+		box-sizing border-box
+		transition: all .25s ease-in;
+	&-title
+		transition: all .75s ease;
+		font-size 1em
+		color white
+		text-transform uppercase
+		display inline-block
+		font-weight 700
+		em
+			font-style italic
+			display block
+			color light-blue
+			font-size .5em
+		span
+			display block
+	&-link
+		position absolute
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		text-indent: 200%;
+		white-space: nowrap;
+		font-size: 0
+	&-arrow-box
+		position absolute
+		right 1em
+		bottom 1em
+		padding 0.5em .75em 0.3em;
+		font-weight bold
+		color white
+		border 2px solid light-blue
+		text-decoration none
+		transition: all 1.5s ease;
+		position: absolute;
+		
+
+.DestinationNext
+	margin 2em 0
+	&-item
+		border 1px solid dark-blue
+		text-align: center;
+		display block
+		min-height 300px
+		position relative
+		transition all 1s ease-in
+		padding: 5em 0 0;
+		background-size cover
+		margin-bottom 2em
+		background-color dark-blue
+		border 2px solid light-green
+		&:hover
+			.DestinationNext-arrow-box
+				background light-blue
+				transition background .35s ease-in
+	&-title
+		font-size 2em
+		color #fff
+		font-weight 700
+		text-transform uppercase
+		display block
+		margin-bottom 1em
+		em
+			font-style italic
+			display block
+			font-size .5em
+		span
+			color light-blue
+			display block		
+	&-link
+		position absolute
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		text-indent: 200%;
+		white-space: nowrap;
+		font-size: 0	
+		
+	&-arrow-box
+		margin 0 auto
+		font-weight 700
+		color #fff
+		border 2px solid light-blue
+		text-decoration none
+		font-size: 1em;
+		padding: 1em 1.3em;
+		display inline-block
+		// &:hover
+		// 	background light-blue
+		// 	color #fff
+		// 	text-decoration none
+			
+.DestinationNextMini
+	margin 2em 0
+	&-item
+		z-index 0
+		text-align: center;
+		display block
+		height 146px
+		position relative
+		transition all .5s ease-in
+		padding: 1.5em 0 0;
+		background-size cover
+		margin 2px 2px 2em 2px
+		background-color dark-blue
+		border 2px solid dark-blue
+		&:hover
+			background-color #fff
+			border 2px solid dark-blue
+			.DestinationNextMini-title
+				color dark-blue
+			.DestinationNextMini-arrow-box
+				background light-blue
+				transition background .35s ease-in
+	&-title
+		font-size 2em
+		color #fff
+		font-weight 700
+		text-transform uppercase
+		display block
+		margin-bottom 1em
+		transition color .5s ease
+		em
+			font-style italic
+			display block
+			font-size .5em
+		span
+			color light-blue
+			display block
+			line-height 1.25
+	&-link
+		position absolute
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		text-indent: 200%;
+		white-space: nowrap;
+		font-size: 0	
+		
+	&-arrow-box
+		margin 0 auto
+		font-weight 700
+		color #fff
+		border 2px solid light-blue
+		text-decoration none
+		font-size: 1.5em;
+		padding: 0.8em 1em;
+		display inline-block
+
+.HotelDescription
+	&-hotel-name
+		// padding 2em 0
+		text-align right
+		margin-top -2em
+		h2
+			text-transform uppercase
+			color light-gray
+			font-size 1.25em
+			font-weight 700	
+			span
+				font-size .75em
+				display block
+				color dark-blue
+	&-container
+		min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+		min-height: 12vh; /* These two lines are counted as one :-)       */
+		display: flex;
+		align-items: center;
+		> div:first-child
+			padding-right 0
+		> div:last-child
+			padding-left 0
+	&-description
+		color dark-gray
+		font-size: 11px;
+		line-height: 1.5em;
+		font-weight: 400;
+		word-spacing: .25em;
+		border-bottom 1px solid light-gray
+		text-align justify
+		padding: 0 0 3em; 
+		margin: 0 2em 2em;
+		strong
+			font-weight 700
+		&:last-child
+			border-bottom none
+			padding 0
+	&-tab-content
+		background-color #fff
+		margin-bottom 3em
+		// padding-top 2em
+		border 2px solid dark-blue
+	&-tab
+		margin 1em 0 0
+		color dark-blue
+		li
+			background-color #fff
+			display inline-block
+			&.active
+				background dark-blue
+				a
+					color #fff
+			a
+				border 2px solid dark-blue
+				border-bottom none
+				display block
+				padding .75em 1em
+				text-decoration none
+				&:active,
+				&:focus,
+				&:hover
+					border 2px solid dark-blue
+					border-bottom none
+					transition: all 0.5s ease;
+					background dark-blue
+					color #fff
+					text-decoration none
+	&-slide
+		max-width 100%
+		margin -2em 0 2em
+	&-image 
+		display: block;
+		max-width: 100%;
+		margin-bottom 2em
+		// max-height:137px;
+		// width: auto;
+		// height: 150px
+			
+	&-stars
+		font-size 1em
+		line-height 1.5em
+		color gold
+		
+	&-title
+		color dark-blue
+		text-transform uppercase
+		font-size 1.5em
+		line-height 1.5em
+		font-weight 700
+	&-amenities
+		text-align: right;
+		// padding: 1em;
+		span
+			color dark-blue
+			font-size 2em
+
+.ErrorPage
+	text-align center
+	padding 3em 0
+	text-transform uppercase
+	&-number
+		font-size 4em
+		color dark-blue
+	&-message
+		font-size 3em
+		color light-blue
+	&-link
+		background-color #fff
+		display inline-block
+		margin 1em 0
+		font-size 1.5em
+		padding 1em
+		border 2px solid dark-blue
+		&:active,
+		&:focus,
+		&:hover
+			transition: all 0.5s ease;
+			background dark-blue
+			color #fff
+			text-decoration none
+
+#SecuredArea
+	background-color light-green
+	margin 3em auto
+	.column
+		max-width 450px
+
+#pdf-wrapper
+	margin: 20px auto;
+	width: 100% !important;
+	.Title
+		text-align center
+
+.IconDescription
+	padding 2em
+	color gray
+	&-item
+		color dark-gray
+		font-size: 0.6em;
+		line-height: 1.5em;
+		letter-spacing: .1em;
+		font-weight: 300;
+		word-spacing: .5em;
+		position relative
+		&:last-child
+			.IconDescription-text
+				&::after
+					border-bottom none
+	&-icon
+		color dark-blue
+		font-size: 3em;
+		padding-right: 1em;
+		margin-right: 1em;
+		border-right: 1px solid light-gray;
+		padding: 1em 1em 1em 0
+		display: inline-block;
+		vertical-align middle
+	&-text
+		display inline-block
+		&::after
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 10em;
+			border-bottom: 1px solid #c5c6c8;
+			width: 75%;
+			
+.StaticPage
+	&-content
+		border 2px solid dark-blue
+		background-color #fff
+		padding 3em 2em
+		margin-bottom 3em
+		color dark-gray
+		font-size: 12px;
+		font-weight 400
+		word-spacing: 0.25em;
+		text-align: justify;
+		strong
+			font-weight 700
+		ul
+			margin 1em 0 1em 2em
+			list-style circle
+		
+// ARREGLOS Bootstrap
+
+.panel-primary,
+.panel-heading
+	border-radius 0
+	
+		
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) 
+	.FooterItem
+		&-description
+			span
+				font-size .9em
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+	.Destination
+		&-info
+			padding .75em 1em 0em
+		&-title
+			font-size 1em
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			max-width: 100%;
+		&-item
+			height 200px
+			&:hover
+				.Destination-title
+					text-overflow: inherit;
+					white-space: normal;
+		&-arrow-box
+			right 1em
+			bottom 1em
+	.DestinationNext
+		&-title
+			margin-bottom .75em
+		&-item
+			padding 1em 0 0
+			min-height 200px
+	.DestinationBack
+		&-title
+			margin-bottom 1.2em
+		&-item
+			padding 1em 0 0
+			min-height 196px
+	.Header
+		&-logo
+			padding 27px 0 0
+	.Footer
+		&-logo-container
+			text-align center
+		&-top
+			> .container > .row
+				margin-left 0
+				margin-right 0
+			.col-sm-3
+				padding 0
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+
+	.SearchResult
+		margin 0 0 1em
+	.Header
+		text-align center
+		height 100%
+	.Navigation
+		&-list
+			text-align center
+		&-item
+			&.active
+				&::after
+					bottom -0.5em		
+	.col-xsm-12
+		width 100%	
+	.HotelCard
+		height auto
+		&-header
+			&::before
+				border-top: 0.5em solid transparent;
+				border-right: 0.5em solid transparent;
+				border-bottom: 0.5em solid #144263;
+				border-left: 0.5em solid transparent;
+				margin-top -1em
+				margin-left: -0.5em;
+				left 50%
+				top 0
+	.Footer
+		&-top
+			text-align center
+		&-logo
+			margin-bottom 2em
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px)
+	.col-xxs-12
+		width 100%
+	.Util
+		&-xxs
+			&-text-center	
+				text-align center
+	.Title
+		padding 1em 0 0
+	.Subtitle
+		padding 1em 0
+	.Header
+		&-logo
+			padding 2em
+	
+	.Navigation
+		&-list
+			text-align center
+		&-item
+			display block
+			padding 0
+			line-height 4em
+		&-link
+			display block
+			border-bottom 2px solid dark-blue
+			span
+				display none
+	.DestinationMini
+		&-item
+			height 200px
+	.ErrorPage
+		&-number
+			font-size 3em
+		&-message
+			font-size 2em
+		
+		&-top
+			text-align center
+	
+	.FooterItem
+		margin-bottom 2em
+	
+	.SocialMedia
+		&-list
+			text-align center
+			font-size 1.5em
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	
+}
+
+.vertical-center {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	// min-height: 100vh; /* These two lines are counted as one :-)       */
+
+	display: flex;
+	align-items: center;
+}

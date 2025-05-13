@@ -1,0 +1,58 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <div class="pearls row">
+            <h4 class="text-center">Checkout #ZTR-00000012</h4>
+            <hr>
+            <div class="pearl current col-xs-4">
+              <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+              <span class="pearl-title">Passenger Information</span>
+            </div>
+            <div class="pearl disabled col-xs-4">
+              <div class="pearl-icon"><i class="icon fa-glass" aria-hidden="true"></i></div>
+              <span class="pearl-title">Add Services</span>
+            </div>
+            <div class="pearl disabled col-xs-4">
+              <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+              <span class="pearl-title">Confirmation</span>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form action="#">
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">Name</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">Last Name</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <a href="#" class="btn btn-outline btn-default">Cancel</a>
+              <button type="submit" class="btn btn-success" id="saveRate">Save Rate</button>
+            </div>
+            
+          </form>
+          <!-- End Form -->
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+      
+    </div>
+  </div>
+
+{% endblock %}

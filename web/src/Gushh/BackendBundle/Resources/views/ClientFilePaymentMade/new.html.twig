@@ -1,0 +1,43 @@
+<!-- Start Payment Receive Form -->
+<div class="modal fade modal-fade-in-scale-u" id="addPaymentMadeForm" aria-hidden="true" aria-labelledby="addPaymentMadeForm"
+     role="dialog" tabindex="-1">
+    {{ form_start(form) }}
+    <div class="modal-dialog modal-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Add Payment Made Information</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label class="control-label">Date</label>
+                        {{ form_widget(form.date) }}
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="control-label">Provider</label>
+                        {{ form_widget(form.provider) }}
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="control-label">Amount</label>
+                        {{ form_widget(form.amount) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label class="control-label">Description</label>
+                        {{ form_widget(form.detail, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success" id="saveInvoice">Save Payment</button>
+            </div>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>

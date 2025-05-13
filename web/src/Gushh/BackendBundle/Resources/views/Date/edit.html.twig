@@ -1,0 +1,116 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}"> 
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': entity.room.hotel.id } ) }}">{{ entity.room.hotel }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'rooms' } ) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id } ) }}">{{ entity.room }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'dates' } ) }}">Dates</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'dates' } ) }}">{{ entity | date('d M Y') }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_show', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'dates' }) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Basic Date Information</h4>
+                {{ form_errors(form) }}
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label">Stop Sell</label>
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.stopSell) }}
+                      <label for="gushh_corebundle_date_stopSell">stop sell this date.</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label">Premium Date</label>
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.premiumDate) }}
+                      <label for="gushh_corebundle_date_premiumDate">this date is premium.</label>
+                    </div>
+                  </div>                   
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Stock</label>
+                    {{ form_widget(form.stock) }}
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Cut Off</label>
+                    {{ form_widget(form.cutOff) }}
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Minimum Stay</label>
+                    {{ form_widget(form.minimumStay) }}
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label class="control-label">Maximum Stay</label>
+                    {{ form_widget(form.maximumStay) }}
+                  </div>
+                </div>
+                
+                <h4 class="text-center">Rate</h4>
+                <div class="form-group">
+                  <label class="control-label">Rate</label>
+                  {{ form_widget(form.rate) }}
+                </div>
+                
+                <h4 class="text-center">Cancellation Policy</h4>
+                <div class="form-group">
+                  <label class="control-label">Cancellation Policy</label>
+                  {{ form_widget(form.cancellationPolicy) }}
+                </div>
+ 
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_room_show', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'dates' }) }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveDate">Save Date</button>
+                </div>
+                
+                {{ form_rest(form) }}
+                
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room-date/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/bootstrap-datepicker.js') }}"></script>
+{% endblock %}

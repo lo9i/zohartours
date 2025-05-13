@@ -1,0 +1,111 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+ 
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/summernote/summernote.css') }}">
+  
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-markdown/bootstrap-markdown.css') }}"> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Static Pages</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_static_pages') }}">Static Pages</a></li>
+          <li><a href="{{ path('backend_static_pages') }}">{{ entity }}</a></li>
+          <li class="active">Edit</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_static_pages') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          {# <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+            <i class="icon fa-trash" aria-hidden="true"></i> Delete
+          </a> #}      
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Static Page</h4>
+                
+                <div class="form-group">
+                  <label class="control-label">Title</label>
+                  {{ form_widget(form.enTitle) }}
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Content</label>
+                  {{ form_widget(form.enContent, {'attr': {'data-plugin': 'summernote'} }) }}
+                </div>
+                
+                <hr>      
+
+                <div class="form-group">
+                  <label class="control-label">Title</label>
+                  {{ form_widget(form.esTitle) }}
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Content</label>
+                  {{ form_widget(form.esContent, {'attr': {'data-plugin': 'summernote'} }) }}
+                </div>
+                
+                <hr>      
+  
+                <div class="form-group">
+                  <div class="checkbox-custom checkbox-primary">
+                    {{ form_widget(form.enabled) }}
+                    <label for="gushh_corebundle_static_page_enabled">Enable or disable this page.</label>
+                  </div>
+                </div>      
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_static_pages') }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveStaticPage">Save Page</button>
+                </div>
+                
+                {{ form_rest(form) }}
+
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/deleteStaticPageModal.html.twig', { 'deleteForm': deleteForm, 'entity': entity }) }}
+  <!-- End Modal -->
+{% endblock %}
+
+{% block footer_js %}
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  
+  <script src="{{ asset('backend/global/vendor/summernote/summernote.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/summernote.min.js') }}"></script>
+
+
+  {# <script src="{{ asset('backend/global/vendor/bootstrap-markdown/bootstrap-markdown.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/marked/marked.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/to-markdown/to-markdown.js') }}"></script> #}
+
+  <script src="{{ asset('backend/js/pages/static-page/formValidation.min.js') }}"></script>
+ {# <script src="{{ asset('backend/js/pages/static-page/editor-summernote.js') }}"></script> #}
+{% endblock %}

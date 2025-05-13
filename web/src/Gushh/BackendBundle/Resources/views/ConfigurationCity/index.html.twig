@@ -1,0 +1,79 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Cities</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('dashboard') }}">Configuration</a></li>
+          <li><a href="{{ path('dashboard') }}">Site</a></li>
+          <li class="active">City Images</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('dashboard') }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+          <div class="panel-body">
+            <table class="table table-hover dataTable table-striped width-full" id="cityTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Hotels</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for entity in entities %}
+                  <tr>
+                    <td><a href="{{ path('backend_configuration_city_image_edit', { 'id': entity.id }) }}">{{ entity.city.name }}</a></td>
+                    <td>
+                      
+                      <div class="col-md-4">
+                        <figure class="overlay overlay-hover animation-hover">
+                          <img class="caption-figure" src="{{ asset(entity.getWebPath) }}">
+                          <figcaption class="overlay-panel overlay-background overlay-fade text-center vertical-align">
+                            <a href="{{ path('backend_configuration_city_image_edit', { 'id': entity.id }) }}" class="btn btn-outline btn-success project-button">
+                              <i class="icon wb-edit" aria-hidden="true"></i> 
+                            </a>                                      
+                          </figcaption>
+                        </figure>                          
+                      </div>
+                    
+                    </td>
+                    <td>{{ entity.city.hotels|length }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/configuration-city/dataTable.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">  
+{% endblock %}
+
+{% block content %}
+  {% set currency = hotel.currency.symbol ~ ' ' %}
+
+  <div class="page animsition">
+    <div class="page-content">
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="text-center">{{ 'backend.checkout.title'|trans }}</h4>
+            </div>
+          </div>
+
+          <div class="pearls row">
+            <div class="pearl done col-xs-6">
+              <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.checkout.passengerInformation'|trans }}</span>
+            </div>
+            <div class="pearl current col-xs-6">
+              <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.checkout.completed'|trans }}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped width-full">
+                <tbody>
+                {% for guest in checkout.guests %}
+                  <tr>
+                    <td>
+                      <h6>{{ 'backend.checkout.passenger.ptitle'|trans }}</h6>
+                      <small>{{ guest.title.name }}</small>
+                    </td>
+                    <td>
+                      <h6>{{'backend.checkout.passenger.name'|trans }}</h6>
+                      <small>{{ guest.name }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.checkout.passenger.lastname'|trans }}</h6>
+                      <small>{{ guest.lastName }}</small>
+                    </td>
+                  </tr>
+                {% endfor %}
+                <tr>
+                  <td>
+                    <h6>{{ 'backend.checkout.hotel'|trans }}</h6>
+                    <small>{{ hotel }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.checkout.room'|trans }}</h6>
+                    <small>{{ room }}</small>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                  <tr>
+                    <td>
+                      <h6>{{ 'backend.form.city'|trans }}</h6>
+                      <small>{{ hotel.city }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.form.state'|trans }}</h6>
+                      <small>{{ hotel.state }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.form.country'|trans }}</h6>
+                      <small>{{ hotel.country }}</small>
+                    </td>
+                  </tr>
+                  <tr>                   
+                    <td>
+                      <h6>{{ 'backend.form.checkIn'|trans }}</h6>
+                      <small>{{ search.checkIn|date('d M Y') }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.form.checkOut'|trans }}</h6>
+                      <small>{{ search.checkOut|date('d M Y') }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.form.nights'|trans }}</h6>
+                      <small>{{ search.nights }}</small>
+                    </td>
+                  </tr>
+                  <tr>                      
+                    <td>
+                      <h6>{{ 'backend.checkout.passengers'|trans }}</h6>
+                      <small>{{ reservation.adults + reservation.children }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.checkout.adults'|trans }}</h6>
+                      <small>{{ reservation.adults }} ({{data.adults}})</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.checkout.children'|trans }}</h6>
+                      <small>{{ reservation.children }} ({{data.children}})</small>
+                    </td>
+                  </tr>
+                </tbody>    
+              </table> 
+              <div class="clearfix">
+                <div class="text-right pull-right">
+                  {% if reservation.isBlackedOut %}
+                      <h3><span class="label label-info">{{ 'hotels.search.request'|trans }}</span></h3>
+                  {% else %}
+                    <h3>
+                      Total:
+                      <span>{{ currency ~ reservation.totalWithMandatoryServices|number_format(2, '.', ',') }}</span>
+                    </h3>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          {{ form_start(form) }}
+            <div class="form-group">
+              <label class="control-label">{{ 'backend.checkout.confirmQuestion'|trans }}</label>
+              <div class="checkbox-custom checkbox-primary">
+                {{ form_widget(form.confirmed) }}
+                <label for="gushh_corebundle_checkoutconfirmation_confirmed">{{ 'backend.checkout.confirm'|trans }}</label>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <a href="#" class="btn btn-default pull-left">Back to Search</a>
+              <a href="{{ path('backend_checkout_step_one_edit', {'coid': entity.id, 'scode': data.scode, 'hid': data.hid, 'rid': data.rid, 'promo': data.promo  }) }}" class="btn btn-success">{{ 'backend.checkout.edit'|trans }}</a>
+              <button type="submit" class="btn btn-primary" id="saveCheckOut">{{ 'backend.checkout.request'|trans }}</button>
+            </div>
+            
+            {{ form_rest(form) }}
+
+          {{ form_end(form) }}
+          <!-- End Form -->
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+      
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/checkout/formValidation.min.js') }}"></script>
+{% endblock %}

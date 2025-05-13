@@ -1,0 +1,71 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Users</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_users') }}">Users</a></li>
+          <li class="active">Operators</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_user_operator_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Operator
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="userTable">
+            <thead>
+              <tr>
+                <th>Fullname</th>
+                <th>Agency</th>
+                <th>Email</th>
+                <th>Last Login</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            {% if entities|length > 0 %}
+              <tbody>
+                {% for entity in entities %}
+                  <tr>
+                    <td><a href="{{ path('backend_user_operator_edit', { 'id': entity.id }) }}">{{ entity }}</a></td>
+                    <td>{{ entity.agency }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.lastLogin != null ? entity.lastLogin|date('d M Y H:i A') : 'Have not logged in yet'}}</td>
+                    <td><span class="label label-primary">Operator</span></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            {% endif %}
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/user/dataTable.min.js') }}"></script>
+{% endblock %}

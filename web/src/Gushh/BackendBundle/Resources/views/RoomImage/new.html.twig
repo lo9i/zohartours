@@ -1,0 +1,80 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/dropify/dropify.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="page-header page-header-bordered">
+                <h1 class="page-title">Hotels</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('dashboard') }}">Backend</a></li>
+                    <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+                    <li><a href="{{ path('backend_hotel_show', {'hid': room.hotel.id } ) }}">{{ room.hotel }}</a></li>
+                    <li>
+                        <a href="{{ path('backend_room_show', {'hid': room.hotel.id, 'rid': room.id, 'tab': 'rooms' } ) }}">Rooms</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('backend_room_show', {'hid': room.hotel.id, 'rid': room.id } ) }}">{{ room }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('backend_room_show', {'hid': room.hotel.id, 'rid': room.id, 'tab': 'images' } ) }}">Images</a>
+                    </li>
+                    <li class="active">New</li>
+                </ol>
+                <div class="page-header-actions">
+                    <a href="{{ path('backend_room_show', { 'hid': room.hotel.id, 'rid': room.id, 'tab': 'images' }) }}"
+                       class="btn btn-default">
+                        <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+                    </a>
+                </div>
+            </div>
+
+            <!-- Panel Table Individual column searching -->
+            <div class="panel">
+                {# <header class="panel-heading">
+                  <h3 class="panel-title">No se </h3>
+                </header> #}
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Form -->
+                            {{ form_start(form) }}
+                            <h4 class="text-center">Upload Images</h4>
+
+                            <div class="form-group">
+                                <label class="control-label">File</label>
+                                {{ form_widget(form.file) }}
+                            </div>
+
+                            <div class="form-group text-center">
+                                <a href="{{ path('backend_room_show', { 'hid': room.hotel.id, 'rid': room.id, 'tab': 'images' }) }}"
+                                   class="btn btn-outline btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-success" id="saveRoomImage">Save Image</button>
+                            </div>
+
+                            {{ form_rest(form) }}
+
+                            {{ form_end(form) }}
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Panel Table Individual column searching -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/global/js/components/dropify.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/dropify/dropify.min.js') }}"></script>
+    <script src="{{ asset('backend/js/pages/room-image/formValidation.min.js') }}"></script>
+{% endblock %}

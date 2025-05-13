@@ -1,0 +1,21 @@
+parameters:
+    db.host: 127.0.0.1
+    db.port: null
+    db.name: zohartours
+    db.user: zohar_user
+    db.password: ge84kinaFE
+    mail.transport: smtp
+    mail.host: 'web37.dnchosting.com'
+    mail.user: 'reservations@zohartours.com'
+    mail.password: 'ge84k##1@inaFE'
+    mail.port: 26
+    mail.encryption: null
+    bookarg.secret: asdqwe123
+    bookarg.locale: en
+    bookarg.brand: ZoharTours
+    bookarg.host: zohartours.com
+    bookarg.host.en: zohartours.com
+    bookarg.host.es: es.zohartours.com
+    bookarg.email: no-reply@zohartours.com
+    bookarg.version: 1.0.1
+    bookarg.tracking.google: UA-71857763-1

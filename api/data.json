@@ -1,0 +1,15 @@
+{
+    "auditData": {
+        "processTime": "29",
+        "timestamp": "2025-05-13 12:14:58.035",
+        "requestHost": "40.119.151.97, 18.68.51.12, 10.214.140.121, 10.214.131.51",
+        "serverId": "ip-10-214-128-132.eu-central-1.compute.internal",
+        "environment": "[awseucentral1, awseucentral1c, ip_10_214_128_132, eucentral1, secret]",
+        "release": "",
+        "token": "003A7A87E0D14BBDB290C3502FD68646",
+        "internal": "0||UK|05|0|0||||||||||||0||1~1~2~0|0|0||0|8a50c8a6a7d48103f13121a56117f9da||||"
+    },
+    "hotels": {
+        "total": 0
+    }
+}

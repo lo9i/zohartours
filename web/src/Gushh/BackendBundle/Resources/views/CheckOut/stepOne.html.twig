@@ -1,0 +1,355 @@
+{% extends "GushhBackendBundle::baseAgency.html.twig" %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+{% endblock %}
+
+{% block title %}{{ brand }} | {{ 'backend.checkout.title'|trans }}{% endblock %}
+
+{% block content %}
+
+    <div class="page animsition">
+        <div class="page-content">
+
+            <!-- Checkout Form  -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.checkout.title'|trans }}</h4>
+                        </div>
+                    </div>
+
+                    <div class="pearls row">
+                        <div class="pearl current col-xs-6">
+                            <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.checkout.information'|trans }}</span>
+                        </div>
+                        <div class="pearl disabled col-xs-6">
+                            <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+                            <span class="pearl-title">{{ 'backend.checkout.completed'|trans }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 RequestBooking-header">
+                            <h2>{{ 'backend.checkout.details'|trans }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.checkIn'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ search.checkIn|date('d M Y') }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.checkOut'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ search.checkOut|date('d M Y') }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.nights'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ search.nights }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.rooms'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.country'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ hotel.country }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.city'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ hotel.city }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.adults'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ search.room1Adults }} ({{data.adults}})</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span class="RequestBooking-label">{{ 'hotels.search.children'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ search.room1Children }} ({{data.children}})</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <span class="RequestBooking-label">{{ 'backend.checkout.hotel'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ hotel.name }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <span class="RequestBooking-label">{{ 'backend.form.address'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ hotel.address }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <span class="RequestBooking-label">{{ 'backend.form.zipCode'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ hotel.zipCode }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <span class="RequestBooking-label">{{ 'backend.form.room'|trans }}</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="RequestBooking-value">{{ room.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 ">
+                            {% if data.isBlackedOut %}
+                            <div class="row">
+                                <span class="RequestBooking-price label label-info">{{ 'hotels.search.request'|trans }}</span>
+                            </div>
+                            {% else %}
+                            <div class="row">
+                                <span class="RequestBooking-label">{{ 'backend.checkout.price'|trans }}</span>
+                            </div>
+                            <div class="row">
+                                <span class="RequestBooking-price label label-info"><small>{{ data.currency }}</small> {{ data.price|number_format(2, '.', ',') }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="row">
+                                <a href="#" data-target="#cancellationPolicyForm" data-toggle="modal" class="RequestBooking-link text-warning">{{ 'hotels.search.cancellationPolicy'|trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="RequestBookingForm row">
+                        <div class="col-lg-12 RequestBooking-header">
+                            <h2>{{ 'backend.checkout.customer'|trans }}</h2>
+                        </div>
+                    </div>
+                    <!-- Form -->
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <button type="button" class="btn btn-default" id="addGuest">Add guest</button>
+                        <div id="passengers" style="padding-top: 10px;" data-prototype="
+                    {% filter escape %}
+                        {{ include('GushhBackendBundle:CheckOut/partials:passenger.html.twig', { 'form': form.guests.vars.prototype }) }}
+                    {% endfilter %}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">{{ 'backend.checkout.notes'|trans }}</label>
+                      {{ form_widget(form.notes) }}
+                    </div>
+
+                    <div class="form-group text-center">
+                        <a href="{{ path('search_hotels', {'continent': location.continent, 'country': location.country, 'city': location.city, 'scode': search.code }) }}"
+                           class="btn btn-default pull-left">{{ 'backend.checkout.backToSearch'|trans }}</a>
+                        <button type="submit" class="btn btn-primary pull-right"
+                                id="saveCheckOut">{{ 'backend.checkout.continue'|trans }}</button>
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                    {{ form_end(form) }}
+                    <!-- End Form -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-fade-in-scale-u" id="cancellationPolicyForm" aria-hidden="true" aria-labelledby="cancellationPolicyForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">{{ 'hotels.search.cancellationPolicy'|trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="ResultHotelRoom-messageList">
+                        {% if data.isCancellable == true %}
+                            <li class="ResultHotelRoom-message">
+                                {{ 'hotels.search.withoutPenaltyUntil'|trans }}
+                                <strong>{{ data.cancellableUntil|date('d M Y h:i A') }}</strong>
+                            </li>
+                            <li class="ResultHotelRoom-message">
+                                {{ 'hotels.search.from'|trans|title }}
+                                <strong>{{ data.cancellableUntil|date('d M Y h:i A') }}</strong>, {{ 'hotels.search.appliesPenalty'|trans }} {{ data.currency ~ data.cancellationPrice|number_format(2, '.', ',') }}
+                            </li>
+                        {% else %}
+                            <li class="ResultHotelRoom-message">
+                                {{ 'hotels.search.nonCancellableNonRefundableNonChangable'|trans }}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="theMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/js/pages/checkout/formValidation.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('backend/global/js/components/bootstrap-datepicker.js') }}"></script>
+
+    <script type="text/javascript">
+
+        var pax = {{ data.pax }};
+        $(function () {
+            moment.locale('{{ app.request.locale }}');
+
+
+            $('#addGuest').on('click', addPassenger)
+
+
+            $('#checkOutForm').unbind('submit').bind('submit', function(eventObj) {
+                var passengerCount = $('.passengerRow').length;
+//                if(passengerCount!= pax) {
+//                    showError('Missing guests ' + ( pax - passengerCount));
+//                    eventObj.preventDefault();
+//                     eventObj.stopImmediatePropagation();
+//                    return false;
+//                }
+
+                for(var i = 0; i < passengerCount; i++) {
+
+                    if (!checkPassenger(i)) {
+                        eventObj.preventDefault();
+                        eventObj.stopImmediatePropagation();
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+            addPassenger();
+        });
+
+        function showError(error) {
+            $('#theMessage').html(error);
+            $('#errorDialog').modal('show');
+        }
+
+        function checkPassenger(index) {
+
+            if($('#gushh_corebundle_checkout_guests_' + index + '_name').val().trim() === '') {
+                showError('First name is empty (guest: ' + index + ')');
+                return false;
+            }
+            if($('#gushh_corebundle_checkout_guests_' + index + '_lastname').val().trim() === '') {
+                showError('First last name is empty (guest: ' + index + ')');
+                return false;
+            }
+
+//            var birthDate = moment($('#gushh_corebundle_checkout_guests_' + index + '_birthDate').datepicker('getDate'));
+//            if (!birthDate.isValid()) {
+//                showError('Invalid birth date (guest: ' + index + ')');
+//                return false;
+//            }
+
+            return true;
+        }
+
+        function resetValidation() {
+            $('#checkOutForm').data('bootstrapValidator')("resetForm");
+        }
+        var $collectionHolder = $('#passengers');
+        function addPassenger() {
+
+            var index = $('.passengerRow').length;
+            if(index == pax)
+                return;
+
+            var prototype = $collectionHolder.data('prototype');
+
+            // Replace '$$name$$' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            $collectionHolder.append(newForm)
+
+            $('#gushh_corebundle_checkout_guests_' + index + '_birthDate').datepicker(
+                {language: '{{ app.request.locale }}',
+                    endDate: '-1d',
+                    autoclose: true});
+
+            $( '#gushh_corebundle_checkout_guests_' + index + '_birthDate' ).focus(resetValidation);
+            $( '#gushh_corebundle_checkout_guests_' + index + '_name' ).focus(resetValidation);
+            $( '#gushh_corebundle_checkout_guests_' + index + '_lastname' ).focus(resetValidation);
+            $( '#gushh_corebundle_checkout_guests_' + index + '_title' ).focus(resetValidation);
+
+            if(index+1 == pax) {
+                $('#addGuest').hide();
+            }
+
+        }
+        function removePassenger(index) {
+            $('#gushh_corebundle_checkout_guests_' + index + '_birthDate').closest('.passengerRow').remove();
+        }
+    </script>
+
+{% endblock %}

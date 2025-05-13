@@ -1,0 +1,777 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block title %}{{ brand }} | {{ hotels|length }} {{ 'hotels.search.outOf'|trans }}
+    {{ hotelCount }} {{ 'hotels.search.hotelsAvailableIn'|trans }} {{ search.city != '' ? search.city : 'hotels.search.anyCity'|trans }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/slider-pro.min.css') }}">
+
+    <style type="text/css">
+        #map-container {
+            position: relative;
+        }
+
+        #map-canvas {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            max-width: 100%;
+            height: 400px;
+        }
+
+        .SearchForm-input {
+            margin-top: 10px;
+        }
+
+        .SearchForm-select {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="min-height: 580px;">
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <ol class="Breadcrum">
+                    <li><a href="{{ path('hotels') }}">{{ 'hotels.hotels'|trans }}</a></li>
+                    <li>
+                        {% if search.country == 'United States' %}
+                            <a href="{{ path('hotels_list_continent', {'region': 'United States', 'continent': 'america'}) }}">
+                                {{ search.country }}
+                            </a>
+                        {% elseif search.country == 'Mexico' %}
+                            <a href="{{ path('hotels_list_continent', {'region': 'Mexico', 'continent': 'america'}) }}">
+                                México
+                            </a>
+                        {% else %}
+                            <a href="{{ path('hotels_list_continent', {'region': 'Europe','continent': 'europe'}) }}">
+                                Europe
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="active">{{ search.city != '' ? search.city : 'hotels.search.anyCity'|trans }} ({{ hotelCount }})</li>
+                </ol>
+            </div>
+            <div class="col-lg-8">
+                <div class="SearchResult">
+                    <h3 class="SearchResult-title">
+                        <span>{{ hotels|length }}</span> {{ 'hotels.search.outOf'|trans }}
+                        <span>{{ hotelCount }}</span> {{ 'hotels.search.hotelsAvailableIn'|trans }} {{ search.city != '' ? search.city : 'hotels.search.anyCity'|trans }}.
+                        <span class="zoharicon-list-view"></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="searchData" class="ResultCard" style="position: fixed; width: 360px;">
+            {{ form_start(searchForm) }}
+            <h3 class="ResultCard-title">{{ 'hotels.search.results'|trans }}</h3>
+            <div class="ResultCard-info">
+                <!-- Country City -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.searchForm.destination'|trans }}
+                            <select class="form-control SearchForm-select" id="searchForm_region">
+                                {% for reg in regions %}
+                                    <option value="{{ reg|join('') }}">{{ reg|join('') }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">&nbsp;
+                        <select class="form-control SearchForm-select" id="searchForm_destination">
+                            <option value="{{ city }},{{ state }},{{ country }},{{ continent }},{{ region }}" >{{ 'hotels.searchForm.allCities'|trans }}</option>
+                        </select>
+                        </p>
+                    </div>
+                </div>
+                <!-- Dates -->
+                <div class="row input-daterange" id="sandbox-container" style="width: inherit;">
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.checkIn'|trans }}
+                            <input type="text" class="form-control SearchForm-input" name="start" id="datepickerStart" placeholder="{{ 'hotels.searchForm.checkIn'|trans }}"/>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.checkOut'|trans }}
+                            <input type="text" class="form-control SearchForm-input" name="end" id="datepickerEnd" placeholder="{{ 'hotels.searchForm.checkOut'|trans }}"/>
+                        </p>
+                    </div>
+                </div>
+                <!-- Paxes -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.adults'|trans }}
+                            <select class="form-control SearchForm-select" name="searchForm_room1_adults" id="searchForm_room1_adults">
+                                {% for k in 1..8 %}
+                                    <option value="{{ k }}">{{ k }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.children'|trans }}
+                            <span>{{ search.room1Children }} 
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Rooms Nights -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.rooms'|trans }}
+                            <span>1</span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="ResultCard-label">
+                            {{ 'hotels.search.nights'|trans }}
+                            <span id="nights">{{ search.nights }}</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-block SearchForm-submit" style="background-color: #019ac4;margin-top: 0;margin-bottom: 20px;">{{ 'hotels.searchForm.search'|trans }}</button>
+                </div>
+            </div>
+            {{ form_end(searchForm) }}
+        </div>
+
+        <div class="row">
+            {% set slug = search.city|lower|replace({' ' : "-"}) %}
+            <div class="col-lg-4"></div>
+            <section class="col-lg-8">
+                <div class="row" style="min-height: 400px">
+                    {# RESULTHOTELCARD #}
+
+                    {% if hotels|length > 0 %}
+                        {% for hotel in hotels %}
+                            {% set currency = hotel.currency ~ ' ' %}
+
+                            <article class="col-lg-12">
+                                <div class="row no-gutter ResultHotelCard" id="hotel-{{ hotel.id }}">
+                                    <div class="col-lg-4">
+
+                                        {% if hotel.images|length > 0 %}
+                                            <div class="slider-pro ResultHotelCard-slider"
+                                                 id="ResultHotelCard-slider-{{ hotel.id }}">
+                                                <div class="sp-slides">
+                                                    {% for image in hotel.images %}
+                                                        <div class="sp-slide">
+                                                            <img alt="Home" class="sp-image"
+                                                                 src="{{ asset('frontend/css/images/blank.gif') }}"
+                                                                 data-src="{{ asset(image.getWebPath) }}"/>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="HotelDescription-image"
+                                                 style="background-image: url('{{ asset('img/no-image.png') }}')"></div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="row no-gutter">
+                                            <div class="col-lg-8">
+                                                <div class="ResultHotelCard-header">
+                                                    <div class="ResultHotelCard-stars">
+                                                        <div class="rating" data-score="{{ hotel.stars }}"
+                                                             data-number="{{ hotel.stars|round }}" data-read-only="true"
+                                                             data-plugin="rating"></div>
+                                                    </div>
+                                                    <a role="button" data-toggle="collapse"
+                                                       data-parent="#hotel-{{ hotel.id }}" href="#rooms-{{ hotel.id }}"
+                                                       class="ResultHotelCard-link">
+                                                        <h2>
+                                                            {{ hotel.name }}
+                                                            {% if hotel.subtitle != '' %}<span>{{ hotel.subtitle }}
+                                                                .</span>{% endif %}
+                                                        </h2>
+                                                    </a>
+                                                    {% if hotel.hasPromotion %}
+                                                        <span class="label label-success">Promotion</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="ResultHotelCard-description">
+                                                    <p class="ResultHotelCard-description-address">
+                                                        <a href="#" data-lat="{{ hotel.coords }}" data-toggle="modal"
+                                                           data-target="#myMapModal">
+                                                            <span class="zoharicon-address"></span> {{ hotel.address }}
+                                                        </a>
+
+                                                    </p>
+                                                    {% if hotel.video != '' %}
+	                                                <p class="ResultHotelCard-description-address">
+	                                                  <a target='_blank' href="{{ hotel.video }}"> Video</a>
+        	                                        </p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="ResultHotelCard-summary">
+                                                    <p class="ResultHotelCard-lowPrice">
+                                                        {{ 'hotels.search.from'|trans }}
+                                                    </p>
+                                                    <p class="ResultHotelCard-lowPrice">
+                                                        {% if hotel.isBlackedOut %}
+                                                            <span style="font-size: 20px">{{ 'hotels.search.request'|trans }}</span>
+                                                        {% else %}
+                                                            <span><small>{{ hotel.currency }}</small> {{ hotel.lowPrice|number_format(2, '.', ',') }}</span>
+                                                        {% endif %}
+                                                    </p>
+                                                    <p class="ResultHotelCard-lowPrice">
+                                                        {{ 'hotels.search.avgPerNight'|trans }}
+                                                    </p>
+
+                                                    <a class="btn btn-block ResultHotelCard-viewRooms" role="button"
+                                                       data-toggle="collapse" data-parent="#hotel-{{ hotel.id }}"
+                                                       href="#rooms-{{ hotel.id }}">
+                                                        {{ 'hotels.search.rooms'|trans }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+
+                                    <div class="row no-gutter ResultHotelRoom collapse out" role="tabpanel"
+                                         id="rooms-{{ hotel.id }}">
+
+                                        {% for room in hotel.rooms %}
+                                            {% set promo = room.isPromotion ? room.promoIds : 0 %}
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading">
+                                                        <span data-toggle="tooltip" data-placement="bottom" title="{{ room.description|raw }}"><span data-toggle="modal" role="button" data-target="#infoForm" data-detail="{{ room.description|raw }}">{{ room.name }}</span></span>
+                                                        {% if room.isPromotion %}
+                                                            <span class="label label-success">{{ room.promotion }}</span>
+                                                        {% endif %}
+                                                        <span class="pull-right">
+                                                        {% if room.isBlackedOut %}
+                                                            {{ 'hotels.search.request'|trans }}
+                                                        {% else %}
+                                                            {{ 'hotels.search.avgPerNight'|trans ~ ' ' ~ currency ~ (room.totalWithMandatoryServices/search.nights)|number_format(2, '.', ',') }}
+                                                        {% endif %}
+                                                        </span>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        {% if room.video != ''%}
+                                                        <div class="row">
+		       	                                   <p class="ResultHotelCard-description-address">
+        	                                              <a target='_blank' href="{{ room.video }}"> Video</a>
+        	                                           </p>
+                                                        </div>
+
+                                                        {% endif %}
+
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <table class="table ResultHotelRoom-priceTable">
+                                                                    <tbody>
+                                                                    {% if room.isBlackedOut %}
+                                                                        <tr>
+                                                                            <th>{{ 'hotels.search.price'|trans }}</th>
+                                                                            <td>{{ 'hotels.search.request'|trans }}</td>
+                                                                        </tr>
+                                                                    {% else %}
+                                                                        {#<tr>#}
+                                                                            {#<th>{{ 'hotels.search.price'|trans }}</th>#}
+                                                                            {#<td>{{ currency ~ room.price|number_format(2, '.', ',') }}</td>#}
+                                                                        {#</tr>#}
+                                                                        {#<tr>#}
+                                                                            {#<th>{{ 'hotels.search.tax'|trans }}</th>#}
+                                                                            {#<td>{{ currency ~ room.taxes|number_format(2, '.', ',') }}</td>#}
+                                                                        {#</tr>#}
+                                                                        {#{% if room.isPromotion %}#}
+                                                                            {#<tr>#}
+                                                                                {#<th>{{ 'hotels.search.promoDiscount'|trans }}</th>#}
+                                                                                {#<td>#}
+                                                                                    {#- {{ currency ~ room.promoDiscount|number_format(2, '.', ',') }}</td>#}
+                                                                            {#</tr>#}
+                                                                        {#{% endif %}#}
+                                                                        {#<tr>#}
+                                                                            {#<th>{{ 'hotels.search.subtotal'|trans }}</th>#}
+                                                                            {#<td>{{ currency ~ room.total|number_format(2, '.', ',') }}</td>#}
+                                                                        {#</tr>#}
+                                                                        {#<tr>#}
+                                                                            {#<th>{{ 'hotels.search.mandatoryServices'|trans }}</th>#}
+                                                                            {#<td>{{ currency ~ room.mandatoryServicesTotal|number_format(2, '.', ',') }}</td>#}
+                                                                        {#</tr>#}
+                                                                        {#{% if room.commission %}#}
+                                                                            {#<tr>#}
+                                                                                {#<th>{{ 'hotels.search.agencyCommmision'|trans }}</th>#}
+                                                                                {#<td>#}
+                                                                                    {#- {{ currency ~ room.commission|number_format(2, '.', ',') }}</td>#}
+                                                                            {#</tr>#}
+                                                                        {#{% endif %}#}
+
+                                                                        <tr class="total">
+                                                                            <th>{{ 'hotels.search.bookingTotal'|trans }}</th>
+                                                                            <td>{{ currency ~ room.totalWithMandatoryServices|number_format(2, '.', ',') }}</td>
+                                                                        </tr>
+                                                                    {% endif %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="ResultHotelRoom-alert">
+                                                                    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %}
+                                                                        {% if room.onRequest %}
+                                                                            <div class="text-center">
+                                                                                <a href="{{ path('backend_checkout_step_one', {scode: search.code, 'hid': hotel.id, 'rid': room.id, 'promo': promo }) }}" class="btn btn-warning btn-block">{{ 'hotels.search.request'|trans }}</a>
+                                                                                {#<h2>#}
+                                                                                    {#<span class="label label-warning">{{ 'hotels.search.request'|trans }}</span>#}
+                                                                                {#</h2>#}
+                                                                                {#<br><br>#}
+                                                                                {#<span class="label label-info">{{ 'hotels.search.onlyAgenciesCanBook'|trans }}</span>#}
+                                                                            </div>
+                                                                        {% else %}
+                                                                            <div class="text-center">
+                                                                                <a href="{{ path('backend_checkout_step_one', {scode: search.code, 'hid': hotel.id, 'rid': room.id, 'promo': promo }) }}" class="btn btn-success btn-block">{{ 'hotels.search.book'|trans }}</a>
+                                                                                <br><br>
+                                                                                <span class="label label-info">{{ 'hotels.search.onlyAgenciesCanBook'|trans }}</span>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    {% elseif is_granted('ROLE_VIEWER') %}
+                                                                        <h2>
+                                                                            <span class="label label-warning">{{ 'hotels.search.request'|trans }}</span>
+                                                                        </h2>
+                                                                        {#<br><br>#}
+                                                                        {#<span class="label label-info">{{ 'hotels.search.onlyAgenciesCanBook'|trans }}</span>#}
+                                                                    {% elseif is_granted('ROLE_AGENCY') %}
+                                                                        {% if room.onRequest %}
+                                                                            <a href="{{ path('backend_checkout_step_one', {scode: search.code, 'hid': hotel.id, 'rid': room.id, 'promo': promo }) }}" class="btn btn-warning btn-block">{{ 'hotels.search.request'|trans }}</a>
+                                                                        {% else %}
+                                                                            <a href="{{ path('backend_checkout_step_one', {scode: search.code, 'hid': hotel.id, 'rid': room.id, 'promo': promo }) }}" class="btn btn-success btn-block">{{ 'hotels.search.book'|trans }}</a>
+                                                                        {% endif %}
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="ResultHotelRoom-priceTableDetailsContainer">
+                                                                    {{ room.calendar|raw }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {% if room.mandatoryServices|length > 0 %}
+                                                            <div class="ResultHotelRoom-alert success">
+                                                                <h4 class="ResultHotelRoom-title">{{ 'hotels.search.includedServices'|trans }}
+                                                                    :</h4>
+                                                                <ul class="ResultHotelRoom-messageList">
+                                                                    {% for service in room.mandatoryServices %}
+                                                                        <li class="ResultHotelRoom-message">
+                                                                            <strong>{{ service.name }}</strong> {% if service.description != '' %}: {{ service.description }}{% endif %}
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </div>
+                                                        {% endif %}
+
+                                                        <div class="ResultHotelRoom-alert danger">
+                                                            <h4 class="ResultHotelRoom-title">{{ 'hotels.search.cancellationPolicy'|trans }}
+                                                                :</h4>
+                                                            <ul class="ResultHotelRoom-messageList">
+                                                                {% if room.isCancellable == true %}
+                                                                    <li class="ResultHotelRoom-message">
+                                                                        {{ 'hotels.search.withoutPenaltyUntil'|trans }}
+                                                                        <strong>{{ room.cancellableUntil|date('d M Y h:i A') }}</strong>
+                                                                    </li>
+                                                                    <li class="ResultHotelRoom-message">
+                                                                        {{ 'hotels.search.from'|trans|title }}
+                                                                        <strong>{{ room.cancellableUntil|date('d M Y h:i A') }}</strong>, {{ 'hotels.search.appliesPenalty'|trans }} {{ currency ~ room.cancellationPrice|number_format(2, '.', ',') }}
+                                                                    </li>
+                                                                {% else %}
+                                                                    <li class="ResultHotelRoom-message">
+                                                                        {{ 'hotels.search.noCancellable'|trans }}
+                                                                    </li>
+                                                                {% endif %}
+                                                                <li class="ResultHotelRoom-message">
+                                                                    {{ 'hotels.search.earlyDeparture'|trans }}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-lg-12">
+                                            <div class="ResultHotelRoom-alert info">
+                                                <h4 class="ResultHotelRoom-title">{{ 'hotels.search.hotelPolicy'|trans }}
+                                                    :</h4>
+                                                <ul class="ResultHotelRoom-messageList">
+                                                    <li class="ResultHotelRoom-message">
+                                                        {{ 'hotels.search.childrenAge'|trans }}: {{ hotel.childAge }}
+                                                    </li>
+                                                    <li class="ResultHotelRoom-message">
+                                                        {{ 'hotels.search.checkIn'|trans }}
+                                                        : {{ hotel.checkIn|date('H:i A') }}
+                                                        - {{ 'hotels.search.checkOut'|trans }}
+                                                        : {{ hotel.checkOut|date('H:i A') }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            {% if search.room1children != hotel.children %}
+                                                <div class="ResultHotelRoom-alert warning">
+                                                    <ul class="ResultHotelRoom-messageList">
+                                                        <li class="ResultHotelRoom-message">
+                                                            {{ 'hotels.search.oneOrMoreChildrenWereTakenAsAdults'|trans }}
+                                                            .
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </article>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-lg-12">
+                            <div class="ResultHotelCard">
+                                <h2 class="ResultHotelCard-title">
+                                    No results found
+                                </h2>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    {# ROOM MODAL #}
+    <div class="modal fade modal-fade-in-scale-u" id="infoForm" aria-hidden="true" aria-labelledby="infoForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                    <h4 class="modal-title">Room Detail</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# MAP MODAL #}
+    <div class="modal fade modal-fade-in-scale-u" id="myMapModal" aria-hidden="true" aria-labelledby="myMapModal"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Hotel Address</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="map-container">
+                        <div id="map-canvas" class=""></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade modal-fade-in-scale-u" id="myVideoModal" aria-hidden="true" aria-labelledby="myVideoModal"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        tel-videoa-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Hotel Video</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="map-container">
+                        <div id="hotel-video" class=""></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+       
+{% endblock %}
+
+{% block footer_js %}
+
+    <script src="{{ asset('frontend/js/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/underscore.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/clndr.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.sliderPro.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap-datepicker.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.slider-pro').sliderPro({
+                width: 250,
+                height: 153,
+                arrows: true,
+                fade: false,
+                buttons: false,
+                //fullScreen: true,
+                // autoplay: true
+                // smallSize: 500,
+                // startSlide: 0,
+                // mediumSize: 1000,
+                // largeSize: 3000,
+                // thumbnailArrows: false,
+            });
+
+        });
+    </script>
+
+    <script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+
+    <script type='text/javascript'>
+        var map;
+        var marker;
+
+        function initialize(myCenter) {
+            marker = new google.maps.Marker({
+                position: myCenter
+            });
+
+            var mapProp = {
+                center: myCenter,
+                zoom: 13,
+                draggable: true,
+                scrollwheel: false,
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+            marker.setMap(map);
+        };
+
+        $('#myMapModal').on('shown.bs.modal', function (e) {
+            var element = $(e.relatedTarget);
+            var data = element.data("lat").split(',');
+            initialize(new google.maps.LatLng(data[0], data[1]));
+        });
+
+        $('#myMapModal').on('hidden.bs.modal', function (e) {
+            marker.setMap(null);
+        });
+    </script>
+
+    <script type='text/javascript'>
+        var clearHotel = false;
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+
+            $(window).scroll(function(){
+                $("#searchData").css("top", Math.max(0, 193 - $(this).scrollTop()));
+            });
+
+            moment.locale('{{ app.request.locale }}');
+            var hotels = [
+                {% for hotel in allHotels %}
+                { region: "{{ hotel.region }}", 
+                  continent: "{{ hotel.continent }}",  
+                  country: "{{ hotel.country }}", 
+                  state: "{{ hotel.state }}", 
+                  cityName: "{{ hotel.city }}", 
+                  city: "{{ hotel.city }},{{ hotel.state }},{{ hotel.country }},{{ hotel.continent }},{{ hotel.region }}", 
+                  hotelName: "{{ hotel.name }}", 
+                  hotelId: {{ hotel.id }}, 
+                  enabled: {% if hotel.enabled %}true{% else %}false{% endif %}
+                },
+                {% endfor %}
+            ];
+
+            $('#sandbox-container.input-daterange').datepicker({
+                language: '{{ app.request.locale }}',
+                format: "dd M yyyy",
+                startDate: "+0d",
+                endDate: "+3y",
+                autoclose: true
+            });
+
+            $("#searchForm_room1_adults").val($('#gushh_corebundle_search_room1Adults').val());
+            $("#searchForm_room1_adults").on('change', function () {$('#gushh_corebundle_search_room1Adults').val(this.value)});
+
+            if( $('#gushh_corebundle_search_hotel').val() == null)
+                $('#gushh_corebundle_search_hotel').val('');
+            if( $('#gushh_corebundle_search_city').val() == null)
+                $('#gushh_corebundle_search_city').val('');
+            if( $('#gushh_corebundle_search_state').val() == null)
+                $('#gushh_corebundle_search_state').val('');
+            if( $('#gushh_corebundle_search_country').val() == null)
+                $('#gushh_corebundle_search_country').val('');
+            if( $('#gushh_corebundle_search_continent').val() == null)
+                $('#gushh_corebundle_search_continent').val('');
+            if( $('#gushh_corebundle_search_region').val() == null)
+                $('#gushh_corebundle_search_region').val('');
+
+            $('#searchForm_region').on('change', setCitiesForSelectedRegion);
+            $('#searchForm_region').val('{{ region }}');
+            $('#searchForm_destination').on('change', setHotelsForSelectedCity);
+            setCitiesForSelectedRegion();
+
+            // Si de nuevo. Xq el setCitiesForSelectedCountry lo "limpia"
+            $('#searchForm_destination').val('{{ city }},{{ state }},{{ country }},{{ continent }},{{ region }}');
+            setCountryStateAndCityForDestination();
+
+            $('#sandbox-container.input-daterange').on('changeDate', checkDates);
+
+            var initValStart = moment($('#gushh_corebundle_search_checkIn').val());
+            var initValEnd = moment($('#gushh_corebundle_search_checkOut').val());
+            $('#datepickerStart').datepicker('setDate', initValStart.toDate());
+            $('#datepickerEnd').datepicker('setDate', initValEnd.toDate());
+            clearHotel = true;
+            function checkDates() {
+                var start = $("#datepickerStart").datepicker('getFormattedDate', 'dd-mm-yyyy');
+                var end = $("#datepickerEnd").datepicker('getFormattedDate', 'dd-mm-yyyy');
+
+                $('#gushh_corebundle_search_checkIn').val(start);
+                $('#gushh_corebundle_search_checkOut').val(end);
+
+
+                var fullStart = $("#datepickerStart").datepicker('getDate');
+                var fullEnd = $("#datepickerEnd").datepicker('getDate');
+
+                var startDate = moment(fullStart);
+                var endDate = moment(fullEnd);
+                var nights = endDate.diff(startDate, 'days');
+
+                if (nights <= 0) {
+                    var newEndDate = new Date(fullEnd);
+                    newEndDate.setDate(newEndDate.getDate() + 3);
+
+                    $('#datepickerEnd').datepicker('setDate', newEndDate);
+                } else {
+                    $('#nights').html(nights);
+                }
+            }
+
+            function setCitiesForSelectedRegion() {
+
+                var selectedRegion = $('#searchForm_region').val();
+
+                var selectedContinent = selectedRegion.toUpperCase() == 'EUROPE' ? 'europe' : 'america';
+                $('#gushh_corebundle_search_continent').val(selectedContinent);
+
+                var citiesSelect = $('#searchForm_destination');
+                citiesSelect.find('option').remove();
+
+                var selectedCountry = (selectedRegion.toUpperCase() == 'UNITED STATES' || selectedRegion.toUpperCase() == 'MEXICO' || selectedRegion.toUpperCase() == 'ARGENTINA') ? selectedRegion : '';
+                citiesSelect.append('<option value=",,' + selectedCountry + ',' + selectedContinent + ',' + selectedRegion +'" selected="selected">{{ 'hotels.searchForm.allCities'|trans }}</option>');
+
+                var currentState = '';
+                var currentCity = '';
+                for (var i = 0; i < hotels.length; i++) {
+                    if(!hotels[i].enabled)
+                        continue;
+
+                    if (hotels[i].region.toUpperCase() != selectedRegion.toUpperCase() || hotels[i].continent.toUpperCase() != selectedContinent.toUpperCase())
+                        continue;
+
+                    if(selectedCountry != '')
+                    {
+                        if(selectedCountry.toUpperCase() !=  hotels[i].country.toUpperCase())
+                            continue;
+                    }
+                    if(currentState != hotels[i].state) {
+                        citiesSelect.append('<option style="font-weight: bold;" value=",'                            + hotels[i].state + ',' + hotels[i].country + ',' + selectedContinent + ',' + selectedRegion +'">' + hotels[i].state.toUpperCase() + '</option>');
+                        currentState = hotels[i].state;
+                        currentCity = ''
+                    }
+
+                    if(currentCity != hotels[i].cityName) {
+                        citiesSelect.append('<option style="padding-left: 10px;" value="' + hotels[i].cityName + ',' + hotels[i].state + ',' + hotels[i].country + ',' + selectedContinent + ',' + selectedRegion +'">' + hotels[i].cityName + '</option>');
+                        currentCity = hotels[i].cityName;
+                    }
+                }
+
+                setHotelsForSelectedCity();
+            }
+
+            function setHotelsForSelectedCity() {
+                var hotelSelect = $('#searchForm_hotel');
+                hotelSelect.find('option').remove().end().append('<option value="0" selected="selected">{{ 'hotels.searchForm.allHotels'|trans }}</option>');
+
+
+                var selectedRegion = $('#searchForm_region').val();
+                var selectedContinent = selectedRegion.toUpperCase() == 'EUROPE' ? 'europe' : 'america';
+                var selectedCountry = (selectedRegion.toUpperCase() == 'UNITED STATES' || selectedRegion.toUpperCase() == 'MEXICO' || selectedRegion.toUpperCase() == 'ARGENTINA') ? selectedRegion : '';
+                var selectedCity = $('#searchForm_destination').val();
+
+                for (var i = 0; i < hotels.length; i++) {
+                    if (hotels[i].continent.toUpperCase() != selectedContinent.toUpperCase())
+                        continue;
+
+                    if(selectedCountry != '' && hotels[i].country.toUpperCase() != selectedCountry.toUpperCase())
+                        continue;
+
+                    var cityStateCountryContinentRegion = selectedCity.split(',');
+                    if((cityStateCountryContinentRegion[0].length == 0 && cityStateCountryContinentRegion[1].length == 0)
+                        || cityStateCountryContinentRegion[0].length == 0 && selectedCity.toUpperCase() == (',' + hotels[i].state + ',' + hotels[i].country + ',' + hotels[i].continent + ',' + hotels[i].region).toUpperCase()
+                        || hotels[i].city.toUpperCase() == selectedCity.toUpperCase())
+                        hotelSelect.append('<option value="' + hotels[i].hotelName + '">' + hotels[i].hotelName + '</option>');
+                }
+                setCountryStateAndCityForDestination();
+            }
+
+            function setCountryStateAndCityForDestination (){
+                var destination = $('#searchForm_destination').val().split(',');
+                $('#gushh_corebundle_search_city').val(destination[0]);
+                $('#gushh_corebundle_search_state').val(destination[1]);
+                $('#gushh_corebundle_search_country').val(destination[2]);
+                $('#gushh_corebundle_search_continent').val(destination[3]);
+                $('#gushh_corebundle_search_region').val(destination[4]);
+                if(clearHotel)
+                    $('#gushh_corebundle_search_hotel').val('');
+
+            }
+
+            $('#infoForm').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var detail = button.data('detail') // Extract info from data-* attributes
+                $(this).find('.modal-body').html(detail);
+            })
+        });
+    </script>
+{% endblock %}
+

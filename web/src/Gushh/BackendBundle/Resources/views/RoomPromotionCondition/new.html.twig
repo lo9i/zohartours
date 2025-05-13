@@ -1,0 +1,79 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': promotion.room.hotel.id } ) }}">{{ promotion.room.hotel }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'tab': 'rooms' } ) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id } ) }}">{{ promotion.room }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'tab': 'promotions' } ) }}">Promotions</a></li>
+          <li><a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id } ) }}">{{ promotion }}</a></li>
+          <li><a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'conditions' } ) }}">Conditions</a></li>
+          <li class="active">New</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'conditions' } ) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Condition Information</h4>
+                {{ form_errors(form) }}
+                
+
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Condition</label>
+                    {{ form_widget(form.conditional) }}
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Expression</label>
+                    {{ form_widget(form.expression) }}
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Value</label>
+                    {{ form_widget(form.value) }}
+                  </div>
+                </div>
+             
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'conditions' } ) }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveRoomPromotion">Save Condition</button>
+                </div>
+                
+                {{ form_rest(form) }}
+                
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room-promotion/formValidation.min.js') }}"></script>
+{% endblock %}

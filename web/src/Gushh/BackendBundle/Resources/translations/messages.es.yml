@@ -1,0 +1,228 @@
+app:
+    developedBy: Desarrollado por
+    developedByUrl: 'http://zohartours.com'
+    developedByLabel: 'Trescraneos'
+    developedByInternalUrl: 'http://zohartours.com'
+    developedByInternalLabel: 'zohartours'
+    maintenance:
+        description: app.maintenance.description
+        title: app.maintenance.title
+    version: Versión
+backend:
+    english: 'Inglés'
+    spanish: 'Español'
+    frontend: 'Frontend'
+    allHotels: 'Todos los hoteles'
+    all: 'Todos'
+    visitSite: 'Ir al sitio'
+    logout: 'Salir'
+    form:
+        enableOrDisableThisHotel: 'Active o desctive el hotel'
+        address: 'Dirección'
+        agency: 'Agencia'
+        all: 'Todos'
+        amenities: 'Amenities'
+        amenity: 'Amenity'
+        arrival: 'Ingreso'
+        back: 'Volver'
+        cancel: 'Cancelar'
+        cancellationEmail: 'Correo de cancelaciones'
+        capacity: 'Capacidad'
+        checkIn: 'Ingreso'
+        checkOut: 'Salida'
+        city: 'Ciudad'
+        region: 'Región'
+        commission: 'Comisión'
+        contact: 'Contacto'
+        contacts: 'Contactos'
+        continent: 'Continente'
+        cost: 'Costo'
+        country: 'País'
+        currency: 'Moneda'
+        cutOff: 'Cut off'
+        dateAndTime: 'Fecha y Hora'
+        day: 'Día'
+        days: 'Días'
+        delete: 'Eliminar'
+        description: 'Descripción'
+        details: 'Detalles'
+        disabled: 'Deshabilitado'
+        edit: 'Editar'
+        enabled: 'Habilitado'
+        fax: 'Fax'
+        freeChildrenAge: 'Edad de niños gratis'
+        googleMapsCoords: 'Coordenadas de Google Maps'
+        hotelAmenities: 'Amenities del hotel'
+        hotelCurrencies: 'Monedas del hotel'
+        hotelInfo: 'Información del Hotel'
+        hotel: 'Hotel'
+        image: 'Imagen'
+        images: 'Imágenes'
+        info: 'Info'
+        name: 'Nombre'
+        notes: 'Nota'
+        new: 'Nuevo'
+        newAmenity: 'Nuevo amenity'
+        newCurrency: 'Nuevo currency'
+        newHotel: 'Nuevo hotel'
+        night: 'Noche'
+        nights: 'Noches'
+        operators: 'Operatores'
+        viewers: 'Veedores'
+        passenger: 'Pasajero'
+        payment: 'Pago'
+        payType: 'Tipo Pago'
+        penalty: 'Penalidad'
+        phone: 'Teléfono'
+        policies: 'Políticas'
+        policy: 'Política'
+        profit: 'Ganancia'
+        reservationEmail: 'Correo de reservas'
+        reservations: 'Reservas'
+        room: 'Habitación'
+        rooms: 'Habitaciones'
+        rooms: 'Habitaciones'
+        salePrice: 'Precio Venta'
+        save: 'Guardar'
+        saveHotel: 'Guardar hotel'
+        service: 'Servicio'
+        services: 'Servicios'
+        shortName: 'Nombre corto'
+        squareFeet: 'Piés cuadrados'
+        stars: 'Estrellas'
+        state: 'Estado'
+        status: 'Estado'
+        subtitle: 'Subtitulo'
+        symbol: 'Símbolo'
+        total: 'Total'
+        type: 'Tipo'
+        web: 'Web'
+        year: 'Año'
+        years: 'Años'
+        zipCode: 'Código postal'
+
+    dashboard:
+        title: 'Panel'
+        hotelsInUsa: 'Hoteles en EE.UU.'
+        hotelsInEurope: 'Hoteles en Europa'
+        rooms: 'Habitaciones'
+        promotions: 'Promociones'
+        reservations: 'Reservas'
+        vouchers: 'Cupones'
+        searches: 'Búsquedas'
+        operators: 'Operadores'
+        viewers: 'Veedores'
+        agencies: 'Agencias'
+        dates: Calendario
+
+    hotels:
+        title: 'Hoteles'
+        singular: 'Hotel'
+        all: 'Todos los hoteles'
+        isNotEnabled: 'Este hotel no está habilitado'
+        hasNoPolicies: 'Este hotel no tiene políticas'
+        hasNoRooms: 'Este hotel no tiene habitaciones'
+        hasNoImages: 'Este hotel no tiene imágenes'
+        hasNoServices: 'Este hotel no tiene servicios'
+        hasNoContacts: 'Este hotel no tiene contactos'
+
+    reservation:
+        title: Reserva
+        paymentStatus: 'Estado de Pago'
+        status: Estado
+        request: 'Pedida'
+        confirmed: 'Confirmada'
+        payment: 'Pagada'
+        payments: 'Pagos'
+        hotelFileId: 'Hotel File Id'
+        complete: 'Completa'
+        update: 'Actualizar Reserva'
+        back: 'Volver a la Reserva'
+
+    reservations:
+        title: 'Reservas'
+
+    client_files:
+        title: 'Fichas de Clientes'
+        singular: 'Ficha de Cliente'
+        items: 'Items'
+
+    providers:
+        title: 'Proveedores'
+        singular: 'Proveedor'
+
+    agencies:
+        title: 'Agencias'
+        singular: 'Agencia'
+
+    users:
+        title: 'Usuarios'
+
+    invoices:
+        title: 'Recibos'
+        singular: Recibo
+        items: 'Items'
+
+    vouchers:
+        title: 'Cupones'
+
+    transfers:
+        title: 'Traslados'
+
+    currencies:
+        title: 'Monedas'
+        singular: 'Moneda'
+
+    amenities:
+        title: 'Amenities'
+
+    operators:
+        title: 'Operadores'
+
+    viewers:
+        title: 'Veedores'
+
+    administrators:
+        title: 'Administradores'
+
+    staticPages:
+        title: 'Páginas estáticas'
+
+    cityImages:
+        title: 'Imágenes de ciudades'
+
+    checkout:
+        adults: Adults
+        backToSearch: 'Volver a la Busqueda'
+        children: 'Menores'
+        complete: 'Completado'
+        continue: 'Continuar'
+        confirm: 'Confirmo este pedido.'
+        confirmation: 'Confirmación'
+        confirmQuestion: 'Confirmar?'
+        customer: 'Cliente'
+        details: 'Detalle del Pedido'
+        edit: 'Editar pedido'
+        hotel: 'Hotel'
+        information: 'Información'
+        notes: 'Comentarios Adicionales?'
+        passengerInformation: 'Información del Pasajero'
+        passengers: 'Pasajeros'
+        passenger:
+            title: 'Pasajero'
+            ptitle: Título
+            name: Nombre
+            lastname: Apellido
+            birthDate: 'Fecha de Nacimiento'
+        price: 'Price'
+        room: 'Room'
+        request: 'Generar pedido.'
+        title: 'Check-out'
+
+login:
+    forgotPassword: Olvidó su contraseña?
+    password: Contraseña
+    rememberMe: Recordarme
+    signIn: Iniciar Sesion
+    title: Iniciar
+    username: Usuario

@@ -1,0 +1,221 @@
+app:
+    developedBy: 'Developed by'
+    developedByUrl: 'http://zohartours.com'
+    developedByLabel: 'Trescraneos'
+    developedByInternalUrl: 'http://zohartours.com'
+    developedByInternalLabel: 'zohartours'
+    maintenance:
+        description: app.maintenance.description
+        title: app.maintenance.title
+    version: version
+
+backend:
+    administrators:
+        title: Administrators
+
+    agencies:
+        singular: Agency
+        title: Agencies
+
+    amenities:
+        title: Amenities
+
+    cityImages:
+        title: 'City images'
+
+    currencies:
+        title: Currencies
+
+    dashboard:
+        agencies: Agencies
+        hotelsInEurope: 'Hotels in Europe'
+        hotelsInUsa: 'Hotels in USA'
+        hotelsInMexico: 'Hotels in Mexico'
+        operators: Operators
+        viewers: Viewers
+        promotions: Promotions
+        reservations: Reservations
+        rooms: Rooms
+        searches: Searches
+        title: Dashboard
+        vouchers: Vouchers
+
+    english: English
+
+    form:
+        address: Address
+        all: All
+        amenities: Amenities
+        arrival: Arrival
+        back: Back
+        cancel: Cancel
+        cancellationEmail: 'Cancellation Email'
+        capacity: Capacity
+        checkIn: Check-in
+        checkOut: Check-out
+        city: City
+        region: Region
+        commission: Commission
+        contact: Contact
+        contacts: Contacts
+        continent: Continent
+        cost: Cost
+        country: Country
+        currency: Currency
+        cutOff: 'Cut off'
+        dateAndTime: 'Date & Time'
+        day: Day
+        days: Days
+        delete: Delete
+        description: Description
+        details: Details
+        disabled: Disabled
+        edit: Edit
+        enableOrDisableThisHotel: 'Enable or disable this hotel'
+        enabled: Enabled
+        fax: Fax
+        freeChildrenAge: 'Free Children Age'
+        googleMapsCoords: 'Google Maps Coords'
+        hotel: Hotel
+        hotelInfo: 'Hotel Information'
+        image: Image
+        images: Images
+        info: Info
+        name: Name
+        new: New
+        night: Night
+        nights: Nights
+        notes: Notes
+        operators: Operators
+        viewers: Viewers
+        passenger: Passenger
+        payType: 'Pay Type'
+        payment: Payment
+        penalty: Penalty
+        phone: Phone
+        policies: Policies
+        policy: Policy
+        profit: Profit
+        reservationEmail: 'Reservation Email'
+        reservations: Reservations
+        room: Room
+        rooms: Rooms
+        salePrice: 'Sale Price'
+        saveHotel: 'Save hotel'
+        service: Service
+        services: Services
+        squareFeet: 'Square Feet'
+        stars: Stars
+        state: State
+        status: Status
+        subtitle: Subtitle
+        total: Total
+        type: Type
+        web: Web
+        years: Years
+        zipCode: 'Zip code'
+
+    frontend: Frontend
+
+    hotels:
+        all: 'All hotels'
+        hasNoContacts: 'This hotel has no contacts'
+        hasNoImages: 'This hotel has no images'
+        hasNoPolicies: 'This hotel has no policies'
+        hasNoRooms: 'This hotel has no rooms'
+        hasNoServices: 'This hotel has no services'
+        isNotEnabled: 'This hotel is not enabled'
+        singular: Hotel
+        title: Hotels
+
+    invoices:
+        title: Invoices
+        singular: Invoice
+        items: Items
+
+    logout: Logout
+
+    operators:
+        title: Operators
+
+    viewers:
+        title: Viewers
+
+    reservation:
+        title: Reservation
+        paymentStatus: 'Payment Status'
+        status: Status
+        request: 'Request'
+        confirmed: 'Confirmed'
+        payment: 'Paid'
+        payments: 'Payments'
+        hotelFileId: 'Hotel File Id'
+        complete: 'Complete'
+        update: 'Update Reservation'
+        back: 'Back to Reservation'
+        dates: Calendar
+        remarks: Remarks
+
+    reservations:
+        title: Reservations
+
+    client_files:
+        title: 'Client Files'
+        singular: 'Client File'
+        items: 'Items'
+
+    providers:
+        title: 'Providers'
+        singular: 'Provider'
+
+    spanish: Spanish
+
+    staticPages:
+        title: 'Static pages'
+
+    transfers:
+        title: Transfers
+
+    users:
+        title: Users
+
+    visitSite: 'Go site'
+
+    vouchers:
+        title: Vouchers
+
+    checkout:
+        adults: Adults
+        backToSearch: 'Back to Search'
+        children: 'Children'
+        completed: 'Completed'
+        confirm: 'I confirm this request.'
+        confirmation: 'Confirmation'
+        confirmQuestion: 'Confirm?'
+        continue: 'Continue'
+        customer: 'Customer'
+        details: 'Request Details'
+        edit: 'Edit request'
+        hotel: 'Hotel'
+        information: 'Information'
+        notes: 'Special notes?'
+        passengerInformation: 'Passenger Information'
+        passengers: 'Passengers'
+        passenger:
+            title: 'Passenger'
+            ptitle: 'Title'
+            name: 'First Name'
+            lastname: 'Last Name'
+            birthDate: 'Birth Date'
+        price: 'Price'
+        request: 'Request'
+        room: 'Room'
+        title: 'Check-out'
+
+login:
+    forgotPassword: Forgot password?
+    password: Password
+    rememberMe: Remember me
+    signIn: Sign In
+    title: Login
+    username: Username

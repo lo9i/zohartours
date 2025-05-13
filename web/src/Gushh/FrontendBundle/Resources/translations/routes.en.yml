@@ -1,0 +1,578 @@
+# Desc: /dashboard/agencies/
+backend_agencies: /dashboard/agencies/
+
+# Desc: /dashboard/agency/
+backend_agency_create: /dashboard/agency/
+
+# Desc: /dashboard/agency/{id}/
+backend_agency_delete: '/dashboard/agency/{id}/'
+
+# Desc: /dashboard/agency/{id}/edit/
+backend_agency_edit: '/dashboard/agency/{id}/edit/'
+
+# Desc: /dashboard/agency/new/
+backend_agency_new: /dashboard/agency/new/
+
+# Desc: /dashboard/agency/{id}/
+backend_agency_show: '/dashboard/agency/{id}/'
+
+# Desc: /dashboard/agency/{id}/
+backend_agency_update: '/dashboard/agency/{id}/'
+
+# Desc: /dashboard/client/checkout/
+backend_checkout: /dashboard/client/checkout/
+
+# Desc: /dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/confirmation/
+backend_checkout_confirmation: '/dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/confirmation/'
+
+# Desc: /dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/confirmation/u/
+backend_checkout_confirmation_update: '/dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/confirmation/u/'
+
+# Desc: /dashboard/client/checkout/{scode}-{hid}-{rid}-{promo}/step-one/-/
+backend_checkout_create: '/dashboard/client/checkout/{scode}-{hid}-{rid}-{promo}/step-one/-/'
+
+# Desc: /dashboard/client/checkout/{scode}-{hid}-{rid}-{promo}/step-one/
+backend_checkout_step_one: '/dashboard/client/checkout/{scode}-{hid}-{rid}-{promo}/step-one/'
+
+# Desc: /dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/step-one/u/
+backend_checkout_step_one_edit: '/dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/step-one/u/'
+
+# Desc: /dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/step-one/ua/
+backend_checkout_step_one_update: '/dashboard/client/checkout/{coid}-{scode}-{hid}-{rid}-{promo}/step-one/ua/'
+
+# Desc: /dashboard/client_files/
+backend_client_files: '/dashboard/client_files/'
+
+# Desc: /dashboard/client_file/
+backend_client_file_create: '/dashboard/client_file/'
+
+# Desc: /dashboard/client_file/{id}/
+backend_client_file_delete: '/dashboard/client_file/{id}/'
+
+# Desc: /dashboard/client_file/{id}/edit/
+backend_client_file_edit: '/dashboard/client_file/{id}/edit/'
+
+# Desc: /dashboard/client_file/new/
+backend_client_file_new: '/dashboard/client_file/new/'
+
+# Desc: /dashboard/client_file/{id}/
+backend_client_file_show: '/dashboard/client_file/{id}/'
+
+# Desc: /dashboard/client_file/{id}/
+backend_client_file_update: '/dashboard/client_file/{id}/'
+
+# Desc: /dashboard/client_file/{id}/payment-made-add
+backend_client_file_payment_made: '/dashboard/client_file/{id}/payment-made-add/'
+
+# Desc: /dashboard/client_file/{id}/payment-received-add
+backend_client_file_payment_received: '/dashboard/client_file/{id}/payment-received-add/'
+
+# Desc: /dashboard/client_file/{id}/commission-paid-add
+backend_client_file_commission_paid: '/dashboard/client_file/{id}/commission-paid-add/'
+
+# Desc: /dashboard/client_file/{id}/cancel/{iid}
+backend_client_file_cancel: '/dashboard/client_file/{id}/cancel/{iid}'
+
+# Desc: /dashboard/frontend/city-image/{id}/
+backend_configuration_city_image_delete: '/dashboard/frontend/city-image/{id}/'
+
+# Desc: /dashboard/frontend/city-image/{id}/edit/
+backend_configuration_city_image_edit: '/dashboard/frontend/city-image/{id}/edit/'
+
+# Desc: /dashboard/frontend/city-image/{id}/
+backend_configuration_city_image_update: '/dashboard/frontend/city-image/{id}/'
+
+# Desc: /dashboard/frontend/city-images/
+backend_configuration_city_images: /dashboard/frontend/city-images/
+
+# Desc: /dashboard/frontend/slider-image/{id}/
+backend_configuration_slider_image_delete: '/dashboard/frontend/slider-image/{id}/'   # FIXME
+
+# Desc: /dashboard/frontend/slider-image/{id}/edit/
+backend_configuration_slider_image_edit: '/dashboard/frontend/slider-image/{id}/edit/'   # FIXME
+
+# Desc: /dashboard/frontend/slider-image/{id}/
+backend_configuration_slider_image_update: '/dashboard/frontend/slider-image/{id}/'   # FIXME
+
+# Desc: /dashboard/frontend/slider-images/
+backend_configuration_slider_images: /dashboard/frontend/slider-images/   # FIXME
+
+# Desc: /dashboard/hotel-amenities/
+backend_hotel_amenities: /dashboard/hotel-amenities/
+
+# Desc: /dashboard/hotel-amenity/
+backend_hotel_amenity_create: /dashboard/hotel-amenity/
+
+# Desc: /dashboard/hotel-amenity/{haid}/
+backend_hotel_amenity_delete: '/dashboard/hotel-amenity/{haid}/'
+
+# Desc: /dashboard/hotel-amenity/{haid}/edit/
+backend_hotel_amenity_edit: '/dashboard/hotel-amenity/{haid}/edit/'
+
+# Desc: /dashboard/hotel-amenity/new/
+backend_hotel_amenity_new: /dashboard/hotel-amenity/new/
+
+# Desc: /dashboard/hotel-amenity/{haid}/
+backend_hotel_amenity_show: '/dashboard/hotel-amenity/{haid}/'
+
+# Desc: /dashboard/hotel-amenity/{haid}/
+backend_hotel_amenity_update: '/dashboard/hotel-amenity/{haid}/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/
+backend_hotel_cancellation_policy_create: '/dashboard/hotel/{hid}/cancellation-policy/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/{cpid}/
+backend_hotel_cancellation_policy_delete: '/dashboard/hotel/{hid}/cancellation-policy/{cpid}/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/{cpid}/edit/
+backend_hotel_cancellation_policy_edit: '/dashboard/hotel/{hid}/cancellation-policy/{cpid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/new/
+backend_hotel_cancellation_policy_new: '/dashboard/hotel/{hid}/cancellation-policy/new/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/{cpid}/
+backend_hotel_cancellation_policy_show: '/dashboard/hotel/{hid}/cancellation-policy/{cpid}/'
+
+# Desc: /dashboard/hotel/{hid}/cancellation-policy/{cpid}/
+backend_hotel_cancellation_policy_update: '/dashboard/hotel/{hid}/cancellation-policy/{cpid}/'
+
+# Desc: /dashboard/hotel/
+backend_hotel_create: /dashboard/hotel/
+
+# Desc: /dashboard/hotel-currencies/
+backend_hotel_currencies: /dashboard/hotel-currencies/
+
+# Desc: /dashboard/hotel-currency/
+backend_hotel_currency_create: /dashboard/hotel-currency/
+
+# Desc: /dashboard/hotel-currency/{hcid}/
+backend_hotel_currency_delete: '/dashboard/hotel-currency/{hcid}/'
+
+# Desc: /dashboard/hotel-currency/{hcid}/edit/
+backend_hotel_currency_edit: '/dashboard/hotel-currency/{hcid}/edit/'
+
+# Desc: /dashboard/hotel-currency/new/
+backend_hotel_currency_new: /dashboard/hotel-currency/new/
+
+# Desc: /dashboard/hotel-currency/{hcid}/
+backend_hotel_currency_show: '/dashboard/hotel-currency/{hcid}/'
+
+# Desc: /dashboard/hotel-currency/{hcid}/
+backend_hotel_currency_update: '/dashboard/hotel-currency/{hcid}/'
+
+# Desc: /dashboard/hotel/{hid}/
+backend_hotel_delete: '/dashboard/hotel/{hid}/'
+
+# Desc: /dashboard/hotel/{hid}/edit/
+backend_hotel_edit: '/dashboard/hotel/{hid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/image/
+backend_hotel_image_create: '/dashboard/hotel/{hid}/image/'
+
+# Desc: /dashboard/hotel/{hid}/image/{iid}/
+backend_hotel_image_delete: '/dashboard/hotel/{hid}/image/{iid}/'
+
+# Desc: /dashboard/hotel/{hid}/image/{iid}/edit/
+backend_hotel_image_edit: '/dashboard/hotel/{hid}/image/{iid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/image/new/
+backend_hotel_image_new: '/dashboard/hotel/{hid}/image/new/'
+
+# Desc: /dashboard/hotel/{hid}/image/{iid}/
+backend_hotel_image_update: '/dashboard/hotel/{hid}/image/{iid}/'
+
+# Desc: /dashboard/hotel/new/
+backend_hotel_new: /dashboard/hotel/new/
+
+# Desc: /dashboard/hotel/{hid}/promotion/
+backend_hotel_promotion_create: '/dashboard/hotel/{hid}/promotion/'
+
+# Desc: /dashboard/hotel/{hid}/promotion/{pid}/
+backend_hotel_promotion_delete: '/dashboard/hotel/{hid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/{hid}/promotion/{pid}/edit/
+backend_hotel_promotion_edit: '/dashboard/hotel/{hid}/promotion/{pid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/promotion/new/
+backend_hotel_promotion_new: '/dashboard/hotel/{hid}/promotion/new/'
+
+# Desc: /dashboard/hotel/{hid}/promotion/{pid}/
+backend_hotel_promotion_show: '/dashboard/hotel/{hid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/{hid}/promotion/{pid}/
+backend_hotel_promotion_update: '/dashboard/hotel/{hid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/promotion/
+backend_hotel_promotions: /dashboard/hotel/promotion/
+
+# Desc: /dashboard/hotel/{hid}/service/
+backend_hotel_service_create: '/dashboard/hotel/{hid}/service/'
+
+# Desc: /dashboard/hotel/{hid}/service/{sid}/
+backend_hotel_service_delete: '/dashboard/hotel/{hid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/{hid}/service/{sid}/edit/
+backend_hotel_service_edit: '/dashboard/hotel/{hid}/service/{sid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/service/new/
+backend_hotel_service_new: '/dashboard/hotel/{hid}/service/new/'
+
+# Desc: /dashboard/hotel/{hid}/service/{sid}/
+backend_hotel_service_show: '/dashboard/hotel/{hid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/{hid}/service/{sid}/
+backend_hotel_service_update: '/dashboard/hotel/{hid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/service/
+backend_hotel_services: /dashboard/hotel/service/
+
+# Desc: /dashboard/hotel/{hid}/
+backend_hotel_show: '/dashboard/hotel/{hid}/'
+
+# Desc: /dashboard/hotel/{hid}/
+backend_hotel_update: '/dashboard/hotel/{hid}/'
+
+# Desc: /dashboard/hotels/
+backend_hotels: /dashboard/hotels/
+
+# Desc: /dashboard/invoice/{id}/
+backend_invoice_show: '/dashboard/invoice/{id}/'
+
+# Desc: /dashboard/invoice/{id}/edit/
+backend_invoice_edit: '/dashboard/invoice/{id}/edit/'
+
+# Desc: /dashboard/invoices/
+backend_invoices: /dashboard/invoices/
+
+# Desc: /dashboard/maintenance/
+backend_maintenance: /dashboard/maintenance/
+
+# Desc: /dashboard/reservation/{id}/
+backend_reservation_show: '/dashboard/reservation/{id}/'
+
+# Desc: /dashboard/reservation/{id}/edit/
+backend_reservation_edit: '/dashboard/reservation/{id}/edit/'
+
+# Desc: /dashboard/reservations/
+backend_reservations: /dashboard/reservations/
+
+# Desc: /dashboard/hotel/{hid}/room/
+backend_room_create: '/dashboard/hotel/{hid}/room/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/
+backend_room_date_create: '/backend/hotel/{hid}/room/{rid}/date/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/{did}/
+backend_room_date_delete: '/backend/hotel/{hid}/room/{rid}/date/{did}/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/{did}/edit/
+backend_room_date_edit: '/backend/hotel/{hid}/room/{rid}/date/{did}/edit/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/new/
+backend_room_date_new: '/backend/hotel/{hid}/room/{rid}/date/new/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/{did}/
+backend_room_date_show: '/backend/hotel/{hid}/room/{rid}/date/{did}/'
+
+# Desc: /backend/hotel/{hid}/room/{rid}/date/{did}/
+backend_room_date_update: '/backend/hotel/{hid}/room/{rid}/date/{did}/'
+
+# Desc: /backend/date/{did}/
+backend_room_date_stop:  '/backend/hotel/{hid}/date/{did}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/
+backend_room_delete: '/dashboard/hotel/{hid}/room/{rid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/edit/
+backend_room_edit: '/dashboard/hotel/{hid}/room/{rid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/image/
+backend_room_image_create: '/dashboard/hotel/{hid}/room/{rid}/image/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/image/{iid}/
+backend_room_image_delete: '/dashboard/hotel/{hid}/room/{rid}/image/{iid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/image/{iid}/edit/
+backend_room_image_edit: '/dashboard/hotel/{hid}/room/{rid}/image/{iid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/image/new/
+backend_room_image_new: '/dashboard/hotel/{hid}/room/{rid}/image/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/image/{iid}/
+backend_room_image_update: '/dashboard/hotel/{hid}/room/{rid}/image/{iid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/new/
+backend_room_new: '/dashboard/hotel/{hid}/room/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/{bid}/
+backend_room_promotion_benefit_delete: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/{bid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/
+backend_room_promotion_benefit_discount_create: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/{bid}/edit/
+backend_room_promotion_benefit_discount_edit: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/{bid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/new/
+backend_room_promotion_benefit_discount_new: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/{bid}/
+backend_room_promotion_benefit_discount_update: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/discount/{bid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/
+backend_room_promotion_benefit_hotel_service_discount_create: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/{bid}/edit/
+backend_room_promotion_benefit_hotel_service_discount_edit: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/{bid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/new/
+backend_room_promotion_benefit_hotel_service_discount_new: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/{bid}/
+backend_room_promotion_benefit_hotel_service_discount_update: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/hotel-service-discount/{bid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/
+backend_room_promotion_benefit_room_service_discount_create: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/{bid}/edit/
+backend_room_promotion_benefit_room_service_discount_edit: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/{bid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/new/
+backend_room_promotion_benefit_room_service_discount_new: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/{bid}/
+backend_room_promotion_benefit_room_service_discount_update: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/benefit/room-service-discount/{bid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/
+backend_room_promotion_condition_create: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{cid}/
+backend_room_promotion_condition_delete: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{cid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/{cid}/edit/
+backend_room_promotion_condition_edit: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/{cid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/new/
+backend_room_promotion_condition_new: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/{cid}/
+backend_room_promotion_condition_update: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/condition/{type}/{cid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/
+backend_room_promotion_create: '/dashboard/hotel/{hid}/room/{rid}/promotion/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/
+backend_room_promotion_delete: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/edit/
+backend_room_promotion_edit: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/new/
+backend_room_promotion_new: '/dashboard/hotel/{hid}/room/{rid}/promotion/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/
+backend_room_promotion_show: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/
+backend_room_promotion_update: '/dashboard/hotel/{hid}/room/{rid}/promotion/{pid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/
+backend_room_rate_create: '/dashboard/hotel/{hid}/room/{rid}/rate/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/{raid}/
+backend_room_rate_delete: '/dashboard/hotel/{hid}/room/{rid}/rate/{raid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/{raid}/edit/
+backend_room_rate_edit: '/dashboard/hotel/{hid}/room/{rid}/rate/{raid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/new/
+backend_room_rate_new: '/dashboard/hotel/{hid}/room/{rid}/rate/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/{raid}/
+backend_room_rate_show: '/dashboard/hotel/{hid}/room/{rid}/rate/{raid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/rate/{raid}/
+backend_room_rate_update: '/dashboard/hotel/{hid}/room/{rid}/rate/{raid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/
+backend_room_service_create: '/dashboard/hotel/{hid}/room/{rid}/service/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/{sid}/
+backend_room_service_delete: '/dashboard/hotel/{hid}/room/{rid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/{sid}/edit/
+backend_room_service_edit: '/dashboard/hotel/{hid}/room/{rid}/service/{sid}/edit/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/new/
+backend_room_service_new: '/dashboard/hotel/{hid}/room/{rid}/service/new/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/{sid}/
+backend_room_service_show: '/dashboard/hotel/{hid}/room/{rid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/service/{sid}/
+backend_room_service_update: '/dashboard/hotel/{hid}/room/{rid}/service/{sid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/
+backend_room_show: '/dashboard/hotel/{hid}/room/{rid}/'
+
+# Desc: /dashboard/hotel/{hid}/room/{rid}/
+backend_room_update: '/dashboard/hotel/{hid}/room/{rid}/'
+
+# Desc: /dashboard/hotel/room/
+backend_rooms: /dashboard/hotel/room/
+
+# Desc: /search/hotels/
+backend_search_hotels: /search/hotels/
+
+# Desc: /dashboard/frontend/static-page/
+backend_static_page_create: /dashboard/frontend/static-page/
+
+# Desc: /dashboard/frontend/static-page/{id}/
+backend_static_page_delete: '/dashboard/frontend/static-page/{id}/'
+
+# Desc: /dashboard/frontend/static-page/{id}/edit/
+backend_static_page_edit: '/dashboard/frontend/static-page/{id}/edit/'
+
+# Desc: /dashboard/frontend/static-page/new/
+backend_static_page_new: /dashboard/frontend/static-page/new/
+
+# Desc: /dashboard/frontend/static-page/{id}/
+backend_static_page_show: '/dashboard/frontend/static-page/{id}/'
+
+# Desc: /dashboard/frontend/static-page/{id}/
+backend_static_page_update: '/dashboard/frontend/static-page/{id}/'
+
+# Desc: /dashboard/frontend/static-pages/
+backend_static_pages: /dashboard/frontend/static-pages/
+
+# Desc: /dashboard/user/admin/new/
+backend_user_admin_create: /dashboard/user/admin/new/
+
+# Desc: /dashboard/user/admin/{id}/edit/
+backend_user_admin_edit: '/dashboard/user/admin/{id}/edit/'
+
+# Desc: /dashboard/user/admin/new/
+backend_user_admin_new: /dashboard/user/admin/new/
+
+# Desc: /dashboard/user/admin/{id}/
+backend_user_admin_update: '/dashboard/user/admin/{id}/'
+
+# Desc: /dashboard/user/admins/
+backend_user_admins: /dashboard/user/admins/
+
+# Desc: /dashboard/user/{id}/
+backend_user_delete: '/dashboard/user/{id}/'
+
+# Desc: /dashboard/user/operator/new/
+backend_user_operator_create: /dashboard/user/operator/new/
+
+# Desc: /dashboard/user/operator/{id}/edit/
+backend_user_operator_edit: '/dashboard/user/operator/{id}/edit/'
+
+# Desc: /dashboard/user/operator/new/
+backend_user_operator_new: /dashboard/user/operator/new/
+
+# Desc: /dashboard/user/operator/{id}/
+backend_user_operator_update: '/dashboard/user/operator/{id}/'
+
+# Desc: /dashboard/user/operators/
+backend_user_operators: /dashboard/user/operators/
+
+# Desc: /dashboard/user/viewer/new/
+backend_user_viewer_create: /dashboard/user/viewer/new/
+
+# Desc: /dashboard/user/viewer/{id}/edit/
+backend_user_viewer_edit: '/dashboard/user/viewer/{id}/edit/'
+
+# Desc: /dashboard/user/viewer/new/
+backend_user_viewer_new: /dashboard/user/viewer/new/
+
+# Desc: /dashboard/user/viewer/{id}/
+backend_user_viewer_update: '/dashboard/user/viewer/{id}/'
+
+# Desc: /dashboard/user/viewers/
+backend_user_viewers: /dashboard/user/viewers/
+
+# Desc: /dashboard/user/{id}/
+backend_user_show: '/dashboard/user/{id}/'
+
+# Desc: /dashboard/users/
+backend_users: /dashboard/users/
+
+# Desc: /dashboard/client/
+client_dashboard: /dashboard/client/
+
+# Desc: /dashboard/client/reservations/
+client_reservations: /dashboard/client/reservations/
+
+# Desc: /dashboard/client/search/hotels/
+client_search: /dashboard/client/search/hotels/
+
+# Desc: /pdf
+core_homea: /pdf
+
+# Desc: /cruises/
+cruises: /cruises/
+
+# Desc: /dashboard/
+dashboard: /dashboard/
+
+# Desc: /user/profile/
+fos_user_profile_show: /user/profile/
+
+# Desc: /resetting/check-email
+fos_user_resetting_check_email: /resetting/check-email/
+
+# Desc: /resetting/request
+fos_user_resetting_request: /resetting/request/
+
+# Desc: /resetting/reset/{token}
+fos_user_resetting_reset: '/resetting/reset/{token}/'
+
+# Desc: /resetting/send-email
+fos_user_resetting_send_email: /resetting/send-email/
+
+# Desc: /login_check
+fos_user_security_check: /login_check/
+
+# Desc: /login
+fos_user_security_login: /login/
+
+# Desc: /logout
+fos_user_security_logout: /logout/
+
+# Desc: /
+home: /
+
+# Desc: /hotels/{continent}/{country}/{city}/{hotel}/
+hotel_detail: '/hotels/{continent}/{country}/{city}/{hotel}/'
+
+# Desc: /hotels/
+hotels: /hotels/
+
+# Desc: /hotels/{region}/{continent}/{country}/{city}/
+hotels_list_city: '/hotels/{region}/{continent}/{country}/{city}/'
+
+# Desc: /hotels/{region}/{continent}/{country}/
+hotels_list_country: '/hotels/{region}/{continent}/{country}/'
+
+# Desc: /hotels/{region}/{continent}/
+hotels_list_continent: '/hotels/{region}/{continent}/'
+
+# Desc: /dashboard/search/core/
+search_core: /dashboard/search/core/
+
+# Desc: /search/hotels/{region}/{continent}/{country}/{state}/{city}/{hotel}/{scode}/
+search_hotels: '/search/hotels/{region}/{continent}/{country}/{state}/{city}/{hotel}/{scode}/'
+
+# Desc: /static/{slug}/
+static_page: '/static/{slug}/'
+
+# Desc: /dashboard/mailito/
+test_mail: /dashboard/mailito/
+
+# Desc: /tours/
+tours: /tours/{t}
+
+# Desc: /transfers/
+transfers: /transfers/

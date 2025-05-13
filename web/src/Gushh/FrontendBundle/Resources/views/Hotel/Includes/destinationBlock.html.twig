@@ -1,0 +1,22 @@
+{# require continent #}
+
+<div class="col-xxs-12 col-xs-4">
+    {% set city = entity.city|lower|replace({' ' : "-"}) %}
+  {% set continent = entity.continent|lower|replace({' ' : "-"}) %}
+  {% set country = entity.country|lower|replace({' ' : "-"}) %}
+    {% set region = entity.region|lower|replace({' ' : "-"}) %}
+
+  <article class="Destination-item" style="background-image: url('{{ asset(entity.cityImage.image.getWebPath) }}')">
+    <div class="Destination-info">
+      {% if continent == 'america' %}
+        <h2 class="Destination-title">{{ entity.city }} <em>{{ entity.state }}</em> <span>-</span></h2>
+      {% elseif country == 'mexico' %}
+        <h2 class="Destination-title">{{ entity.city }} <em>{{ entity.country }}</em> <span>-</span></h2>
+      {% elseif continent == 'europe' %}
+        <h2 class="Destination-title">{{ entity.city }} <em>{{ entity.country }}</em> <span>-</span></h2>
+      {% endif %}
+      <div class="Destination-arrow-box">></div>
+      <a href="{{ path('hotels_list_city', { 'region': region, 'continent': continent, 'country': country, 'city': city } )}}" class="Destination-link">View more</a>
+    </div>
+  </article>        
+</div>

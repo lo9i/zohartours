@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+<head>
+    <meta name="robots" content="noindex">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="author" content="Anibal Fernández">
+    <title>ZoharTours | {{ reservation.code }}</title>
+
+    <style>
+        .zohartours {
+            padding-top: 20px;
+            color: rgb(20,66,99);
+            font-size: 42px;
+            line-height: 20px;
+            font-family: sans-serif, serif, EmojiFont;
+        }
+
+        .itemLabel {
+            width: 200px;
+	    font-style: italic;
+        }
+
+	.tableTitle {
+	    padding: 30px 0 0 0;
+	    font-style: italic;
+	    font-family: Calibri;
+	    font-size: 20px;
+	    font-weight: bold;
+	}
+
+        .tableInfo {
+	    margin-top: 20px;
+	    border: 1px solid black;
+	    padding:10px;
+	}	
+	    
+	.tableInfo th, td {
+            padding: 10px;
+	}
+    </style>
+</head>
+
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+
+    <div width="100%" style="padding-bottom:40px">
+        <div class="zohartours">zohartours</div>
+        <hr style="background:#7e808c; border:0; height:1px">
+        <div style="text-align:right;">407 LINCOLN ROAD - SUITE 11K - MIAMI BEACH, FL 33139</div>
+        <div style="text-align:right;">T +1 (212) 252-8690 - INFO@ZOHARTOURS.COM - ZOHARTOURS.COM</div>
+    </div>
+    <div style="margin: 0 20px">
+    <div class="tableTitle">HOTEL INFORMATION</div>
+    <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0" >
+        <tbody>
+        <tr><td class='itemLabel'>Hotel Name:</td><td class="itemValue">{{ reservation.hotel.name }}</td></tr>
+        <tr><td class='itemLabel'>Address:</td><td class="itemValue">{{ reservation.hotel.address }}</td></tr>
+        <tr><td class='itemLabel'>Phone:</td><td class="itemValue">{{ reservation.hotel.phone }}</td></tr>
+        <tr><td class='itemLabel'>Confirmation Number:</td><td class="itemValue">{{ reservation.hotelFileId }}
+	    <span style="width:200px; float:right;">REF #:{{ reservation.code }}</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="tableTitle">GUEST INFORMATION</div>
+   <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr><td class="itemLabel">Title:</td><td>{{ checkout.guests[0].title.name  }}</td></tr>
+          <tr><td class="itemLabel">First Name:</td>
+	      <td class="itemValue">{{ checkout.guests[0].name  }} <span style="width:200px; float:right;"># of Adults:{{ checkout.search.room1Adults }}</span></td></tr>
+          <tr><td class="itemLabel" style="font-style: italic;">Last Name:</td>
+	      <td class="itemValue">{{ checkout.guests[0].lastName  }}
+	      <span style="width:200px; float:right;font-style: italic;"># of Children: {{ checkout.search.room1Children  }}</span></td></tr>
+        </tbody>
+    </table>
+  
+    <div class="tableTitle">RESERVATION DETAILS</div>
+   <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr><td class='itemLabel' >Room Type:</td>
+            <td class="itemValue" >{{ reservation.room.name }}</td>
+        </tr>
+        <tr><td class='itemLabel' >Arrival:</td>
+            <td class="itemValue" >{{ checkout.search.checkIn|date('d-M-Y') }}</td>
+        </tr>
+        <tr><td class='itemLabel'>Departure:</td><td class="itemValue">{{ checkout.search.checkOut|date('d-M-Y') }}
+	    <span style="width:200px; float:right;font-style: italic;"># of Nights: {{ checkout.search.nights }}</span></td>
+        </tr>
+        </tr>
+        <tr><td class='itemLabel'>Included:</td><td class="itemValue">
+                {% for service in reservation.hotel.services %}
+                    {% if service.serviceType.slug == 'mandatory' %}
+                    {{ service.description }}{% if not loop.last %}, {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {#<tr><td colspan="2"  class="itemValue">#}
+                {#{% for service in reservation.hotel.services %}#}
+                    {#{{ service.description }}{% if not loop.last %}, {% endif %}#}
+                {#{% endfor %}#}
+            {#</td>#}
+        {#</tr>#}
+        </tbody>
+    </table>
+    {% if reservation.remarks|length %}
+    <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr><td class='itemLabel'>REMARKS:</td>
+            <td class="itemValue" colspan="3">{{ reservation.remarks }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    {% if reservation.hotel.enVoucherNote|length %}
+    <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr><td class='itemLabel'>Note:</td>
+            <td class="itemValue" colspan="3">{{ reservation.hotel.enVoucherNote }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    <table class="tableInfo"  border="0" width="100%" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr>
+            <td class="itemValue" style='text-align: center;' colspan="4">In case of early departure or no show there will not be any refund for the unused nights</td>
+        </tr>
+        </tbody>
+    </table>
+	</div>
+</body>
+</html>
+

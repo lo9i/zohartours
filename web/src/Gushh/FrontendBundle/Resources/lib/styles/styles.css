@@ -1,0 +1,1034 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+.btn {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  background: #fff;
+}
+body.green {
+  background: #fff;
+}
+.Header {
+  background: #144263;
+  height: 91px;
+  position: relative;
+}
+.Header-arrow {
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #144263;
+  position: absolute;
+  bottom: -0.5em;
+  text-align: center;
+  left: 50%;
+  margin-left: -0.5em;
+  z-index: 99;
+}
+.Header-logo {
+  max-width: 100%;
+  padding: 1.5em 0;
+}
+.Footer-logo {
+  max-width: 100%;
+}
+.Footer-top {
+  padding: 2em 0;
+  background: #144263;
+  font-size: 14px;
+}
+.Footer-title {
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1.5em;
+  font-weight: bold;
+  line-height: 3.5em;
+}
+.FooterItem {
+  display: block;
+  margin: 0.5em 0 1em;
+  overflow: hidden;
+}
+.FooterItem-title {
+  color: #fff;
+  font-weight: bold;
+}
+.FooterItem-description {
+  font-size: 12px;
+  color: #8aa1af;
+}
+.FooterItem-description span {
+  line-height: 24px;
+}
+.FooterItem-description span:last-child {
+  padding-left: 1.5em;
+}
+.FooterItem-description span:first-child {
+  margin-top: -1px;
+  margin-left: -7px;
+  font-size: 24px;
+  position: absolute;
+  color: #fff;
+}
+.FooterItem-description a {
+  color: #8aa1af;
+  text-decoration: none;
+}
+.SearchForm label {
+  color: #144263;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 0.8em;
+  padding: 0.5em 0.25em;
+}
+.SearchForm-submit {
+  margin-top: 1.75em;
+}
+.DestinationCard {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.DestinationCard img {
+  max-width: 100%;
+}
+.FooterNav {
+  font-size: 11px;
+  padding: 1.5em 0;
+}
+.FooterNav-list {
+  text-decoration: none;
+  text-align: right;
+}
+.FooterNav-item {
+  display: inline-block;
+  margin: 0.5em 0;
+  letter-spacing: 0.3em;
+  word-spacing: 0.5em;
+}
+.FooterNav-item::after {
+  display: inline-block;
+  content: '|';
+  font-size: 0.8em;
+  line-height: 16px;
+  margin: -0.3em 3em 0 2em;
+  vertical-align: top;
+}
+.FooterNav-item:last-child::after {
+  content: '';
+  margin: 0;
+}
+.FooterNav-link {
+  color: #124364;
+  text-decoration: none;
+}
+.FooterNav-link:active,
+.FooterNav-link:focus,
+.FooterNav-link:hover {
+  outline: none;
+  text-decoration: none;
+}
+.Navigation {
+  display: inline-block;
+  height: 100%;
+}
+.Navigation-list {
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 73px;
+  text-align: right;
+}
+.Navigation-item {
+  display: inline-block;
+  padding: 0.5em 2em;
+  position: relative;
+}
+.Navigation-item.active .Navigation-link {
+  border-bottom: 2px solid #fff;
+}
+.Navigation-item.active .Navigation-link:active,
+.Navigation-item.active .Navigation-link:focus,
+.Navigation-item.active .Navigation-link:hover {
+  outline: none;
+  color: #fff;
+}
+.Navigation-item.active:after {
+  font-size: 16px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #144263;
+  position: absolute;
+  bottom: -0.9em;
+  text-align: center;
+  left: 50%;
+  margin-left: -0.5em;
+  z-index: 99;
+}
+.Navigation-item.active:first-child:after {
+  font-size: 0;
+}
+.Navigation-link {
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
+  color: #fffeff;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding-bottom: 0.5em;
+  position: relative;
+}
+.Navigation-link-login {
+  margin-left: 4em;
+}
+.Navigation-link span {
+  font-size: 1.5em;
+  position: absolute;
+  top: -0.1em;
+  right: -1.3em;
+}
+.Navigation-link:active,
+.Navigation-link:focus,
+.Navigation-link:hover {
+  outline: none;
+  color: #009bc3;
+  text-decoration: none;
+  border-bottom: 2px solid #009bc3;
+  outline: none;
+}
+.SocialMedia-list {
+  text-decoration: none;
+  text-align: right;
+}
+.SocialMedia-item {
+  display: inline-block;
+}
+.SocialMedia-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 2em;
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
+}
+.SocialMedia-link span {
+  display: none;
+}
+.SocialMedia-link:active,
+.SocialMedia-link:focus,
+.SocialMedia-link:hover {
+  outline: none;
+  text-decoration: none;
+  color: #019ac4;
+}
+#demoContainer {
+  height: 700px;
+  background: #f5f5f5;
+}
+.Util {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.Util-arrow-bottom {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #f00;
+}
+.Util-hide-text {
+  text-indent: 100%;
+}
+.Util-text-left {
+  text-align: left;
+}
+.Util-text-center {
+  text-align: center;
+}
+.Util-text-right {
+  text-align: right;
+}
+.Breadcrum {
+  padding: 0.5em 1em 1em 0;
+  margin: 4em 0 1em;
+  list-style: none;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+  font-size: 0.7em;
+}
+.Breadcrum > li {
+  display: inline-block;
+}
+.Breadcrum > li:last-child::after {
+  content: '';
+}
+.Breadcrum > li::after {
+  margin: 0 1em;
+  color: #898a8a;
+  content: '>';
+  font-size: 0.8em;
+}
+.Breadcrum > li.active {
+  color: #898a8a;
+}
+.SearchResult {
+  margin: 3em 0 1em;
+}
+.SearchResult-title {
+  color: #144263;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.SearchResult-title span {
+  color: #019ac4;
+}
+.SearchResult-title span:last-child {
+  font-size: 1.5em;
+  position: absolute;
+  right: 2em;
+  top: 1.8em;
+}
+.CityCard {
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 2em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: 700;
+  min-height: 275px;
+  background: #ddd;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+.CityCard-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(20,66,99,0.75);
+}
+.CityCard-wall-title {
+  padding: 2em 3em;
+}
+.CityCard-wall-title span {
+  color: #019ac4;
+}
+.CityCard-wall-city {
+  padding: 0em 1.5em 1em;
+  font-size: 2em;
+}
+.CityCard-wall-city span {
+  font-style: italic;
+  color: #019ac4;
+  display: block;
+  font-size: 0.5em;
+  font-weight: 500;
+}
+.CityCard-link {
+  position: relative;
+  color: #fff;
+  font-size: 1em;
+  border: 2px solid #019ac4;
+  padding: 1em 1.3em;
+  font-weight: 700;
+  margin-left: 3em;
+  margin-top: 1em;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.CityCard-link:active,
+.CityCard-link:focus,
+.CityCard-link:hover {
+  color: #fff;
+  background: #019ac4;
+  text-decoration: none;
+}
+.CityCard-image {
+  max-width: 100%;
+  object-fit: cover;
+}
+.HotelCard {
+  border: 1px solid #898a8a;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+.HotelCard-image {
+  max-width: 100%;
+  object-fit: cover;
+}
+.HotelCard-stars {
+  font-size: 0.8em;
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  margin-top: -0.5em;
+  color: #fabb00;
+}
+.HotelCard-link {
+  color: #019ac4;
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
+}
+.HotelCard-link:active,
+.HotelCard-link:focus,
+.HotelCard-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.HotelCard-link:active span,
+.HotelCard-link:focus span,
+.HotelCard-link:hover span {
+  color: #019ac4;
+}
+.HotelCard-link h2 {
+  padding: 0.7em 1em;
+}
+.HotelCard-header {
+  text-transform: uppercase;
+  font-size: 1.25em;
+  font-weight: 700;
+  background: #144263;
+  color: #019ac4;
+  position: relative;
+}
+.HotelCard-header::before {
+  width: 0;
+  height: 0;
+  border-top: 0.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  border-right: 0.5em solid #144263;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  left: 0;
+  margin-left: -0.5em;
+  z-index: 99;
+  content: '';
+  margin-top: -0.5em;
+}
+.HotelCard-header span {
+  display: block;
+  color: #fff;
+}
+.HotelCard-amenities {
+  text-align: right;
+  padding: 1em;
+}
+.HotelCard-amenities span {
+  color: #144263;
+  font-size: 2em;
+}
+.BigItem {
+  margin: 3em 0;
+  text-align: center;
+}
+.BigItem-link {
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  width: 100%;
+  height: 275px;
+  border: 2px solid #144263;
+  font-size: 1em;
+  text-transform: uppercase;
+  padding: 0.8em 1em;
+  display: inline-block;
+}
+.BigItem-link:active,
+.BigItem-link:focus,
+.BigItem-link:hover {
+  text-decoration: none;
+  outline: none;
+  background: #144263;
+  color: #fff;
+}
+.Title {
+  font-size: 2em;
+  color: #144263;
+  font-weight: 700;
+  padding: 1em 0 0.5em;
+  text-transform: uppercase;
+}
+.Title span {
+  display: block;
+  color: #019ac4;
+}
+.Subtitle {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 1em;
+  color: #898a8a;
+  font-weight: 700;
+  padding: 3em 0 0;
+}
+.Subtitle span {
+  color: #019ac4;
+}
+.Subtitle i {
+  display: block;
+}
+.Subtitle-primary span {
+  color: #144263;
+}
+.DestinationBack {
+  margin: 2em 0;
+}
+.DestinationBack-item {
+  border: 2px solid #144263;
+  text-align: center;
+  display: block;
+  min-height: 296px;
+  position: relative;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition: all 1s ease-in;
+  transition: all 1s ease-in;
+  padding: 5em 0 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  margin: 2px 2px 2em 2px;
+}
+.DestinationBack-title {
+  font-size: 2em;
+  color: #144263;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.5em;
+}
+.DestinationBack-title em {
+  font-style: italic;
+  display: block;
+  font-size: 0.5em;
+}
+.DestinationBack-title span {
+  display: block;
+}
+.DestinationBack-link {
+  padding: 1em 1.3em;
+  font-weight: 700;
+  color: #144263;
+  border: 2px solid #144263;
+  text-decoration: none;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.DestinationBack-link:hover {
+  background: #144263;
+  color: #fff;
+  text-decoration: none;
+}
+.Destination {
+  margin: 2em 0;
+}
+.Destination-item {
+  display: block;
+  height: 300px;
+  background: #ddd;
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+  border: 2px solid #fff;
+}
+.Destination-item:hover .Destination-info {
+  bottom: 0;
+}
+.Destination-item:hover .Destination-title {
+  margin-top: 2em;
+}
+.Destination-item:hover .Destination-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.Destination-item:hover .Destination-arrow-box {
+  background: #019ac4;
+}
+.Destination-item:hover .Destination-arrow-box::before {
+  display: inline-block;
+  content: 'Hotels';
+  position: absolute;
+  left: -4em;
+  left: -7em;
+  padding: 1.3em 1.6em;
+  top: -0.1em;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 0.7em;
+}
+.Destination-info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -70%;
+  padding: 1.5em 2em 0em;
+  background: rgba(20,66,99,0.8);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+}
+.Destination-title {
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+  font-size: 1.5em;
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.Destination-title em {
+  font-style: italic;
+  display: block;
+  color: #019ac4;
+  font-size: 0.5em;
+}
+.Destination-title span {
+  display: block;
+}
+.Destination-link {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+}
+.Destination-arrow-box {
+  position: absolute;
+  right: 2em;
+  bottom: 2.8em;
+  padding: 0.8em 1em 0.7em;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid #019ac4;
+  text-decoration: none;
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  -ms-transition: all 1.5s ease;
+  transition: all 1.5s ease;
+  position: absolute;
+}
+.DestinationMini {
+  margin: 2em 0;
+}
+.DestinationMini-item {
+  display: block;
+  height: 150px;
+  background: #ddd;
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid #fff;
+}
+.DestinationMini-item:hover .DestinationMini-info {
+  bottom: 0;
+}
+.DestinationMini-item:hover .DestinationMini-title {
+  margin-top: 1em;
+}
+.DestinationMini-item:hover .DestinationMini-arrow-box {
+  background: #019ac4;
+}
+.DestinationMini-item:hover .DestinationMini-arrow-box::before {
+  display: inline-block;
+  content: 'Hotels';
+  position: absolute;
+  left: -4em;
+  left: -7em;
+  padding: 1.3em 1.6em;
+  top: -0.1em;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 0.5em;
+}
+.DestinationMini-info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -60%;
+  padding: 1em 1em 0em;
+  background: rgba(20,66,99,0.8);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+}
+.DestinationMini-title {
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+  font-size: 1em;
+  color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.DestinationMini-title em {
+  font-style: italic;
+  display: block;
+  color: #019ac4;
+  font-size: 0.5em;
+}
+.DestinationMini-title span {
+  display: block;
+}
+.DestinationMini-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+}
+.DestinationMini-arrow-box {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  padding: 0.5em 0.75em 0.3em;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid #019ac4;
+  text-decoration: none;
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  -ms-transition: all 1.5s ease;
+  transition: all 1.5s ease;
+  position: absolute;
+}
+.DestinationNext {
+  margin: 2em 0;
+}
+.DestinationNext-item {
+  border: 1px solid #144263;
+  text-align: center;
+  display: block;
+  min-height: 300px;
+  position: relative;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+  -ms-transition: all 1s ease-in;
+  transition: all 1s ease-in;
+  padding: 5em 0 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  margin-bottom: 2em;
+  background-color: #144263;
+  border: 2px solid #fff;
+}
+.DestinationNext-item:hover .DestinationNext-arrow-box {
+  background: #019ac4;
+  -webkit-transition: background 0.35s ease-in;
+  -moz-transition: background 0.35s ease-in;
+  -o-transition: background 0.35s ease-in;
+  -ms-transition: background 0.35s ease-in;
+  transition: background 0.35s ease-in;
+}
+.DestinationNext-title {
+  font-size: 2em;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1em;
+}
+.DestinationNext-title em {
+  font-style: italic;
+  display: block;
+  font-size: 0.5em;
+}
+.DestinationNext-title span {
+  color: #019ac4;
+  display: block;
+}
+.DestinationNext-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+}
+.DestinationNext-arrow-box {
+  margin: 0 auto;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid #019ac4;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 1em 1.3em;
+  display: inline-block;
+}
+.DestinationNextMini {
+  margin: 2em 0;
+}
+.DestinationNextMini-item {
+  text-align: center;
+  display: block;
+  height: 146px;
+  position: relative;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  padding: 2em 0 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  margin: 2px 2px 2em 2px;
+  background-color: #144263;
+  border: 2px solid #144263;
+}
+.DestinationNextMini-item:hover {
+  background-color: transparent;
+  border: 2px solid #144263;
+}
+.DestinationNextMini-item:hover .DestinationNextMini-title {
+  color: #144263;
+}
+.DestinationNextMini-item:hover .DestinationNextMini-arrow-box {
+  background: #019ac4;
+  -webkit-transition: background 0.35s ease-in;
+  -moz-transition: background 0.35s ease-in;
+  -o-transition: background 0.35s ease-in;
+  -ms-transition: background 0.35s ease-in;
+  transition: background 0.35s ease-in;
+}
+.DestinationNextMini-title {
+  font-size: 2em;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1em;
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
+}
+.DestinationNextMini-title em {
+  font-style: italic;
+  display: block;
+  font-size: 0.5em;
+}
+.DestinationNextMini-title span {
+  color: #019ac4;
+  display: block;
+}
+.DestinationNextMini-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+}
+.DestinationNextMini-arrow-box {
+  margin: 0 auto;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid #019ac4;
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 0.8em 1em;
+  display: inline-block;
+}
+.HotelDescription-stars {
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #fabb00;
+}
+.HotelDescription-title {
+  color: #144263;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: 700;
+}
+.HotelDescription-amenities {
+  text-align: right;
+}
+.HotelDescription-amenities span {
+  color: #144263;
+  font-size: 2em;
+}

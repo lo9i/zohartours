@@ -1,0 +1,15 @@
+{% form_theme form _self %}
+{% block _gushh_corebundle_promotion_exceptions_entry_widget %}
+<div class="input-daterange col-sm-12 exeptionRow" data-plugin="datepicker">
+    <div class="row">
+        <div class="input-group col-sm-6">
+            <span class="input-group-addon"><i class="icon wb-calendar" aria-hidden="true"></i></span>
+            {{ form_widget(form.periodFrom) }}
+        </div>
+        <div class="input-group col-sm-6">
+            <span class="input-group-addon">to</span>
+            {{ form_widget(form.periodTo,  { 'attr' : {'style': 'width:93%'}} ) }}<i class="icon wb-trash validationPeriodRemove" aria-hidden="true" onclick="removeExceptionPeriod('__name__');"></i></span>
+        </div>
+    </div>
+</div>
+{% endblock %}

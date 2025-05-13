@@ -1,0 +1,41 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block title %}ZoharTours | Hotels in {{ country|title }} {% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div class="clearfix"></div>
+		
+		<div class="row">
+			<div class="col-xxs-12 col-xs-4 Util-xxs-text-center">
+				{% set hotelCountry = 'hotels.'~country|lower %}				
+				<h2 class="Title">{{ hotelCountry|trans|raw }}</h2>
+			</div>
+			<div class="col-xxs-12 col-xs-8 Util-xxs-text-center Util-text-right">
+				<h3 class="Subtitle">{{ 'hotels.destinationsHotels'|trans|raw }}</h3>
+			</div>
+		</div>
+
+		<section class="row no-gutter">
+
+			{% for entity in entities %}
+				{{ include('GushhFrontendBundle::Hotel/Includes/destinationBlock.html.twig', { 'continent' : continent }) }}
+			{% endfor %}
+
+			<div class="col-xxs-12 col-xs-4">
+				<div class="DestinationBack-item">
+					<h2 class="DestinationBack-title">
+						{{ 'hotels.goBack'|trans|raw }}
+					</h2>
+					{% if continent == 'europe' %}
+						<a href="{{ path('hotels_list_continent', {'region': 'Europe', 'continent': continent}) }}" class="DestinationBack-link"><</a>
+					{% else %}
+						<a href="{{ path('hotels') }}" class="DestinationBack-link"><</a>
+					{% endif %}
+				</div>				
+			</div>
+
+		</section>
+	</div>
+{% endblock %}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description" content="bootstrap admin template">
+  <meta name="author" content="">
+  <title>ZoharTours | Login</title>
+  <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+  {# Stylesheets #}
+  <link rel="stylesheet" href="{{ asset('backend/global/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/css/bootstrap-extend.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/css/site.min.css') }}">
+  {# Plugins #}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/animsition/animsition.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/css/login-v3.min.css') }}">
+  {# Fonts #}
+  <link rel="stylesheet" href="{{ asset('backend/global/fonts/web-icons/web-icons.min.css') }}">
+  {# <link rel="stylesheet" href="{{ asset('backend/global/fonts/brand-icons/brand-icons.min.css') }}"> #}
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+  {#[if lt IE 9]>
+    <script src="{{ asset('backend/global/vendor/html5shiv/html5shiv.min.js') }}"></script>
+    <![endif]#}
+  {#[if lt IE 10]>
+    <script src="{{ asset('backend/global/vendor/media-match/media.match.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/respond/respond.min.js') }}"></script>
+    <![endif]#}
+  {# Scripts #}
+  <script src="{{ asset('backend/global/vendor/modernizr/modernizr.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
+  <script>
+  Breakpoints();
+  </script>
+</head>
+<body class="page-login-v3 layout-full">
+  <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  {# Page #}
+  <div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content vertical-align-middle">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="brand">
+
+            <h2 class="brand-text font-size-32">ZoharTours</h2>
+          </div>
+          <form method="post" action="{{ path('fos_user_security_check') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% if error %}
+              <div class="form-group clearfix">
+                <div class="alert alert-icon alert-danger" role="alert">
+                  <i class="icon wb-bell" aria-hidden="true"></i>
+                  {{ error.messageKey|trans(error.messageData, 'security') }}  
+                </div>
+              </div>
+            {% endif %}
+            <div class="form-group form-material floating">
+              <input type="text" class="form-control" name="_username" placeholder="Username" value="{{ last_username }}" />Hoy se que la limitación estaba en mi ca
+              <label class="floating-label">Username</label>
+            </div>
+            <div class="form-group form-material floating">
+              <input type="password" name="_password" class="form-control" placeholder="Password" />
+              <label class="floating-label">Password</label>
+            </div>
+            <div class="form-group clearfix">
+              <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg pull-left">
+                <input type="checkbox" id="inputCheckbox" name="_remember_me">
+                <label for="inputCheckbox">Remember me</label>
+              </div>
+              <a class="pull-right" href="{{ path('fos_user_resetting_request') }}">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg margin-top-40">Sign in</button>
+            
+          </form>
+
+          {# <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p> #}
+        </div>
+      </div>
+      <footer class="page-copyright page-copyright-inverse">
+        <p>ZoharTours © {{ "now"|date('Y') }}. Developed by <a href="http://lo9i.com" target="_blank">lo9i labs</a>.</p>
+        {# <div class="social">
+          <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-twitter" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-facebook" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-google-plus" aria-hidden="true"></i>
+          </a>
+        </div> #}
+      </footer>
+    </div>
+  </div>
+  {# End Page #}
+  {# Core  #}
+  <script src="{{ asset('backend/global/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/animsition/animsition.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/asscroll/jquery-asScroll.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/asscrollable/jquery.asScrollable.all.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js') }}"></script>
+  {# Plugins #}
+  {#
+  <script src="{{ asset('backend/global/vendor/jquery-mmenu/jquery.mmenu.min.all.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/switchery/switchery.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/intro-js/intro.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/screenfull/screenfull.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/jquery-placeholder/jquery.placeholder.min.js') }}"></script>
+  #}
+
+  {# Scripts #}
+  <script src="{{ asset('backend/global/js/core.min.js') }}"></script>
+  <script src="{{ asset('backend/js/site.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/animsition.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/material.min.js') }}"></script>
+  {#  
+  <script src="../../assets/js/sections/menu.js"></script>
+  <script src="../../assets/js/sections/menubar.js"></script>
+  <script src="../../assets/js/sections/gridmenu.js"></script>
+  <script src="../../assets/js/sections/sidebar.js"></script>
+  <script src="{{ asset('backend/global/js/configs/config-colors.min.js') }}"></script>
+  <script src="../../assets/js/configs/config-tour.js"></script>
+  <script src="{{ asset('backend/global/js/components/asscrollable.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/slidepanel.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/switchery.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/jquery-placeholder.min.js') }}"></script>
+   #}
+  <script>
+  (function(document, window, $) {
+    'use strict';
+    var Site = window.Site;
+    $(document).ready(function() {
+      Site.run();
+    });
+  })(document, window, jQuery);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1513 @@
+<html lang="en"><head>
+		<meta name="robots" content="noindex">
+
+	<meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>    ZoharTours | Tours
+</title>
+  <meta name="description" content="ZoharTours">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+	<link rel="shortcut icon" href="/favicon.ico?1.0.1">
+
+	<link rel="stylesheet" href="/css/bootstrap.min.css?1.0.1">
+	<link rel="stylesheet" href="/css/styles.css?1.0.1">
+	<link rel="stylesheet" href="/css/zoharicon.css?1.0.1">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<style>
+.cuadrado {
+background-color: white;
+color: rgb(20, 66, 99) ;
+}
+
+.titulo {
+background-color: rgb(180, 221, 217) ;
+color: rgb(20, 66, 99) ;
+text-align: center;
+}
+</style>  
+        
+	
+</head>
+<body>
+	<div id="wrapper">
+		<header class="Header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">
+						<a href="/">
+							<img src="/img/logo.svg?1.0.1" alt="ZoharTours Logo" class="Header-logo">
+						</a>
+					</div>
+					<div class="col-sm-9">
+						<nav class="">
+							<ul class="Navigation-list">
+								<li class="Navigation-item ">
+									<a href="/" class="Navigation-link">Home</a>
+								</li>
+								<li class="Navigation-item ">
+									<a href="/hotels/" class="Navigation-link">Hotels</a>
+								</li>
+								<li class="Navigation-item active">
+									<a href="/tours/" class="Navigation-link">Tours</a>
+								</li>
+								
+                                				<li class="Navigation-item ">
+									<a href="/transfers/" class="Navigation-link ">Transfers</a>
+								</li>
+                                
+                                									<li class="Navigation-item">
+										<a href="/dashboard/" class="Navigation-link">Backend</a>
+									</li>
+																								   <li class="Navigation-item">
+										<a href="/logout/" class="Navigation-link">Logout</a>
+									</li>
+															</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div style='float:left'><h2 class="Title">Tours <span>-</span></div></h2><div style='float:left; padding-top: 38px; padding-left: 10px;'>
+	<select id='tours'>
+		<option selected='selected'>Choose a Tour...</option>
+	   <optgroup label='Sur de La Florida Tour'>
+		<option value=21>DIA 1: LLEGADA AL AEROPUERTO DE MIAMI</option>
+		<option value=22>DIA 2: MIAMI</option>
+		<option value=23>DIA 3: MIAMI - KEY WEST</option>
+		<option value=24>DIA 4: KEY WEST - EVERGLADES - NAPLES</option>
+		<option value=25>DIA 5: NAPLES - SARASOTA</option>
+		<option value=26>DIA 6: SARASOTA - COCOA BEACH</option>
+		<option value=27>DIA 7: COCOA BEACH - KENNEDY SPACE CENTER</option>
+		<option value=28>DIA 8: SALIDA DEL AEROPUERTO DE MIAMI</option>
+           </optgroup>
+	   <optgroup label='Miami Tours'>
+		<option value=1>TOUR DE LA CIUDAD DE MIAMI</option>
+		<option value=2>TOUR DE LOS EVERGLADES</option>
+		<option value=3>LA MAGICA ORLANDO</option>
+		<option value=4>LA PERLA DE MIAMI</option>
+		<option value=5>KEY WEST</option>
+		<option value=6>TOUR DE NOCHE</option>
+		<option value=7>NASA & KENNEDY SPACE CENTER</option>
+		<option value=8>TOUR DE NAPLES</option>
+		<option value=9>WEST PALM BEACH - BOCA RATON</option>
+		<option value=10>ISLA MORADA</option>
+		<option value=11>SARASOTA</option>
+		<option value=12>MIAMI SEA AQUARIUM</option>
+		<option value=13>KEY LARGO Y PARQUE NACIONAL EVERGLADES</option>
+		<option value=14>HOLLYWOOD BEACH BLVD - FORT LAURDERDALE</option>
+	  </optgroup>
+	</select></div>
+<script>
+$('#tours').on('change', function() {
+    return goToByScroll('t' + this.value);
+});
+
+function goToByScroll(id){
+      // Remove "link" from the ID
+      // Scroll
+    $('html,body').animate({
+        scrollTop: $("#"+id).offset().top},
+        'slow');
+}
+</script>
+<div style='clear:both'></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+<div class="StaticPage-content">
+            <style>
+<!-- /* Font Definitions */@font-face	{font-family:Arial;	panose-1:2 11 6 4 2 2 2 2 2 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-536859905 -1073711037 9 0 511 0;}@font-face	{font-family:"Courier New";	panose-1:2 7 3 9 2 2 5 2 4 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-536859905 -1073711037 9 0 511 0;}@font-face	{font-family:Wingdings;	panose-1:5 0 0 0 0 0 0 0 0 0;	mso-font-charset:2;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:0 268435456 0 0 -2147483648 0;}@font-face	{font-family:Verdana;	panose-1:2 11 6 4 3 5 4 4 2 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-1593833729 1073750107 16 0 415 0;}@font-face	{font-family:"Cambria Math";	panose-1:2 4 5 3 5 4 6 3 2 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-536870145 1107305727 0 0 415 0;}@font-face	{font-family:Calibri;	panose-1:2 15 5 2 2 2 4 3 2 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-536870145 1073786111 1 0 415 0;}@font-face	{font-family:Tahoma;	panose-1:2 11 6 4 3 5 4 4 2 4;	mso-font-charset:0;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}@font-face	{font-family:Batang;	panose-1:2 3 6 0 0 1 1 1 1 1;	mso-font-charset:129;	mso-generic-font-family:auto;	mso-font-pitch:variable;	mso-font-signature:-1342176593 1775729915 48 0 524447 0;} 
+
+/* Style Definitions */
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal {mso-style-unhide:no;	mso-style-qformat:yes;	mso-style-parent:"";	margin:0cm;	margin-bottom:.0001pt;	text-align:justify;	mso-pagination:widow-orphan;	font-size:10.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:"Times New Roman";	mso-fareast-theme-font:minor-fareast;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter	{mso-style-priority:99;	mso-style-link:"Footer Char";	margin:0cm;	margin-bottom:.0001pt;	text-align:justify;	mso-pagination:widow-orphan;	tab-stops:center 234.0pt right 468.0pt;	font-size:10.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:"Times New Roman";	mso-fareast-theme-font:minor-fareast;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+p	{mso-style-priority:99;	mso-margin-top-alt:auto;	margin-right:0cm;	mso-margin-bottom-alt:auto;	margin-left:0cm;	mso-pagination:widow-orphan;	font-size:12.0pt;	font-family:"Times New Roman";	mso-fareast-font-family:"Times New Roman";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph	{mso-style-priority:34;	mso-style-unhide:no;	mso-style-qformat:yes;	margin-top:0cm;	margin-right:0cm;	margin-bottom:10.0pt;	margin-left:36.0pt;	mso-add-space:auto;	line-height:115%;	mso-pagination:widow-orphan;	font-size:11.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst	{mso-style-priority:34;	mso-style-unhide:no;	mso-style-qformat:yes;	mso-style-type:export-only;	margin-top:0cm;	margin-right:0cm;	margin-bottom:0cm;	margin-left:36.0pt;	margin-bottom:.0001pt;	mso-add-space:auto;	line-height:115%;	mso-pagination:widow-orphan;	font-size:11.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle	{mso-style-priority:34;	mso-style-unhide:no;	mso-style-qformat:yes;	mso-style-type:export-only;	margin-top:0cm;	margin-right:0cm;	margin-bottom:0cm;	margin-left:36.0pt;	margin-bottom:.0001pt;	mso-add-space:auto;	line-height:115%;	mso-pagination:widow-orphan;	font-size:11.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast	{mso-style-priority:34;	mso-style-unhide:no;	mso-style-qformat:yes;	mso-style-type:export-only;	margin-top:0cm;	margin-right:0cm;	margin-bottom:10.0pt;	margin-left:36.0pt;	mso-add-space:auto;	line-height:115%;	mso-pagination:widow-orphan;	font-size:11.0pt;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+
+span.FooterChar	{mso-style-name:"Footer Char";	mso-style-priority:99;	mso-style-unhide:no;	mso-style-locked:yes;	mso-style-link:Footer;	mso-ansi-font-size:10.0pt;	mso-bidi-font-size:10.0pt;	font-family:"Times New Roman";	mso-fareast-font-family:"Times New Roman";	mso-fareast-theme-font:minor-fareast;}
+
+.MsoChpDefault	{mso-style-type:export-only;	mso-default-props:yes;	font-family:Calibri;	mso-ascii-font-family:Calibri;	mso-ascii-theme-font:minor-latin;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-hansi-font-family:Calibri;	mso-hansi-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+
+@page WordSection1	{size:612.0pt 792.0pt;	margin:40.5pt 72.0pt 72.0pt 72.0pt;	mso-header-margin:36.0pt;	mso-footer-margin:36.0pt;	border:solid #89C9C1 1.0pt;	mso-border-alt:solid #89C9C1 .5pt;	padding:20.0pt 20.0pt 20.0pt 20.0pt;	mso-paper-source:0;
+
+}div.WordSection1	{page:WordSection1;}
+
+ /* List Definitions */
+@list l0	{mso-list-id:138306070;	mso-list-type:hybrid;	mso-list-template-ids:-1877150990 -1606634892 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1	{mso-level-start-at:3;	mso-level-number-format:bullet;	mso-level-text:-;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Verdana;	mso-fareast-font-family:Calibri;	mso-fareast-theme-font:minor-latin;	mso-bidi-font-family:"Times New Roman";	mso-bidi-theme-font:minor-bidi;}
+@list l0:level2	{mso-level-number-format:bullet;	mso-level-text:o;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:"Courier New";}
+@list l0:level3	{mso-level-number-format:bullet;	mso-level-text:;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Wingdings;}
+@list l0:level4	{mso-level-number-format:bullet;	mso-level-text:;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Symbol;}
+@list l0:level5	{mso-level-number-format:bullet;	mso-level-text:o;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:"Courier New";}
+@list l0:level6	{mso-level-number-format:bullet;	mso-level-text:;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Wingdings;}
+@list l0:level7	{mso-level-number-format:bullet;	mso-level-text:;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Symbol;}
+@list l0:level8	{mso-level-number-format:bullet;	mso-level-text:o;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:"Courier New";}
+@list l0:level9	{mso-level-number-format:bullet;	mso-level-text:;	mso-level-tab-stop:none;	mso-level-number-position:left;	text-indent:-18.0pt;	font-family:Wingdings;}
+ol	{margin-bottom:0cm;}
+ul	{margin-bottom:0cm;}
+</style>
+<p class="MsoNormal" style="margin-right: -9pt; line-height: 1.8; background: white none repeat scroll 0% 0%; text-align: center;"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES" lang="ES"><br></span></p>
+<table class="table table-bordered" style="text-align: left; margin-left: auto; margin-right: auto; width: 395px; height: 39px;"> <tbody><tr><td class='cuadrado'><p>SUR DE LA FLORIDA TOUR - 8 DIAS 7 NOCHES<br></p></td></tr></tbody> </table>
+
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white">
+<span style="font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp; </span>
+ </p>
+<p class="MsoNormal" style="margin-right:-9.0pt;text-align:center;line-height:115%;background:white" align="center"><b><span style="font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#1F3864;mso-themecolor:accent1;mso-themeshade:128;mso-ansi-language:ES" lang="ES"><br></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;text-align:center;line-height:115%;background:white" align="center"><b><span style="font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#1F3864;mso-themecolor:accent1;mso-themeshade:128;mso-ansi-language:ES" lang="ES">MIAMI– KEY WEST – EVERGLADES – NAPLES – SARASOTA – COCOA BEACH – KENNEDY SPACECENTER</span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p>
+
+<table class="table table-bordered titulo" id='t21' style="width: 100%; height: 40px; text-align: left; margin-left: auto; margin-right: auto;"><tbody><tr><td style='text-align:center'>DIA 1: LLEGADA AL AEROPUERTO DE MIAMI<br></td></tr></tbody></table>
+
+
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Llegada al Aeropuerto de Miami, traslado alHotel y Check In para asignación de Habitaciones. Resto del dia libre.</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"><span style="mso-spacerun:yes"><br>
+</span></span></b></p><table class="table table-bordered titulo" id='t22' style="width: 100%; height: 40px; text-align: left; margin-left: auto; margin-right: auto;">
+<tbody><tr><td style='text-align:center'>DIA 2: MIAMI<br></td></tr></tbody></table>
+
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"><span style="mso-spacerun:yes"><br></span></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Salida del hotel a las 9.00 am para atravesar las zonas emblemáticas de Miami, que la han hecho única en todo elmundo:&nbsp;Comenzaremos en South Beach, zona con la más alta concentración deconstrucciones Art Deco en este país, también llamado “American Riviera and ArtDeco Playground”.&nbsp; Al dirigirnos al Downtown veremos famosas islas comoStar Island, Palm Island e Hibiscus Island, donde viven los ricos y famosos.Posteriormente nos adentrarnos en el Downtown Miami y en la Avenida Brickell,tercer centro financiero de los Estados Unidos, llegando hasta la históricaCoconut Grove y Coral Gables, donde encontraremos sus fabulosos árbolescentenarios y sus típicas casas con más de 100 años de antigüedad, construidasen piedra coralina.&nbsp;Posteriormente llegaremos a uno de los barrios másimportantes en su cultura latina, Little Havana y su famosa "Calle8".&nbsp; Al finalizar dicho tour también tendrá la posibilidad derealizar el tour del barco por las islas de los famosos.</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES"><br>
+</span></i></p>
+<table class="table titulo table-bordered" id='t23' style='text-align:center'><tbody><tr><td style='text-align:center'>DIA 3: MIAMI - KEY WEST<br></td></tr></tbody></table>
+
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191"></span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">Salida de Miami: 8.15 am</span></i></p>
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">Nuestro primer día encarretera nos llevará hasta<span style="mso-spacerun:yes">&nbsp; </span>OverseasHighway (carretera a través del océano) atravesaremos 42 puentes hasta llegar aKey West, la ciudad más meridional del estado de Florida.<span style="mso-spacerun:yes">&nbsp; </span>Haremos el check in almorzaremos y tendremosla tarde libre para descubrir esta hermosa isla . </span><span style="font-family:Verdana;mso-ansi-language:ES" lang="ES">Es el punto más extremo al surdel estado de Florida. Localidad marítima donde vivió y escribió parte de suobra literaria el gran Ernest Hemminway. Disfrutaremos de las islas Keys, elpanorama desde los puentes que las unen es verdaderamente único. Tour idealpara quien ama el snorkeling, el mar y la pesca. Visitaremos la calle Duval,calle principal de Key West, el famoso "Sloppy Joe Bar", preferidodel Sr Hemingway, su casa, que hoy es un museo y también el punto más cercano aCuba de los Estados Unidos.&nbsp; </span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"></span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES"><br></span></i></p >
+
+<table class="table table-bordered titulo" id='t24'><tbody><tr><td style='text-align:center'>DIA 4: KEY WEST - EVERGLADES - NAPLES<br></td></tr></tbody></table>
+<p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES"><br></span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">Salida de Key West: 10.00am</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES">Desde las famosas Keys, el tour continuara hacia una delas zonas mas importantes de este estado, Los Everglades, que forman el paisajeselvático mas grande de los Estados Unidos.&nbsp;<br>A través de este tour sentirás que tocas la naturaleza selvática con tuspropias manos en el "Miami and Everglades Park", lugar incomparable atodo lo que ya hayas visto. Realizaremos un tour en Air Boat y veremos elespectáculo de los cocodrilos en su hábitat. Vivirás una experienciainolvidable transportándote a la verdadera forestación del estado de Florida de200 años atrás.Luego el recorrido continuará a través la US-41 hasta la hermosaciudad de Naples, donde realizaremos el check<span style="mso-spacerun:yes">&nbsp;</span>inn en el hotel . Naples fue fundada a finales de 1880 por un senadorexgeneral confederado y por un emprendedor de Kentucky. El nombre de Naples lorecibe en recuerdo a la ciudad italiana de Nápoles,<span style="mso-spacerun:yes">&nbsp; </span>porque hacía recordar a sus mecenas el climay la belleza del Sur de Italia. En la carretera que se recorre desde Miamihasta el Golfo de Mexico se atravesarán los Everglades,<span style="mso-spacerun:yes">&nbsp; </span>que son conocidos también como<span style="mso-spacerun:yes">&nbsp;&nbsp; </span>“el río de<span style="mso-spacerun:yes">&nbsp;</span>hierba” . Las playas de Naples están consideradas<span style="mso-spacerun:yes">&nbsp; </span>entre las más bellas de Florida. Se podrá darun paseo a través del espectacular paseo marítimo y a lo largo de la calleprincipal, ir al viejo muelle o pasar el día recogiendo conchas gigantes sobrela arena blanca o paseando entre los negocios de Naples y saborear lasespecialidades culinarias locales.</span><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p>
+<table class="table table-bordered titulo" id='t25'><tbody><tr><td style='text-align:center'>DIA 5: NAPLES - SARASOTA<br></td></tr></tbody></table><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES"><br></span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">Salida de Naples: 9.00 am</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-fareast-font-family:Batang;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-fareast-font-family:Batang;mso-ansi-language:IT" lang="IT">Una vez que lleguemos a la ciudad de Sarasota y tras<span style="mso-spacerun:yes">&nbsp; </span>realizar el check inn en el hotel,<span style="mso-spacerun:yes">&nbsp; </span>la jornada la dedicaremos a disfrutar susherm</span><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">osaplayas para ver su incomparable atardecer en el Golfo de Mexico . </span><span style="font-family:Verdana;mso-ansi-language:ES" lang="ES">Esta hermosa ciudad esconocida<span style="mso-spacerun:yes">&nbsp; </span>como el centro cultural deFlorida, además su playa es reconocida<span style="mso-spacerun:yes">&nbsp;</span>oficialmente por poseer la arena más blanca y fina del mundo. Lascristalinas y limpias playas de Clearwater y su incomparable belleza naturalhan sido premiadas por Florida Lovers &amp; Life 2012, USA Today y muchas otrasrevistas especializadas. Las playas de la zona de Sarasota son consideradasentre<span style="mso-spacerun:yes">&nbsp; </span>las mejores playas deNorteamérica. El doctor Stephen Leatherman, conocido como “El Doctor Playa” ,las ha enumerado entre las playas dignas de premio. Durante todo el año sepueden practicar deportes acuáticos porque Sarasota está rodeada por el Golfode Mexico, el río Myakka, la Bahía del Limón y el Canal intra-costa.Además<span style="mso-spacerun:yes">&nbsp; </span>de las maravillas que ofrece elmar y la naturaleza, se pueden encontrar alternativas culturales como el Museodel Circo Ringling y el Museo de Coches Antiguos. La ciudad es además conocidapor el Van Wesel<span style="mso-spacerun:yes">&nbsp; </span>Performing ArtHall,<span style="mso-spacerun:yes">&nbsp; </span>donde se escuchan las mejoresóperas, de las cuales los habitantes de la ciudad son amantes.</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p>
+<table class="table table-bordered titulo" id='t26'><tbody><tr><td style='text-align:center'>DIA 6: SARASOTA - COCOA BEACH<br></td></tr></tbody></table><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">Salida de Sarasota: 8.00 am</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"><span style="mso-spacerun:yes">&nbsp;</span></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">Nuestro recorrido trascurrirádesde el norte de la costa oeste, atravesando el centro de la Florida parallegar<span style="mso-spacerun:yes">&nbsp; </span>a la ciudad de Cocoa Beach enla<span style="mso-spacerun:yes">&nbsp; </span>costa este , ciudad elegida por lossurfistas de todo el mundo por su belleza natural,<span style="mso-spacerun:yes">&nbsp; </span>sus playas y su mar, que posee<span style="mso-spacerun:yes">&nbsp; </span>las características perfectas para realizaresta actividad deportiva. </span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT"><span style="mso-spacerun:yes">&nbsp;</span>En Cocoa Beach<span style="mso-spacerun:yes">&nbsp;</span>nuestra jornada será<span style="mso-spacerun:yes">&nbsp; </span>libre. Peropodremos terminar de disfrutarla con<span style="mso-spacerun:yes">&nbsp; </span>unacena “opcional” que nos permitirá disfrutar de un exelente pescado fresco …</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-right:-9.0pt;mso-margin-bottom-alt:auto;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-right:-9.0pt;mso-margin-bottom-alt:auto;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p>
+
+<table class="table table-bordered titulo" id='t27'><tbody><tr><td style='text-align:center'>DIA 7: COCOA BEACH - KENNEDY SPACE CENTER<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-right:-9.0pt;mso-margin-bottom-alt:auto;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"><br></span></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">Salida de Cocoa Beach: 8.00am</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES;mso-bidi-font-weight:bold" lang="ES">&nbsp;</span></i></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:Batang;mso-ansi-language:IT" lang="IT">Se procederá a la visitadel famoso JFK Space Center .</span><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES"> Iniciamos la mañanaviendo una película en 3D del Espacio Cósmico.&nbsp;</span><b><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-bidi-font-family:Tahoma;mso-ansi-language:ES" lang="ES"></span></b></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES">Luego llegamos a la base de donde han partido todos lostransbordadores Americanos, para también comprender y entender el montaje delos mismos, nos asombraremos con la precisión de su ingeniería Nuclear!!!&nbsp;</span></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES">Reviviremos desde la sala original la salida del Apollo 8(primer transbordador Americano que llegó a la órbita del espacio) &nbsp;</span></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES">Tendremos la posibilidad de fotografiar las réplicas delos mismos en tamano real y quedaremos deslumbrados por tantatecnología.&nbsp;Concluida esta última etapa entenderemos el por qué de laevolución del mundo tecnológico en los últimos 50 años...gracias a este granesfuerzo de la NASA!!!&nbsp;<br>Una experiencia única llena de emociones increíbles.&nbsp;<br>Nuestro regreso está estipulado a las 17:00hs</span></p><p style="margin-right:-9.0pt;text-align:justify;line-height:115%"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<table class="table table-bordered titulo" id='t28'><tbody><tr><td style='text-align:center'><span style="font-family: Verdana;">DIA 8: SALIDA DEL AEROPUERTO DE MIAMI</span><br></td></tr></tbody></table><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">Se acordará el transfer de acuerdoa la hora prevista del vuelo.</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><b style="mso-bidi-font-weight:normal"><u><span style="font-family:Verdana;mso-fareast-font-family:Batang;mso-ansi-language:IT" lang="IT"><span style="text-decoration:none">&nbsp;</span></span></u></b></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT"></span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p>
+<table class="table table-bordered titulo"><tbody><tr><td style='text-align:center'>PRECIOS<br></td></tr></tbody></table><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">PRECIOS EN USD POR PERSONA, BASEDOBLE. </span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">MINIMO REQUERIDO: 4 PAX</span></p><p class="MsoNormal" style="margin-right:-9.0pt;line-height:115%"><span style="font-family:Verdana;mso-ansi-language:IT" lang="IT">&nbsp;</span></p><p class="MsoListParagraphCxSpFirst" style="margin-right:-9.0pt;mso-add-space:auto;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:Verdana;mso-bidi-font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT">De 1 a 4 pax: $1485.00</span></p><p class="MsoListParagraphCxSpMiddle" style="margin-right:-9.0pt;mso-add-space:auto;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:Verdana;mso-bidi-font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT">De 5 a 7 pax: $1397.00</span></p><p class="MsoListParagraphCxSpMiddle" style="margin-right:-9.0pt;mso-add-space:auto;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:Verdana;mso-bidi-font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT">De 8 a 10 pax: $1309.00</span></p><p class="MsoListParagraphCxSpMiddle" style="margin-right:-9.0pt;mso-add-space:auto"><span style="font-size:10.0pt;line-height:115%;font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT"><br></span></p><p class="MsoNormal" style="margin-right:-9.0pt"><i style="mso-bidi-font-style:normal"><span style="font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT">*Tarifas netas.</span></i></p><p class="MsoNormal" style="margin-right:-9.0pt"><i style="mso-bidi-font-style:normal"><span style="font-family:Verdana;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:IT" lang="IT"><br></span></i></p><p class="MsoNormal" style="margin-right:-9.0pt"><br></p>
+
+<table class="table table-bordered cuadrado" style='width:300px;margin-left: auto; margin-right: auto; '><tbody><tr><td style='text-align:center'>TOURS DESDE MIAMI<br></td></tr></tbody></table><p class="MsoNormal" style="margin-right:-9.0pt"><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Arial;
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073711037 9 0 511 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1593833729 1073750107 16 0 415 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1073786111 1 0 415 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:widow-orphan;
+	tab-stops:center 234.0pt right 468.0pt;
+	font-size:10.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Footer;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	text-align:justify;
+	text-justify:inter-ideograph;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:36.0pt 57.6pt 36.0pt 57.6pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	border:solid #9DCED2 1.0pt;
+	mso-border-alt:solid #9DCED2 .5pt;
+	padding:20.0pt 20.0pt 20.0pt 20.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-left:4.5pt;text-align:center;
+background:white" align="center"><b><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;tab-stops:252.0pt;background:white" align="left"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p><table id='t1' class="table table-bordered titulo" ><tbody><tr><td style='text-align:center'>TOUR DE LA CIUDAD DE MIAMI<br></td></tr></tbody></table><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;tab-stops:252.0pt;background:white" align="left"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES"><br></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p>
+
+<p class="MsoNormal" style="line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">Atraviesa las zonas emblemáticas de Miami, que la han hecho única en todo
+el mundo:&nbsp;<br>
+Comenzaremos en South Beach, zona con la más alta concentración de
+construcciones Art Deco en este país, también llamado “American Riviera and Art
+Deco Playground”.&nbsp; Al dirigirnos al Downtown veremos famosas islas como
+Star Island, Palm Island e Hibiscus Island, donde viven los ricos y famosos.
+Posteriormente nos adentrarnos en el Downtown Miami y en la Avenida Brickell,
+tercer centro financiero de los Estados Unidos, llegando hasta la histórica
+Coconut Grove y Coral Gables, donde encontraremos sus fabulosos árboles
+centenarios y sus típicas casas con más de 100 años de antigüedad, construidas
+en piedra coralina.&nbsp;<br>
+Posteriormente llegaremos a uno de los barrios más importantes en su cultura
+latina, Little Havana y su famosa "Calle 8".&nbsp; Al finalizar dicho
+tour también tendrá la posibilidad de realizar el tour del barco por las islas
+de los famosos,&nbsp;para así apreciar las fabulosas mansiones y los contrastes
+de esta bella ciudad.&nbsp;</span><b><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Regular Service USD 61.00</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 72.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: 3.30 – 4 hrs. </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Pick up time: 09:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas Diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><table class="table table-bordered titulo" id='t2' ><tbody><tr><td style='text-align:center'>TOUR DE LOS EVERGLADES<br></td></tr></tbody></table><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Realizaremos la
+excursión del auténtico Parque Nacional de Everglades (con 5600Km 2 de
+extensión se considera&nbsp; uno &nbsp;de los parques más grandes de los
+Estados Unidos de América). Con unas 20 especies en peligro de extinción como
+El Puma de Florida, La Tortuga Verde, El Aguila de Cabeza Blanca y el Cocodrilo
+de La Florida. En Rio lento de hierbas,&nbsp;</span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES">&nbsp;</span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">verás la auténtica foresta y vegetación de
+Miami.&nbsp;<br>
+A través de este tour sentirás que tocas la naturaleza selvática con tus
+propias manos, lugar incomparable a todo lo que ya hayas visto. Realizaremos un
+tour en Air Boat y veremos el espectáculo de los “Aligators”&nbsp;en su
+hábitat. Vivirás una experiencia inolvidable transportándote a la verdadera
+fauna y flora del estado de Florida de 200 años atrás.&nbsp;</span><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Regular Service USD 61.00 </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 72.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: 3.30 – 4 hrs. </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Pick up time: 09:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas Diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:
+10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191">&nbsp;</span></i></p><p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:
+10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191"><br></span></i></p><table class="table table-bordered titulo" id='t3'><tbody><tr><td style='text-align:center'>LA MAGICA ORLANDO<br></td></tr></tbody></table><p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:
+10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191"><br></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:center;
+line-height:115%;background:white" align="center"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"></span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Tanto sea que
+viajes solo, con tu familia o amigos, no puedes dejar de visitar EL MAGICO
+MUNDO DE DISNEY!!!&nbsp;Ciudad de diversión más conocida del mundo entero,
+donde uno vuelve a ser niño otra vez gracias a la fantasía de Disney. En el
+precio del tour están incluidos los traslados Miami-Orlando y la entrada a un
+parque, que deberás elegir previamente.&nbsp;<br>
+Finalmente conocerás el mundo de Walt Disney o Universal Estudios (Harry
+Potter, Jurassic Park, los superhéroes...)&nbsp; pudiendo vivir una experiencia
+en el interior de una de tus películas favoritas y muchas cosas más.</span><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"> </span></b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">Tendrás también la posibilidad de disfrutar
+el mejor parque acuático de los Estados Unidos, SeaWorld,&nbsp; con
+espectaculares shows con delfines y orcas, pinguinos en su&nbsp; propio
+hábitat, y mas.</span><b><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:
+ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Regular Service USD
+87.00 </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 143.00 (min 4 pax.)</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES">.</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: </span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Full
+day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 06:00am &amp; 07:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Salidas diarias</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">.</span></i><b><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES"> <span lang="ES"></span></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Servicio puerta a
+puerta.</span></i><b><span style="font-size:10.5pt;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:red;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">&nbsp;</span></i></p><p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"><br></span></i></p><table class="table table-bordered titulo" id='t4'><tbody><tr><td style='text-align:center'>LA PERLA DE MIAMI<br></td></tr></tbody></table><p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"><br></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"></span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Con esta
+excursión se podrá ver la Miami más glamurosa, la que estamos habituados a ver
+en cine y&nbsp;TV.</span><b><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:red;mso-ansi-language:ES" lang="ES">&nbsp;</span></b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">El tour se inicia en Collins Avenue (la calle de los millonarios) donde se
+celebra anualmente el Boat Show,&nbsp;se continua dirección norte para llegar a
+Surfside donde se encuentran las primeras construcciones de Miami y donde se
+notará la diferencia entre el primer motel construido en Florida y el impacto
+urbanístico con los rascacielos construidos en los últimos años en el mar. Después
+de visitar Bal Harbour (Luxury Fashion Shopping Mall)&nbsp;</span><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:red;mso-ansi-language:ES" lang="ES">&nbsp;</span></b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">se continuará hacia la marina de Haulover, lugar elegido por los turistas
+para partir a realizar pesca de altura de Mahi Mahi y Marlin. Finalmente se verán
+las dos zonas más costosas a nivel inmobiliario:&nbsp; Sunny Isles Beach (con
+los edificios Aqualina, Aqualina Mansion, Jade Signature y Porsche Design,
+lujosísimos condominios sobre el mar y también hoteles)&nbsp; y Town Of Golden
+Beach, único lugar en toda Miami Beach donde cada propietario puede&nbsp;
+disfrutar de un lugar privado directamente en el océano. Comida &nbsp;o cena
+opcional en el Hardrock Cafe (Bayside) o Pappa E Ciccia (South Beach)</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 61.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: 3 hrs.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Pick
+up time: 17:00pm.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Salidas
+diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i><i style="mso-bidi-font-style:
+normal"><span style="font-size:10.5pt;line-height:115%;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><b><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></i></b></p>
+
+<p class="MsoNormal" style="line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p><table class="table table-bordered titulo" id='t5'><tbody><tr><td style='text-align:center'>KEY WEST<br></td></tr></tbody></table>
+
+<p class="MsoNormal" style="margin-left:4.5pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES"></span></p>
+
+
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Es el punto más
+extremo al sur del estado de Florida.&nbsp; Localidad marítima donde vivió y
+escribió parte de su obra literaria el gran Ernest Hemingway.&nbsp;
+Recorreremos 180 kilómetros de carretera que nos conectará con dicha
+ciudad.&nbsp; Nos hará atravesar y disfrutar las islas Keys, donde&nbsp; el
+panorama al atravezar 42 puentes que las unen es verdaderamente único.&nbsp;
+Tour ideal para quien ama el snorkeling, el mar y la pesca.&nbsp;<br>
+Durante esta excursión visitaremos el Mallory Square&nbsp;(Sunset Celebration)
+con sus tantísimas atracciones, &nbsp;&nbsp;la calle Duval (calle principal de
+Key West),&nbsp; el famoso "Sloppy Joe Bar" (bar preferido del Sr
+Hemingway), la casa Ernest Hemingway (que hoy es un museo), &nbsp;el punto más
+cercano a Cuba de los Estados Unidos (Southern most point) y la famosa base
+marina de entrenamiento (Naval Air Station of<span style="mso-spacerun:yes">&nbsp;
+</span>Key West)</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Regular Service USD
+72.00</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 143.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour. </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 06:00am &amp; 07:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><b><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES"><span style="mso-spacerun:yes">&nbsp;</span><span lang="ES"></span></span></b></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+background:white"><b><span style="font-size:10.5pt;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p><table class="table table-bordered titulo" id='t6'><tbody><tr><td style='text-align:center'>TOUR DE NOCHE<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+background:white"><b><span style="font-size:10.5pt;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"><br></span></b></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+background:white"><span style="font-size:10.5pt;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">A través de este tour se podrán apreciar
+las hermosas vistas nocturnas de la ciudad de Miami.&nbsp;Nuestra primera
+parada será Bayside Market Place, &nbsp;detrás del Hard Rock Café. Allí
+tomaremos un barco que nos permitirá apreciar el puerto y visitar las islas de
+los famosos con sus fabulosas mansiones (la duración aproximada del barco es 1h
+y 15 minutos)&nbsp;<br>
+Caminaremos por la zona de ocio de Miami Downtown (Brickell Place).<br>
+Una de las etapas más excitantes de dicho tour es la parada en la isla Key
+Biscayne, desde donde fotografiaremos el Skyline de Miami Downtown.&nbsp;En el
+regreso a Miami Beach se atravesarán los famosos puentes venecianos (Venetian
+Bridges)Ya en Miami Beach &nbsp;podremos disfrutar de la más alta concentración
+de edificios Art-Deco en la famosa calle Ocean&nbsp; Drive &nbsp;de South
+Beach. Cena opcional en el Hardrock Cafe (Bayside) o Pappa E Ciccia (South
+Beach).</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 87.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Incluye Biscayne bay tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Duracion: 4 hrs.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 17:00 &amp; 17:30 pm</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191"></span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><table class="table table-bordered titulo" id='t7'><tbody><tr><td style='text-align:center'>NASA &amp; KENNEDY SPACE CENTER<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#222222;mso-ansi-language:ES" lang="ES">Disfrute la sensación de viajar al
+espacio en la isla de Merrit,&nbsp; en&nbsp; Cabo Cañaveral. Iniciamos la
+mañana viendo una película en 3D del Espacio Cósmico.&nbsp;Luego llegamos a la
+base de donde han partido todos los transbordadores Americanos, para también
+comprender y entender el montaje de los mismos.&nbsp; Nos asombraremos con la
+precisión de su ingeniería Nuclear!!!&nbsp;Reviviremos desde la sala original
+la salida del Apollo 8 (primer transbordador Americano que llegó a la órbita
+del espacio) &nbsp;Tendremos la posibilidad de fotografiar las réplicas de los
+mismos en tamano real y quedaremos deslumbrados por tanta tecnología.&nbsp;Concluida
+esta última etapa entenderemos el por qué de la evolución del mundo tecnológico
+en los últimos 50 años...gracias a este gran esfuerzo de la NASA!!!&nbsp; Una
+experiencia única llena de emociones increíbles.&nbsp;</span><b><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">&nbsp;</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Regular Service USD
+197.00 </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 215.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Incluye
+los tickets de ingreso a JFK Space Center</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Duracion:
+Full day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Pick
+up: entre</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"> 06:00am &amp; 07:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES"><span style="mso-spacerun:yes">&nbsp;</span></span></b></p><table class="table table-bordered titulo" id='t8'><tbody><tr><td style='text-align:center'>TOUR DE NAPLES<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES"><span style="mso-spacerun:yes"><br></span><span lang="ES"></span></span></b></p>
+
+
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#222222;mso-ansi-language:ES" lang="ES">Naples fue fundada a finales de 1880
+por un senador ex general confederado y por un emprendedor de Kentucky.&nbsp;
+El nombre de Naples lo recibe en recuerdo a la ciudad italiana de Nápoles,&nbsp;
+porque hacía recordar a sus mecenas el clima y la belleza del Sur de Italia. En
+la carretera que se recorre desde Miami hasta el Golfo de Mexico se atravesarán
+los Everglades, que son conocidos también como&nbsp;&nbsp; “el río de&nbsp; hierba”
+. Los Everglades constituyen el paisaje selvático subtropical más grande de
+Estados Unidos y son únicos al mundo. Las playas de Naples están
+consideradas&nbsp; entre las más bellas de Florida. Se podrá dar un paseo a
+través del espectacular paseo marítimo y a lo largo de la calle principal, ir
+al viejo muelle o pasar el día recogiendo conchas gigantes sobre la arena
+blanca o paseando entre los negocios de Naples y saborear las especialidades
+culinarias locales.</span></p>
+
+<p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><span style="font-size:10.5pt;line-height:115%;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#222222;mso-ansi-language:ES" lang="ES"><span style="mso-spacerun:yes">&nbsp;</span></span><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="text-align:left;line-height:115%;
+background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">&nbsp;Private Service USD 143.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 08:00am &amp; 8:30am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">&nbsp;</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;tab-stops:189.2pt;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES"><span style="mso-spacerun:yes">&nbsp;</span><span lang="ES"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b></p>
+
+<table class="table table-bordered titulo" id='79'><tbody><tr><td style='text-align:center'>WEST PALM BEACH - BOCA RATON<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;tab-stops:155.5pt;background:white"><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></span></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:4.5pt;text-align:left;line-height:115%;background:white" align="left"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">Es la experiencia más real para estar en
+contacto con la verdadera riqueza Americana,&nbsp; ya que en West&nbsp; Palm
+Beach &nbsp;tienen sus residencias de lujo famílias como Rockfeller, Kennedy,
+&nbsp;Donald Trump, &nbsp;Paris Hilton,&nbsp; los Vanderbilt &nbsp;y tantísimos
+otros millonarios pero no famosos!!!&nbsp;Quién contribuyó al desarrollo de
+esta ciudad fue Henry Morrison Flagler.&nbsp; Se podrá apreciar el lujo del
+“The Breakers Hotel”, &nbsp;que en el pasado fue residencia del Sr. Flagler.<br>
+Visitaremos el centro de West Palm Beach, donde encontraremos las boutiques de
+los grandes diseñadores Europeos!!! Se prosigue dicho tour bordeando el océano
+por aproximadamente 30 minutos para llegar a Boca Ratón, característico por sus
+hermosos canales venecianos y sus centros comerciales repletos de jóvenes con
+ganas de mucha diversión.&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 83.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: 5 hrs.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 8:00am &amp; 8:30am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;background:white"><b><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:
+ES"><span style="mso-spacerun:yes">&nbsp;</span><span lang="ES"></span></span></b></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><table class="table table-bordered titulo" is='islaMorada'><tbody><tr><td style='text-align:center'>ISLA MORADA<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:115%;background:white"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">La historia de
+Islamorada ha estado siempre ligada al mar, &nbsp;con sus barreras coralinas y
+su belleza natural.Durante esta excursión se podrá visitar una réplica del
+barco “Pilar”, regalo que el famoso escritor&nbsp;</span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+IT" lang="IT">Ernest Hemingway hizo a la mujer que lo inspiraba a escribir sus novelas.</span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="IT"> </span><span style="font-size:
+10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:IT" lang="IT">En esta isla se
+encuentran los parques marítimos más antiguos de Estados&nbsp; Unidos, lugares
+inolvidables y de obligada visita. En la Robbies Marina se puede practicar
+cualquier actividad acuática: inmersiones, snorkeling, kayak, pesca,
+parasailing y kiteboarding.</span><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="IT"> </span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:IT" lang="IT">Veremos el Museo del Buceo y el Teatro del
+Mar, donde se puede reservar para nadar con los delfines y recorreremos las
+viejas carreteras americanas.La playa de Ana, sobre el Océano Atlántico, ofrece
+un precioso paseo marítimo con sus áreas de picnic y acceso a sus cálidas
+aguas.Islamorada ofrece también una alternativa cultural con muchas galerías de
+arte de diversos tipos de artisistas&nbsp;</span><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">&nbsp;...</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 143.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 6:00am &amp; 7:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES">Salidas
+diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i><i style="mso-bidi-font-style:
+normal"><span style="font-size:10.5pt;line-height:115%;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:ES" lang="ES"></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES"></span></i></p>
+
+<p class="MsoNormal" style="line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES">&nbsp;</span></b></p>
+
+<p class="MsoNormal" style="background:white"><span style="font-size:
+10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES"><br></span></p><table class="table table-bordered titulo" id='t10'><tbody><tr><td style='text-align:center'>SARASOTA<br></td></tr></tbody></table><p class="MsoNormal" style="background:white"><span style="font-size:
+10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">La ciudad de
+Sarasota&nbsp; y sus alrededores son conocidos como el centro cultural de
+Florida, además su playa es reconocida&nbsp; oficialmente por poseer la arena
+más blanca y fina del mundo. Las cristalinas y limpias playas de Clearwater y
+su incomparable belleza natural han sido premiadas por Florida Lovers &amp;
+Life 2012, USA Today y muchas otras revistas especializadas.</span><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES"> </span><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:ES" lang="ES">Las playas de la
+zona de Sarasota son consideradas entre&nbsp; las mejores playas de
+Norteamérica. El doctor Stephen Leatherman, conocido como “El Doctor Playa” ,
+las ha enumerado entre las playas dignas de premio. Durante todo el año se
+pueden practicar deportes acuáticos porque Sarasota está rodeada por el Golfo
+de Mexico, el río Myakka, la Bahía del Limón y el Canal intra-costa.
+Además&nbsp; de las maravillas que ofrece el mar y la naturaleza, se pueden
+encontrar alternativas culturales como el Museo del Circo Ringling y el Museo
+de Coches Antiguos. La ciudad es además conocida por el Van Wesel Performing
+Art Hall,&nbsp; donde se escuchan las mejores operas&nbsp;&nbsp;...</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 193.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: 7:00am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Servicio puerta a
+puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:
+191">&nbsp;</span></i></p>
+
+
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:center;
+line-height:115%;background:white" align="center"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191"></span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES"><br></span></p><table class="table table-bordered titulo" id='t11'><tbody><tr><td style='text-align:center'>MIAMI SEA AQUARIUM<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES"><br></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">El Miami Seaquarium cuenta con más de 600 mil visitantes al año!!!&nbsp; Se
+encuentra en la isla de Key Biscayne (en el condado de Miami Dade) y en su
+interior se encuentra el acuario más grande de Estados Unidos, con más de cien
+variedades de peces, tortugas marinas, tiburones, delfines y manatees, también
+reptiles. Cada día ofrece numerosas atracciones, shows y espectáculos.
+Seguramente habrán visto en TV al famoso delfín Flipper y a la ballena asesina
+Lolita, estrellas del acuario. También se podrá disfrutar de los tiburones
+siendo alimentados por sus instructores, focas marinas, cocodrilos y muchas otras
+especies de peces y reptiles. Todo ésto lo podrán ver en el Miami
+Seaquarium!!!&nbsp; Podrán también ver el World Class Marine Life con más de 8
+atracciones de animales al día !!!</span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">&nbsp;</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Regular Service USD 88.00
+</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 105.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour .</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Incluye los tickets de ingreso. </span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 8:00am &amp; 8:30am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:
+ES" lang="ES">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Servicio puerta a
+puerta.</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES" lang="ES"></span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;
+font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:191;mso-ansi-language:
+ES" lang="ES">&nbsp;</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES"><span style="mso-spacerun:yes">&nbsp;</span><span lang="ES"></span></span></b></p>
+
+<table class="table table-bordered titulo" id='t12'><tbody><tr><td style='text-align:center'>KEY LARGO Y PARQUE NACIONAL EVERGLADES<br></td></tr></tbody></table><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191;mso-ansi-language:ES" lang="ES"><br></span></b></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:4.5pt;text-align:left;line-height:115%;background:white" align="left"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">Una de las bellezas&nbsp; más importantes
+del estado de Florida &nbsp;son las islas Keys !!!</span><b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"> </span></b><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;mso-ansi-language:ES" lang="ES">En esta excursión visitamos la primera de
+ellas, Key Largo, localizada entre el Golfo de Mexico y el Océano Atlántico. En
+Key Largo se encuentra el famoso John Pennecamp State Park (Coral Reef ,Marine
+Sanctuary) &nbsp;donde cogeremos el famoso Glass Botton boat, embarcación con
+el fondo de cristal&nbsp; que permite ver las famosas barreras coralinas más
+importantes de los Estados Unidos . Visitaremos el Acuario y podremos pasar el
+resto del día disfrutando de sus playas privadas o practicando todo tipo de
+deportes acuáticos !!!</span><b><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:red;mso-ansi-language:ES" lang="ES"></span></b></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 160.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Incluye los tickets de ingreso al Glass bottom boat.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: Full day tour.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 9:00am &amp; 9:30am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#C45911;mso-themecolor:accent2;mso-themeshade:191">Salidas diarias</span></i><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;font-family:
+Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>
+
+<p class="MsoNormal" style="line-height:115%;background:white"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:
+115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">&nbsp;</span></i></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><b><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;mso-themeshade:
+191;mso-ansi-language:ES"><span style="mso-spacerun:yes">&nbsp;</span><span lang="ES"></span></span></b></p>
+
+<table class="table table-bordered titulo" id='t13'><tbody><tr><td style='text-align:center'>HOLLYWOOD BEACH BLVD - FORT LAURDERDALE<br></td></tr></tbody></table>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:4.5pt;line-height:115%;background:white"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:
+ES" lang="ES">Todos conocen Hollywood y saben que se encuentra en California. Pero la
+primera verdadera Hollywood nació en Florida en los años 20 y se encuentra
+entre Miami y Fort Lauderdale.&nbsp;</span><span style="font-size:10.5pt;
+line-height:115%;font-family:Verdana;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#222222;mso-ansi-language:IT" lang="IT">Era una pequeña
+ciudad situada sobre el Océano Atlántico con un maravilloso paseo de 4 Km. El
+paseo marítimo es fascinante y lleno de numerosos locales multiétnicos. Ha sido
+reconocido por las mejores revistas especializadas como uno de los mejores
+paseos marítimos de Estados&nbsp; Unidos. En esta ciudad se encuentra una de
+las playas más bellas de la costa oriental de Florida, donde las tortugas
+vienen a anidar todos los años. Después de la parada en Hollywood se prosigue
+hacia la ciudad de los mil canales venecianos: Fort Lauderdale. A sólo 45
+minutos en coche al norte de Miami se esncuentra Las Olas Boulevard, una zona
+de la ciudad de Fort Lauderdale conocida como uno de los mejores lugares donde
+poder pasar una noche llena de alegría. Se podrá elegir donde comer o tomar una
+copa entre la decena de restaurantes, pizzerías, cafeterías, puestos elegantes
+y refinados donde se puede comer cocina italiana, japonesa, mexicana,
+americana, francesa o brasileña.<span style="mso-no-proof:yes"></span></span></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191"><br></span></i></p><p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Private Service USD 88.00 (min 4 pax.)</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Duracion: 5 hrs.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Pick up: entre 9:00am &amp; 9:30am.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Salidas diarias.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">Servicio puerta a puerta.</span></i></p>
+
+<p class="MsoNormal" style="margin-left:4.5pt;text-align:left;
+line-height:115%;background:white" align="left"><i style="mso-bidi-font-style:normal"><span style="font-size:10.5pt;line-height:115%;font-family:Verdana;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#C45911;mso-themecolor:accent2;
+mso-themeshade:191">*Tarifas netas, por persona.</span></i></p>          
+          </div>        </div>
+      </div>
+    </div>
+		<footer class="Footer">
+			<div class="Footer-top">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-2 Footer-logo-container">
+							<a href="/">
+								<img src="/img/logo.svg?1.0.1" alt="ZoharTours" class="Footer-logo">
+							</a>
+						</div>
+						<div class="col-md-10">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Address</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-address"></span><span> 407 Lincoln Road Suite 11K</span>
+										</p>
+										<p class="FooterItem-description">
+											<span class="zoharicon-blank"></span><span> Miami Beach, FL 33139</span>
+										</p>
+
+									</div>
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Reservations</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-phone"></span><span> +1 (212) 252-8690</span>
+										</p>
+									</div>
+								</div>
+
+								<div class="col-sm-3">
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Email</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-email"></span><span> <a href="mailto:info@zohartours.com">info@zohartours.com</a></span>
+										</p>
+									</div>
+
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Fax</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-fax"></span><span> +1 (212) 252-8695</span>
+										</p>
+									</div>
+								</div>
+
+								<div class="col-sm-3">
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Out of NYC</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-phone"></span><span> +1 (866) ZOHARTOURS</span>
+										</p>
+									</div>
+
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Buenos Aires</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-phone"></span><span> +54 (011) 5453–9528</span>
+										</p>
+									</div>
+								</div>
+
+								<div class="col-sm-3">
+									<div class="FooterItem">
+										<h4 class="FooterItem-title">Open Monday to Friday</h4>
+										<p class="FooterItem-description">
+											<span class="zoharicon-clock"></span><span> 9:30 AM to 6:00 PM</span>
+										</p>
+									</div>
+									<div class="SocialMedia">
+										<ul class="SocialMedia-list">
+											<li class="SocialMedia-item skype">
+												<a href="skype:zohar.tours?call" class="SocialMedia-link"><i class="zoharicon-skype"></i><span>Skype</span></a>
+											</li>
+										</ul>
+									</div>
+																	</div>
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="Footer-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-12 FooterNav">
+									<ul class="FooterNav-list">
+																																																															<li class="FooterNav-item">
+													<a href="/static/about-us/" class="FooterNav-link">About Us</a>
+												</li>
+																																												<li class="FooterNav-item">
+													<a href="/static/useful-information/" class="FooterNav-link">Useful Information</a>
+												</li>
+																																												<li class="FooterNav-item">
+													<a href="/static/terms-and-conditions/" class="FooterNav-link">Terms &amp; Conditions</a>
+												</li>
+											<a href="#" class="FooterNav-link">Contact Us</a>
+										</li>
+										<li class="FooterNav-item">
+																																			<a href="http://localhost/estatica/useful-information/" class="FooterNav-link">
+													Versión En Español
+												</a>
+																					</li>
+																					<li class="FooterNav-item">
+												<a href="/logout/" class="FooterNav-link">Logout</a>
+											</li>
+																			</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js/jquery.min.js?1.0.1"><\/script>')</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-ui.min.js?1.0.1"></script>
+	<script src="/js/vendor/core.min.js?1.0.1"></script>
+	<script src="/js/vendor/raty.min.js?1.0.1"></script>
+
+	<script>
+	    $(function(){
+	        // Code
+	    })
+	</script>
+
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-71857763-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+
+</body></html>

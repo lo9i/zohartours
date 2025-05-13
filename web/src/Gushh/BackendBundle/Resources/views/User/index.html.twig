@@ -1,0 +1,99 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Users</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li class="active">Users</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_user_viewer_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Viewer
+          </a>
+          <a href="{{ path('backend_user_operator_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Operator
+          </a>   
+          <a href="{{ path('backend_user_admin_new') }}" class="btn btn-dark">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Admin
+          </a>         
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="userTable">
+            <thead>
+              <tr>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Last Login</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            {% if entities|length > 0 %}
+              <tbody>
+                {% for entity in entities %}
+                  <tr>
+                    <td>
+                      {% for role in entity.roles %}
+                        {% if role == 'ROLE_AGENCY' %}
+                          <a href="{{ path('backend_user_operator_edit', { 'id': entity.id }) }}">{{ entity }}</a>
+                        {% elseif role == 'ROLE_VIEWER' %}
+                          <a href="{{ path('backend_user_viewer_edit', { 'id': entity.id }) }}">{{ entity }}</a>
+                          {% elseif role == 'ROLE_ADMIN' or role == 'ROLE_SUPER_ADMIN' %}
+                            <a href="{{ path('backend_user_admin_edit', { 'id': entity.id }) }}">{{ entity }}</a>
+                          {% endif %}
+                      {% endfor %}
+                    </td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.enabled ? '<span class="label label-success">Enabled</span>' : '<span class="label label-danger">Disabled</span>' }}</td>
+                    <td>{{ entity.lastLogin != null ? entity.lastLogin|date('d M Y H:i A') : 'Have not logged in yet'}}</td>
+                    <td>
+                      {% for role in entity.roles %}
+                        {% if role == 'ROLE_AGENCY' %}
+                          <span class="label label-primary">Operator</span>
+                        {% elseif role == 'ROLE_VIEWER' %}
+                          <span class="label label-info">Viewer</span>
+                        {% elseif role == 'ROLE_ADMIN' %}
+                          <span class="label label-success">Administrator</span>
+                        {% elseif role == 'ROLE_SUPER_ADMIN' %}
+                          <span class="label label-dark">Super Administrator</span>
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+                {% endfor %}
+              </tbody>
+            {% endif %}
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/user/dataTable.min.js') }}"></script>
+{% endblock %}

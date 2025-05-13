@@ -1,0 +1,66 @@
+# app/config/security.yml
+imports:
+    - { resource: parameters.yml }
+
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_AGENCY:      ROLE_AGENCY
+        ROLE_VIEWER:      ROLE_VIEWER
+        ROLE_ADMIN:       ROLE_ADMIN
+        ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider:                   fos_userbundle
+                login_path:                 fos_user_security_login
+                check_path:                 fos_user_security_check
+                csrf_provider:              security.csrf.token_manager
+                require_previous_session:   false
+
+                # always_use_default_target_path: true
+                # default_target_path: fos_user_security_redirect
+                # default_target_path: default_security_target
+                # default_target_path: /
+                # target_path_parameter: _target_path
+                # use_referer: true
+            remember_me:
+                key:        %bookarg.secret%
+                lifetime:   86400 # 1 day in seconds - use 604800 for a week
+                domain:     .%bookarg.host%
+                name:       bookarg_u
+            logout:
+                path:       fos_user_security_logout
+                target:     home
+
+            anonymous:      true
+
+    access_control:
+        # - { path: ^/[a-z][a-z]/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path : ^/dashboard/client/,         role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { path : ^/panel/cliente/,            role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { path : ^/dashboard/client/checkout/,role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY] }
+        - { path : ^/panel/cliente/checkout/,   role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY] }
+        - { path : ^/dashboard/reservation/    ,role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { path : ^/panel/reservation/        ,role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { path : ^/dashboard/agency/,         role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/dashboard/agencies/,       role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/panel/agencia/,            role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/panel/agencias/,           role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/dashboard/user/,           role: ROLE_SUPER_ADMIN }
+        - { path : ^/panel/usuario/,            role: ROLE_SUPER_ADMIN }
+        - { path : ^/dashboard/configuration/,  role: ROLE_SUPER_ADMIN }
+        - { path : ^/panel/configuracion/,      role: ROLE_SUPER_ADMIN }
+        - { path : ^/dashboard/,                role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/panel/,                    role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN] }
+        - { path : ^/search/,                   role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { path : ^/buscar/,                   role: [ROLE_ADMIN,     ROLE_SUPER_ADMIN, ROLE_AGENCY, ROLE_VIEWER] }
+        - { host : .zohartours.dev,             path: ^/,              roles:            IS_AUTHENTICATED_ANONYMOUSLY }

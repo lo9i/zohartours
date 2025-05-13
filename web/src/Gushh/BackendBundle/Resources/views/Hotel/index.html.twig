@@ -1,0 +1,85 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}"> 
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">{{ 'backend.hotels.title'|trans|title }}</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">{{ 'backend.dashboard.title'|trans|title }}</a></li>
+          <li class="active">{{ 'backend.hotels.title'|trans|title }}</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_hotel_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.hotels.singular'|trans|title }}
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="hotelTable">
+            <thead>
+              <tr>
+                <th>{{ 'backend.form.name'|trans|title }}</th>
+                <th>{{ 'backend.form.rooms'|trans|title }}</th>
+                <th>{{ 'backend.form.city'|trans|title }}</th>
+                <th>{{ 'backend.form.state'|trans|title }}</th>
+                <th>{{ 'backend.form.country'|trans|title }}</th>
+                <th>{{ 'backend.form.continent'|trans|title }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for hotel in entities %}
+                <tr>
+                    <td>
+                      <a href="{{ path('backend_hotel_show', { 'hid': hotel.id }) }}">
+                        {{ hotel }} 
+                        {% if hotel.subtitle != '' %}
+                          - {{ hotel.subtitle }} 
+                        {% endif %} 
+                        {% if hotel.enabled == false %}
+                          <span class="label label-danger label-sm">{{ 'backend.form.disabled'|trans|title }}</span>
+                        {% endif %}
+                      </a>
+                    </td>
+                    <td>{{ hotel.rooms|length }}</td>
+                    <td>{{ hotel.city }}</td>
+                    <td>{{ hotel.state }}</td>
+                    <td>{{ hotel.country }}</td>
+                    <td>{{ hotel.continent }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th style="visibility: hidden;">{{ 'backend.form.name'|trans|title }}</th>
+                <th>{{ 'backend.form.city'|trans|title }}</th>
+                <th>{{ 'backend.form.state'|trans|title }}</th>
+                <th>{{ 'backend.form.country'|trans|title }}</th>
+                <th>{{ 'backend.form.continent'|trans|title }}</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/hotel/dataTable.min.js') }}"></script>
+{% endblock %}

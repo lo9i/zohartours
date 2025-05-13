@@ -1,0 +1,81 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Users</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_users') }}">Users</a></li>
+          <li class="active">Administrators</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_user_admin_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  Admin
+          </a>         
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="userTable">
+            <thead>
+              <tr>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Last Login</th>
+                <th>Agency</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            {% if entities|length > 0 %}
+              <tbody>
+                {% for entity in entities %}
+                  <tr>
+                    <td><a href="{{ path('backend_user_admin_edit', { 'id': entity.id }) }}">{{ entity }}</a></td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.lastLogin != null ? entity.lastLogin|date('d M Y H:i A') : 'Have not logged in yet'}}</td>
+                    <td>{{ entity.agency }}</td>
+                    <td>
+                      {% for role in entity.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                          <span class="label label-success">Administrator</span>
+                        {% elseif role == 'ROLE_SUPER_ADMIN' %}
+                          <span class="label label-dark">Super Administrator</span>
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            {% endif %}
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/user/dataTable.min.js') }}"></script>
+{% endblock %}

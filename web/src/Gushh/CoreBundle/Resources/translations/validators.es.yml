@@ -1,0 +1,22 @@
+'Please upload a valid PDF': 'Please upload a valid PDF'   # FIXME
+
+'The value {{ value }} is not a valid {{ type }}':
+    '': 'The value {{ value }} is not a valid {{ type }}.'   # FIXME
+
+fos_user:
+    email:
+        already_used: fos_user.email.already_used   # FIXME
+        blank: fos_user.email.blank   # FIXME
+        invalid: fos_user.email.invalid   # FIXME
+        long: fos_user.email.long   # FIXME
+        short: fos_user.email.short   # FIXME
+
+    password:
+        blank: fos_user.password.blank   # FIXME
+        short: fos_user.password.short   # FIXME
+
+    username:
+        already_used: fos_user.username.already_used   # FIXME
+        blank: fos_user.username.blank   # FIXME
+        long: fos_user.username.long   # FIXME
+        short: fos_user.username.short   # FIXME

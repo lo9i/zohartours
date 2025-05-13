@@ -1,0 +1,288 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+  
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('backend/global/vendor/formvalidation/formValidation.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="page-header page-header-bordered">
+                <h1 class="page-title">Client Files</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('dashboard') }}">Backend</a></li>
+                    <li><a href="{{ path('backend_client_files') }}">Client Files</a></li>
+                    <li><a href="{{ path('backend_client_files') }}">{{ entity.id }}</a></li>
+                    <li class="active">Edit</li>
+                </ol>
+                <div class="page-header-actions">
+                    <a href="{{ path('backend_client_files') }}" class="btn btn-default">
+                        <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+                    </a>
+                    <a href="#" class="btn btn-danger" data-target="#deleteForm" data-toggle="modal">
+                        <i class="icon fa-trash" aria-hidden="true"></i> Delete
+                    </a>
+                </div>
+            </div>
+
+            <!-- Panel Table Individual column searching -->
+            <!-- Form -->
+            {{ form_start(form) }}
+            <div class="panel">
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="text-center">Client Information</h4>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label">Name</label>
+                                    {{ form_widget(form.clientName) }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label">Last Name</label>
+                                    {{ form_widget(form.clientLastName) }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label">Agency</label>
+                                    {{ form_widget(form.agency) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label class="control-label">Description</label>
+                                    {{ form_widget(form.notes, { 'attr': { 'autocomplete' : 'off'} } ) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Table Individual column searching -->
+            <!-- Form -->
+            <!-- Panel Services -->
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">{{ 'backend.client_files.items'|trans }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <table class="table table-hover dataTable table-striped width-full" id="itemsTable">
+                                <thead>
+                                <tr>
+                                    <th>Detail</th>
+                                    <th>Provider</th>
+                                    <th width="150px">Sales Amount</th>
+                                    <th width="150px">Net Amount</th>
+                                    <th width="150px">Gross Profit</th>
+                                    <th width="150px">Commission</th>
+                                    <th width="150px">Net Profit</th>
+                                    <th width="50px"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if entity.items|length > 0 %}
+                                    {% for item in form.items %}
+                                        <tr class="invoiceItemRow">
+                                            <td>{{ form_widget(item.detail) }}</td>
+                                            <td>{{ form_widget(item.provider) }}</td>
+                                            <td>{{ form_widget(item.amount_sale) }}</td>
+                                            <td>{{ form_widget(item.amount_net) }}</td>
+                                            <td class="text-right"><span class="gross_profit"></span></td>
+                                            <td>{{ form_widget(item.amount_commission) }}</td>
+                                            <td class="text-right"><span class="net_profit"></span></td>
+                                            <td style="text-align: center;"><i class="icon wb-trash itemRemove"
+                                                                               aria-hidden="true"
+                                                                               onclick="removeItem('{{ loop.index0 }}');"></i>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr id="noItems">
+                                        <td colspan="8" class="text-center"><strong>No items yet</strong></td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                                <tfoot>
+                                <tr style="font-weight: bold;">
+                                    <td colspan="2">Totals</td>
+                                    <td class="text-right total_sale"></td>
+                                    <td class="text-right total_net"></td>
+                                    <td class="text-right total_gross_profit"></td>
+                                    <td class="text-right total_commission"></td>
+                                    <td class="text-right total_net_profit"></td>
+                                    <td></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="col-md-1 text-center">
+                            <button type="button" class="btn btn-default" id="addItem">Add item</button>
+                            <div id="items" data-prototype="
+                {% filter escape %}
+                    {{ include('GushhBackendBundle:ClientFile/partials:clientFileItem.html.twig', { 'form': form.items.vars.prototype }) }}
+                {% endfilter %}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Panel Payments -->
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="form-group text-center">
+                        <a href="{{ path('backend_client_files') }}" class="btn btn-outline btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-success" id="saveInvoice">Save Client File</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+            <!-- End Form -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+    <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var $collectionHolder = $('#itemsTable > tbody');
+            $('#addItem').on('click', function (e) {
+
+                e.preventDefault();
+
+                $collectionHolder.find('#noItems').remove();
+                var index = $('.invoiceItemRow').length;
+                var prototype = $('#items').data('prototype');
+
+                // Replace '$$name$$' in the prototype's HTML to
+                // instead be a number based on how many items we have
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                let ele = $(prototype.replace(/__name__/g, index));
+                $collectionHolder.append(ele);
+                ele.find('.has-to-be-number').keydown(checkIsNumber);
+                ele.find('.has-to-be-number').keyup(update_amounts);
+            });
+
+            $('.has-to-be-number').keydown(checkIsNumber);
+            $('.has-to-be-number').keyup(update_amounts);
+        });
+
+        function checkIsNumber(e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl/cmd+A
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+C
+                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+X
+                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39) ||
+                // Allow: -
+                (e.keyCode == 189)
+            ) return;
+
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        }
+
+        function update_amounts() {
+            var total_net = 0;
+            var total_sale = 0;
+            var total_gross_profit = 0;
+            var total_net_profit = 0;
+            var total_commission = 0;
+            Array.from($('.invoiceItemRow')).forEach(function (item) {
+                let net = get_net(item);
+                let sale = get_sale(item);
+                let commission = get_commission(item);
+                let gross_profit = sale - net;
+                let net_profit = gross_profit - commission;
+                total_net += net;
+                total_sale += sale;
+                total_gross_profit += gross_profit;
+                total_commission += commission;
+                total_net_profit += net_profit;
+                set_profits(item, gross_profit, net_profit);
+            });
+
+            set_totals(total_net, total_sale, total_commission, total_gross_profit, total_net_profit);
+        }
+
+        function get_net(ele) {
+            let net = parseFloat($(ele).find('.net').val());
+            return isNaN(net) ? 0 : net;
+        }
+
+        function get_sale(ele) {
+            let sale = parseFloat($(ele).find('.sale').val());
+            return isNaN(sale) ? 0 : sale;
+        }
+
+        function get_commission(ele) {
+            let com = parseFloat($(ele).find('.commission').val());
+            return isNaN(com) ? 0 : com;
+        }
+
+        function set_profits(ele, gross_profit, net_profit) {
+            $(ele).find('.gross_profit').html(gross_profit.toFixed(2));
+            if (gross_profit < 0)
+                $(ele).find('.gross_profit').removeClass('text-success').addClass('text-danger');
+            else
+                $(ele).find('.gross_profit').removeClass('text-danger').addClass('text-success');
+
+            $(ele).find('.net_profit').html(net_profit.toFixed(2));
+            if (net_profit < 0)
+                $(ele).find('.net_profit').removeClass('text-success').addClass('text-danger');
+            else
+                $(ele).find('.net_profit').removeClass('text-danger').addClass('text-success');
+        }
+
+        function set_totals(total_net, total_sale, total_commission, total_gross_profit, total_net_profit) {
+
+            if (isNaN(total_net) || isNaN(total_sale) || isNaN(total_commission) || isNaN(total_gross_profit) || isNaN(total_net_profit)) {
+                $('#saveInvoice').attr('disabled', 'disabled');
+                return;
+            }
+
+            $('.total_net').html(total_net.toFixed(2));
+            $('.total_sale').html(total_sale.toFixed(2));
+            $('.total_gross_profit').html(total_gross_profit.toFixed(2));
+            $('.total_commission').html(total_commission.toFixed(2));
+            $('.total_net_profit').html(total_net_profit.toFixed(2));
+            if (total_net_profit < 0)
+                $('.total_net_profit').removeClass('text-success').addClass('text-danger');
+            else
+                $('.total_net_profit').removeClass('text-danger').addClass('text-success');
+
+            $('#saveInvoice').removeAttr('disabled');
+        }
+
+        function removeItem(index) {
+            $('#gushh_corebundle_client_file_items_' + index + '_detail').closest('.invoiceItemRow').remove();
+
+            if ($('.invoiceItemRow').length == 0)
+                $('#itemsTable > tbody').append('<tr id="noItems"><td colspan="4" class="text-center"><strong>No items yet</strong></td></tr>');
+            update_amounts();
+        }
+
+        update_amounts();
+    </script>
+{% endblock %}

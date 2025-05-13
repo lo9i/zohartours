@@ -1,0 +1,131 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block title %}{{ brand }} | {{ 'hotels.title'|trans|title }}{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div class="clearfix"></div>
+		
+		<div class="row">
+			<div class="col-xxs-12 col-xs-4 Util-xxs-text-center">
+				<h2 class="Title">
+					{{ 'hotels.usa'|trans|raw }}
+				</h2>
+			</div>
+			<div class="col-xxs-12 col-xs-8 Util-xxs-text-center Util-text-right">
+				<h3 class="Subtitle">{{ 'hotels.destinationsHotels'|trans|raw }}</h3>
+			</div>
+		</div>
+
+		<section class="row no-gutter">
+
+			{% for entity in states.usa %}
+				{{ include('GushhFrontendBundle::Hotel/Includes/destinationBlock.html.twig', { 'continent' : 'america' }) }}
+			{% endfor %}
+
+			<div class="col-xxs-12 col-xs-4">
+				<div class="DestinationNext-item">
+					<h2 class="DestinationNext-title">
+						{{ 'hotels.allUsaDestinations'|trans|raw }}
+					</h2>
+					<div class="DestinationNext-arrow-box">></div>
+					<a href="{{ path('hotels_list_continent', {'region': 'United States', 'continent':'america'})}}" class="DestinationNext-link">></a>
+				</div>				
+			</div>
+
+		</section>
+
+		<div class="row">
+			<div class="col-xxs-12 col-xs-4 Util-xxs-text-center">
+				<h2 class="Title">
+					{{ 'hotels.europe'|trans|raw }}
+				</h2>
+			</div>
+			<div class="col-xxs-12 col-xs-8 Util-xxs-text-center Util-text-right">
+				<h3 class="Subtitle">
+					{{ 'hotels.destinationsHotels'|trans|raw }}
+				</h3>
+			</div>
+		</div>
+
+		<section class="row no-gutter">
+
+			{% for entity in states.europe %}
+				{{ include('GushhFrontendBundle::Hotel/Includes/destinationBlock.html.twig', { 'continent' : 'europe' }) }}
+			{% endfor %}
+
+			<div class="col-xxs-12 col-xs-4">
+				<div class="DestinationNext-item">
+					<h2 class="DestinationNext-title">
+						{{ 'hotels.allEuropeDestinations'|trans|raw }}
+					</h2>
+					<div class="DestinationNext-arrow-box">></div>
+					<a href="{{ path('hotels_list_continent', {'region': 'Europe', 'continent': 'europe'}) }}" class="DestinationNext-link">></a>
+					
+				</div>				
+			</div>
+		</section>
+
+		<div class="row">
+			<div class="col-xxs-12 col-xs-4 Util-xxs-text-center">
+				<h2 class="Title">
+                    {{ 'hotels.mexico'|trans|raw }}
+				</h2>
+			</div>
+			<div class="col-xxs-12 col-xs-8 Util-xxs-text-center Util-text-right">
+				<h3 class="Subtitle">
+                    {{ 'hotels.destinationsHotels'|trans|raw }}
+				</h3>
+			</div>
+		</div>
+
+		<section class="row no-gutter">
+
+            {% for entity in states.mexico %}
+                {{ include('GushhFrontendBundle::Hotel/Includes/destinationBlock.html.twig', { 'continent' : 'america' }) }}
+            {% endfor %}
+
+			<div class="col-xxs-12 col-xs-4">
+				<div class="DestinationNext-item">
+					<h2 class="DestinationNext-title">
+                        {{ 'hotels.allMexicoDestinations'|trans|raw }}
+					</h2>
+					<div class="DestinationNext-arrow-box">></div>
+					<a href="{{ path('hotels_list_continent', {'region': 'Mexico', 'continent': 'america'}) }}" class="DestinationNext-link">></a>
+
+				</div>
+			</div>
+		</section>
+		<div class="row">
+			<div class="col-xxs-12 col-xs-4 Util-xxs-text-center">
+				<h2 class="Title">
+                    {{ 'hotels.argentina'|trans|raw }}
+				</h2>
+			</div>
+			<div class="col-xxs-12 col-xs-8 Util-xxs-text-center Util-text-right">
+				<h3 class="Subtitle">
+                    {{ 'hotels.destinationsHotels'|trans|raw }}
+				</h3>
+			</div>
+		</div>
+
+		<section class="row no-gutter">
+
+            {% for entity in states.argentina %}
+                {{ include('GushhFrontendBundle::Hotel/Includes/destinationBlock.html.twig', { 'continent' : 'america' }) }}
+            {% endfor %}
+
+			<div class="col-xxs-12 col-xs-4">
+				<div class="DestinationNext-item">
+					<h2 class="DestinationNext-title">
+                        {{ 'hotels.allArgentinaDestinations'|trans|raw }}
+					</h2>
+					<div class="DestinationNext-arrow-box">></div>
+					<a href="{{ path('hotels_list_continent', {'region': 'America', 'continent': 'america'}) }}" class="DestinationNext-link">></a>
+
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}

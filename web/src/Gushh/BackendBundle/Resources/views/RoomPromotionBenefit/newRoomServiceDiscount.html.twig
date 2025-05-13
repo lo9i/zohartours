@@ -1,0 +1,105 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': promotion.room.hotel.id } ) }}">{{ promotion.room.hotel }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'tab': 'rooms' } ) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id } ) }}">{{ promotion.room }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'tab': 'promotions' } ) }}">Promotions</a></li>
+          <li><a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id } ) }}">{{ promotion }}</a></li>
+          <li><a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'benefits' } ) }}">Benefits</a></li>
+          <li class="active">New Room Service Discount</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'benefits' } ) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>          
+        </div>
+      </div>
+      
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        {# <header class="panel-heading">
+          <h3 class="panel-title">No se </h3>
+        </header> #}
+        <div class="panel-body container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Form -->
+              {{ form_start(form) }}
+                <h4 class="text-center">Room Service Discount</h4>
+                {{ form_errors(form) }}
+                
+
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Service</label>
+                    {{ form_widget(form.roomService) }}
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Value Type</label>
+                    {{ form_widget(form.valueType) }}
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Value</label>
+                    {{ form_widget(form.value) }}
+                  </div>
+                 <div class="form-group col-sm-4">
+                    <label class="control-label">Each nights</label>
+                    {{ form_widget(form.eachValue) }}
+                  </div>
+                </div>
+                
+                <h4 class="text-center">Options</h4>
+
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Cumulative?</label>
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.cumulative) }}
+                      <label for="gushh_corebundle_promotionnightbenefit_cumulative">This discount is cumulative</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Limit?</label>
+                    <div class="checkbox-custom checkbox-primary">
+                      {{ form_widget(form.hasLimit) }}
+                      <label for="gushh_corebundle_promotionnightbenefit_hasLimit">This discount has limit</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label class="control-label">Limit nights</label>
+                    {{ form_widget(form.limitValue) }}
+                  </div>
+                </div>             
+                <div class="form-group text-center">
+                  <a href="{{ path('backend_room_promotion_show', {'hid': promotion.room.hotel.id, 'rid': promotion.room.id, 'pid': promotion.id, 'tab': 'benefits' } ) }}" class="btn btn-outline btn-default">Cancel</a>
+                  <button type="submit" class="btn btn-success" id="saveRoomPromotion">Save Discount</button>
+                </div>
+                
+                {{ form_rest(form) }}
+                
+              {{ form_end(form) }}
+              <!-- End Form -->
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/formvalidation/formValidation.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/formvalidation/framework/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room-promotion/formValidation.min.js') }}"></script>
+{% endblock %}

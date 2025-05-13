@@ -1,0 +1,17 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block title %}{{ brand }} | {{ 'tours.title'|trans|title }}{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ErrorPage">
+          <h2 class="ErrorPage-number">{{ 'development.soon'|trans }}</h2>
+          <h3 class="ErrorPage-message">{{ 'development.working'|trans }}</h3>
+          <a href="{{ path('home')}}" class="ErrorPage-link">{{ 'development.home'|trans }}</a>          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+=================
+USA
+    - Cities
+EUROPE
+    - Countries
+        - Cities
+
+=================
+
+SXRI0UFR49
+
+
+Last step:
+Passenger
+
+Adult 1
+Adult 2
+Adult 3
+    - Name              nullable
+    - Lastname          nullable
+
+Child 1s
+Child 2
+Child 3
+    - Name              nullable
+    - Lastname          nullable
+    - Age (Children)    nullable
+
+
+
+
+
+# Confirmacion - Mail detalle reserva. 
+# 
+
+
+
+---------------------
+Room Capacity.
+
+Service description longtex.-

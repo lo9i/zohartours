@@ -1,0 +1,400 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+
+  <style>
+    .ResultHotelRoom-priceTableDetails {
+      text-align: center;
+      table-layout: fixed;
+      border: solid 1px rgb(228, 234, 236);
+    }
+    .ResultHotelRoom-priceTableDetails th {
+      text-align: center;
+    }
+    .ResultHotelRoom-priceTableDetails td {
+      text-align: center;
+      border: none !important;
+    }
+  </style>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">{{ 'backend.reservations.title'|trans }}</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">{{ 'backend.dashboard.title'|trans }}</a></li>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+              <li><a href="{{ path('backend_reservations') }}">{{ 'backend.reservations.title'|trans }}</a></li>
+            {% elseif is_granted('ROLE_AGENCY') %}
+              <li><a href="{{ path('client_reservations') }}">{{ 'backend.reservations.title'|trans }}</a></li>
+            {% endif %}
+          <li class="active">{{ entity.code }}</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_reservation_show', { 'id': entity.id }) }}" class="btn btn-default"><i class="icon fa-chevron-left" aria-hidden="true"></i> Back</a>
+        </div>
+      </div>
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="text-center">{{ 'backend.reservation.title'|trans }} {{ ' - ' ~ entity.code }}</h4>
+            </div>
+          </div>
+
+          <div class="pearls row">
+            <div class="pearl done col-xs-3">
+              <div class="pearl-icon"><i class="icon fa-user" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.reservation.request'|trans }}</span>
+            </div>
+            <div class="pearl {{ entity.status == 'Completed' ? 'done' : 'current' }} col-xs-3">
+              <div class="pearl-icon"><i class="icon fa-check" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.reservation.confirmed'|trans }}</span>
+            </div>
+            <div class="pearl {{ entity.paymentStatus == 'Paid' ? 'done' : 'current' }} col-xs-3">
+              <div class="pearl-icon"><i class="icon fa-credit-card" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.reservation.payment'|trans }}</span>
+            </div>
+            <div class="pearl current col-xs-3">
+              <div class="pearl-icon"><i class="icon fa-thumbs-o-up" aria-hidden="true"></i></div>
+              <span class="pearl-title">{{ 'backend.reservation.complete'|trans }}</span>
+            </div>
+          </div>
+
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+              <!-- Form -->
+                {{ form_start(form) }}
+            {% endif %}
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped width-full" style="table-layout: fixed;">
+                <tbody>
+                {% for guest in entity.checkOutProcess.guests %}
+                  <tr>
+                    <td>
+                      <h6>{{ 'backend.checkout.passenger.ptitle'|trans }}</h6>
+                      <small>{{ guest.title.name }}</small>
+                    </td>
+                    <td>
+                      <h6>{{'backend.checkout.passenger.name'|trans }}</h6>
+                      <small>{{ guest.name }}</small>
+                    </td>
+                    <td>
+                      <h6>{{ 'backend.checkout.passenger.lastname'|trans }}</h6>
+                      <small>{{ guest.lastName }}</small>
+                    </td>
+                  </tr>
+                {% endfor %}
+                <tr>
+                  <td>
+                    <h6>{{ 'backend.checkout.hotel'|trans }}</h6>
+                    <small>{{ entity.hotel.name }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.checkout.room'|trans }}</h6>
+                    <small>{{ entity.room.name }}</small>
+                  </td>
+                  <td>
+                    <h6></h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{ 'backend.form.city'|trans }}</h6>
+                    <small>{{ entity.hotel.city }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.form.state'|trans }}</h6>
+                    <small>{{ entity.hotel.state }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.form.country'|trans }}</h6>
+                    <small>{{ entity.hotel.country }}</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{ 'backend.form.checkIn'|trans }}</h6>
+                    <small>{{ entity.checkOutProcess.search.checkIn|date('d M Y') }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.form.checkOut'|trans }}</h6>
+                    <small>{{ entity.checkOutProcess.search.checkOut|date('d M Y') }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.form.nights'|trans }}</h6>
+                    <small>{{ entity.checkOutProcess.search.nights }}</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>Paxes</h6>
+                    <small>{{ entity.checkOutProcess.search.room1Adults + entity.checkOutProcess.search.room1Children }}</small>
+                  </td>
+                  <td>
+                    <h6>{{  'backend.checkout.adults'|trans }}</h6>
+                    <small>{{ entity.checkOutProcess.search.room1Adults }}</small>
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.checkout.children'|trans }}</h6>
+                    <small>{{ entity.checkOutProcess.search.room1Children }}</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{ 'backend.reservation.hotelFileId'|trans }}</h6>
+                      {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                          {{ form_widget(form.hotelFileId) }}
+                      {% else %}
+                        <span>{{ entity.hotelFileId }}</span>
+                      {% endif %}
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.reservation.paymentStatus'|trans }}</h6>
+                      {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                          {{ form_widget(form.paymentStatus) }}
+                      {% else %}
+                        <span class="label label-{{ entity.paymentStatus.class }}">{{ entity.paymentStatus }}</span>
+                      {% endif %}
+                  </td>
+                  <td>
+                    <h6>{{ 'backend.reservation.status'|trans }}</h6>
+                      {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_AGENCY') %}
+                          {{ form_widget(form.status) }}
+                      {% else %}
+                        <span class="label label-{{ entity.status.class }}">{{ entity.status }}</span>
+                      {% endif %}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="clearfix">
+                <div class="text-right pull-right">
+                  <table>
+                    <tbody>
+                    <tr>
+                      <td><h3>Total Net</h3></td>
+                      <td width="120px;"><h3><span>{{ currency }}<span id="theTotalNet">{{ entity.totalNet|number_format(2, '.', ',') }}</span></span></h3></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Total Price</h3></td>
+                      <td><h3><span>{{ currency }}<span id="theTotalNet">{{ entity.total|number_format(2, '.', ',') }}</span></span></h3></td>
+                    </tr>
+                    <tr class="profitRow">
+                      <td><h3>Total Profit</h3></td>
+                      <td><h3><span>{{ currency }}<span id="theTotalProfit">{{ (entity.total - entity.totalNet)|number_format(2, '.', ',') }}</span></span></h3></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  {#<h3>#}
+                    {#Total Net:#}
+                    {#<span>{{ currency }} <span id="theTotalNet"> {{ entity.totalNet|number_format(2, '.', ',') }}</span></span>#}
+                  {#</h3>#}
+                  {#<h3>#}
+                    {#Total Price:#}
+                    {#<span>{{ currency }} <span id="theTotal"> {{ entity.total|number_format(2, '.', ',') }}</span></span>#}
+                  {#</h3>#}
+                  {#<h3>#}
+                    {#Total Profit:#}
+                    {#<span>{{ currency }} <span id="theTotalProfit"> {{ (entity.total - entity.totalNet)|number_format(2, '.', ',') }}</span></span>#}
+                  {#</h3>#}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">{{ 'backend.reservation.remarks'|trans }}</label>
+                        {{ form_widget(form.remarks) }}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- Panel Dates -->
+          <div class="panel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="text-center">{{ 'backend.reservation.dates'|trans }}</h4>
+                </div>
+              </div>
+              <div class="row">
+                <table class="table table-condensed ResultHotelRoom-priceTableDetails">
+                  <thead>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                  <th>Sun</th>
+                  </thead>
+                  <tbody>
+                  {% for stayDate in form.reservationDates %}
+                    {% if stayDate.vars.value.day == 'Mon' %}
+                        <tr>
+                    {% endif %}
+                    {% if loop.index  == 1 %}
+                      {% if stayDate.vars.value.day == 'Tue' %}
+                        <td></td>
+                      {% elseif stayDate.vars.value.day == 'Wed' %}
+                        <td></td><td></td>
+                      {% elseif stayDate.vars.value.day == 'Thu' %}
+                        <td></td><td></td><td></td>
+                      {% elseif stayDate.vars.value.day == 'Fri' %}
+                        <td></td><td></td><td></td><td></td>
+                      {% elseif stayDate.vars.value.day == 'Sat' %}
+                        <td></td><td></td><td></td><td></td><td></td>
+                      {% elseif stayDate.vars.value.day == 'Sun' %}
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                      {% endif %}
+                    {% endif %}
+
+                      <td> <span class="label label-info"> {{ stayDate.vars.value.date|date('d M Y') }}  </span> {{ form_widget(stayDate.totalWithServicesNet) }}{{ form_widget(stayDate.totalWithServicesAndCommission) }}</td>
+
+                    {% if loop.index  ==  form.reservationDates|length %}
+                        {% if stayDate.vars.value.day == 'Mon' %}
+                          <td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        {% elseif stayDate.vars.value.day == 'Tue' %}
+                          <td></td><td></td><td></td><td></td><td></td></tr>
+                        {% elseif stayDate.vars.value.day == 'Wed' %}
+                          <td></td><td></td><td></td><td></td></tr>
+                        {% elseif stayDate.vars.value.day == 'Thu' %}
+                          <td></td><td></td><td></td></tr>
+                        {% elseif stayDate.vars.value.day == 'Fri' %}
+                          <td></td><td></td></tr>
+                        {% elseif stayDate.vars.value.day == 'Sat' %}
+                          <td></td></tr>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if  stayDate.vars.value.day == 'Sun' %}
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_AGENCY') %}
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group text-center">
+                    <a href="{{ path('backend_reservation_show', {'id': entity.id }) }}" class="btn btn-default pull-left">{{ 'backend.reservation.back'|trans }}</a>
+                    <button type="submit" class="btn btn-success" id="saveCheckOut">{{ 'backend.reservation.update'|trans }}</button>
+                  </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                  <!-- End Form -->
+                </div>
+              </div>
+            {% endif %}
+        </div>
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/reservation/dataTable.min.js') }}"></script>
+  <script type='text/javascript'>
+
+      $(function () {
+
+          $('.has-to-be-number').keydown(function (e) {
+              // Allow: backspace, delete, tab, escape, enter and .
+              if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                  // Allow: Ctrl/cmd+A
+                  (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                  // Allow: Ctrl/cmd+C
+                  (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                  // Allow: Ctrl/cmd+X
+                  (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                  // Allow: home, end, left, right
+                  (e.keyCode >= 35 && e.keyCode <= 39)) {
+                  // let it happen, don't do anything
+                  return;
+              }
+              // Ensure that it is a number and stop the keypress
+              if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                  e.preventDefault();
+              }
+          });
+      });
+
+      $('.has-to-be-number').keyup(function (e) {
+
+          var totalFinal = 0;
+          var numbers =  $('.is-final');
+          for(var i = 0; i < numbers.length; i++) {
+              totalFinal += parseFloat($(numbers[i]).val());
+          }
+
+          if( isNaN(totalFinal) ) {
+              $('#theTotal').html('0.00');
+          }
+          else {
+              $('#theTotal').html(totalFinal.toFixed(2).replace(/./g, function (c, i, a) {
+                  return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+              }));
+          }
+
+          var totalNet = 0;
+          numbers =  $('.is-net');
+          for(var i = 0; i < numbers.length; i++) {
+              totalNet += parseFloat($(numbers[i]).val());
+          }
+
+          if( isNaN(totalNet) ) {
+              $('#theTotalNet').html('0.00');
+          }
+          else {
+              $('#theTotalNet').html(totalNet.toFixed(2).replace(/./g, function (c, i, a) {
+                  return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+              }));
+          }
+
+          if( isNaN(totalFinal) || isNaN(totalNet) ) {
+              $('#saveCheckOut').attr('disabled', 'disabled')
+              $('#theTotalProfit').html('0.00');
+              $('.profitRow h3').css('color', 'red');
+          }
+          else {
+              var profit = (totalFinal - totalNet);
+              $('#theTotalProfit').html(profit.toFixed(2).replace(/./g, function(c, i, a) {
+                  return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+              }));
+
+              if (profit < 0) {
+                  $('#saveCheckOut').attr('disabled', 'disabled')
+                  $('.profitRow h3').css('color', 'red');
+              }
+              else {
+                  $('#saveCheckOut').removeAttr('disabled')
+                  $('.profitRow h3').css('color', 'black');
+              }
+          }
+          });
+  </script>
+{% endblock %}

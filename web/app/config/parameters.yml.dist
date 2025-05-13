@@ -1,0 +1,24 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters :
+    db.host                 : 127.0.0.1
+    db.port                 : null
+    db.name                 : 'client'
+    db.user                 : 'root'
+    db.password             : 'r4e3w2q1'
+    mail.transport          : 'smtp'
+    mail.host               : 'smtp.gmail.com'
+    mail.user               : 'no-reply@client.com'
+    mail.password           : '?XB0r21F670FhVA'
+    mail.port               : 465
+    mail.encryption         : 'ssl'
+    bookarg.secret          : 'saraza123'
+    bookarg.locale          : 'es'
+    bookarg.brand           : 'Client'
+    bookarg.host            : 'client.dev'
+    bookarg.host.en         : 'en.client.dev'
+    bookarg.host.es         : 'es.client.dev'
+    bookarg.email           : 'no-reply@client.com'
+    bookarg.version         : 1.0.2
+    bookarg.tracking.google : 'UA-XXXXXXX-1'

@@ -1,0 +1,24 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host     : 127.0.0.1
+    database_port     : null
+    database_name     : zohartours
+    database_user     : root
+    database_password : r4e3w2q1
+    mailer_transport  : smtp
+    mailer_host       : smtp.gmail.com
+    mailer_user       : bostas@gmail.com
+    mailer_password   : anibal
+    mailer_port       : 465
+    mailer_encryption : ssl
+    secret            : ThisTokeasdnIsNotSoSasd123ecretChangeIasd
+    locale            : en
+    app:
+        brand         : miapp
+        host          : %app.brand%.dev
+        host.en       : en.%app.brand%.dev
+        host.es       : es.%app.brand%.dev
+        email         : no-reply@%app.brand%.com
+        version       : 1.0.2
+        tracking      :
+            google            : UA-XXXXXXX-1

@@ -1,0 +1,339 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+  
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/fullcalendar/fullcalendar.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/fullcalendar/custom-calendar.min.css') }}">
+  {# <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}"> #}
+  
+{% endblock %}
+
+{% block content %}
+  {% set currency = entity.room.hotel.currency.symbol %}
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">Hotels</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">Backend</a></li>
+          <li><a href="{{ path('backend_hotels') }}">Hotels</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': entity.room.hotel.id } ) }}">{{ entity.room.hotel }}</a></li>
+          <li><a href="{{ path('backend_hotel_show', {'hid': entity.room.hotel.id, 'tab': 'rooms' } ) }}">Rooms</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id } ) }}">{{ entity.room }}</a></li>
+          <li><a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'promotions' } ) }}">Promotions</a></li>
+          <li class="active">{{ entity }}</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_room_show', {'hid': entity.room.hotel.id, 'rid': entity.room.id, 'tab': 'promotions' } ) }}" class="btn btn-default">
+            <i class="icon fa-chevron-left" aria-hidden="true"></i> Back
+          </a>
+          <a href="{{ path('backend_room_promotion_edit', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id } ) }}" class="btn btn-success">
+            <i class="icon fa-pencil" aria-hidden="true"></i>  Promotion
+          </a>          
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-tabs nav-tabs-line">
+                <li class="active">
+                  <a href="#details" data-toggle="tab" href="javascript:void(0)" role="tab">
+                    <i class="icon fa-info" aria-hidden="true"></i> Details
+                  </a>
+                </li>
+                <li>
+                  <a href="#conditions" data-toggle="tab" href="javascript:void(0)" role="tab">
+                    <i class="icon fa-check" aria-hidden="true"></i> Conditions
+                  </a>
+                </li>
+                <li>
+                  <a href="#benefits" data-toggle="tab" href="javascript:void(0)" role="tab">
+                    <i class="icon fa-tags" aria-hidden="true"></i> Benefits
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tab-content padding-top-20">
+                
+                {# Promotion Details #}
+                <div class="tab-pane active" id="details" role="tabpanel">
+                  <table class="table table-hover table-striped width-full">
+                    <tbody>
+                      <tr>
+                        <th>Name</th>
+                        <td>{{ entity.name }}</td>
+                      </tr>
+                      <tr>
+                        <th>Description</th>
+                        <td>{{ entity.description|raw }}</td>
+                      </tr>
+                      <tr>
+                        <th>Cut Off</th>
+                        {% if entity.cutOff == 0 %}
+                          <td>No Cut Off</td>
+                        {% elseif entity.cutOff == 1 %}
+                          <td>{{ entity.cutOff ~ ' day'}}</td>
+                        {% else %}
+                          <td>{{ entity.cutOff ~ ' days'}}</td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th>Validity period</th>
+                        <td>
+                          {{ entity.validFrom|date('d M Y') ~ ' to ' ~ entity.validTo|date('d M Y') }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Applies to period</th>
+                        <td>
+                          {{ entity.periodFrom|date('d M Y') ~ ' to ' ~ entity.periodTo|date('d M Y') }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Exceptions periods</th>
+                        <td>
+                            {% for exception in exceptions %}
+                            {{ exception }}<br>
+                            {% endfor %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Available days</th>
+                        <td>
+                          {% if entity.availableMonday == true %}Mon, {% endif %}
+                          {% if entity.availableTuesday == true %}Tue, {% endif %}
+                          {% if entity.availableWednesday == true %}Wed, {% endif %}
+                          {% if entity.availableThursday == true %}Thu, {% endif %}
+                          {% if entity.availableFriday == true %}Fri, {% endif %}
+                          {% if entity.availableSaturday == true %}Sat, {% endif %}
+                          {% if entity.availableSunday == true %}Sun.{% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Cancellable?</th>
+                        <td>
+                          {% if entity.nonRefundable == true %}No {% else %} Yes {% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Combinable?</th>
+                        <td>
+                          {% if entity.combinable == true %}Yes {% else %} No {% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Available in Premium Dates?</th>
+                        <td>
+                          {% if entity.availableInPremiumDates == true %}Yes {% else %} No {% endif %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Available in Stop Sell Dates?</th>
+                        <td>
+                          {% if entity.availableInStopSellDates == true %}Yes {% else %} No {% endif %}
+                        </td>
+                      </tr>
+                    </tbody>    
+                  </table>  
+                </div>
+
+                {# Conditions #}
+                <div class="tab-pane" id="conditions" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover table-striped width-full">
+                        <thead>
+                          <tr>
+                            <th>Conditions</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+
+                          {% for condition in entity.conditions %}
+                            {% if condition.expression.group == 'comparation' %}
+                              <tr>
+                                <td>
+                                  <a href="{{ path('backend_room_promotion_condition_edit', {'hid' : entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'cid': condition.id, 'type': 'regular' } ) }}">{{ condition }}</a>
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+
+                        </tbody>
+
+                      </table>
+ 
+                    </div>
+                    <div class="col-md-2 text-center">
+                      <a href="{{ path('backend_room_promotion_condition_new', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'type': 'regular' }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i> Condition
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {# Benefits #}
+                <div class="tab-pane" id="benefits" role="tabpanel">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table table-hover table-striped width-full">
+                        <thead>
+                          <tr>
+                            <th>Benefits</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for benefit in entity.benefits %}
+                            {% if benefit.type.slug == 'night-discount' %}
+                              <tr>
+                                <td>
+                                  <a href="{{ path('backend_room_promotion_benefit_night_discount_edit', {'hid' : entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'bid': benefit.id } ) }}">
+                                    {{ benefit }}
+                                  </a>
+                                </td>
+                              </tr>
+                            {% elseif benefit.type.slug == 'stay-discount' %}
+                              <tr>
+                                <td>
+                                  <a href="{{ path('backend_room_promotion_benefit_stay_discount_edit', {'hid' : entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'bid': benefit.id } ) }}">
+                                    {{ benefit }}
+                                  </a>
+                                </td>
+                              </tr>
+                            {% elseif benefit.type.group == 'room-services' %}
+                              <tr>
+                                <td>
+                                  <a href="{{ path('backend_room_promotion_benefit_room_service_discount_edit', {'hid' : entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'bid': benefit.id } ) }}">
+                                    {{ benefit }}
+                                  </a>
+                                </td>
+                              </tr>
+                            {% elseif benefit.type.group == 'hotel-services' %}
+                              <tr>
+                                <td>
+                                  <a href="{{ path('backend_room_promotion_benefit_hotel_service_discount_edit', {'hid' : entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id, 'bid': benefit.id } ) }}">
+                                    {{ benefit }}
+                                  </a>
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+
+                      </table>   
+                    </div>
+                    <div class="col-md-2 text-center">
+                      
+                      
+                      <a href="{{ path('backend_room_promotion_benefit_night_discount_new', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id  }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i> Night Discount
+                      </a>
+
+                      <hr>
+
+                      <a href="{{ path('backend_room_promotion_benefit_stay_discount_new', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id  }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i> Stay Discount
+                      </a>
+
+                      {# <hr>
+
+                      <a href="#" data-target="#infoForm" data-toggle="modal" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i> Extra Pax Discount
+                      </a>  #}
+
+                      {% if entity.room.services|length > 0 %}
+                      <hr>
+                        <a href="{{ path('backend_room_promotion_benefit_room_service_discount_new', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id  }) }}" class="btn btn-primary">
+                          <i class="icon fa-plus" aria-hidden="true"></i> Room Service
+                        </a>
+                      {% endif %}
+
+                      {% if entity.room.hotel.services|length > 0 %}
+                      <hr>
+                      <a href="{{ path('backend_room_promotion_benefit_hotel_service_discount_new', { 'hid': entity.room.hotel.id, 'rid': entity.room.id, 'pid': entity.id  }) }}" class="btn btn-primary">
+                        <i class="icon fa-plus" aria-hidden="true"></i> Hotel Service
+                      </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  {{ include('GushhBackendBundle::Modals/comingSoonModal.html.twig') }}
+  <!-- End Modal -->
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pages/room/dataTable.min.js') }}"></script>
+  
+  <script src="{{ asset('backend/global/vendor/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/fullcalendar/fullcalendar.min.js') }}"></script>
+
+  {% if app.request.get('tab') is not empty %}
+    <script>
+      $(function () {
+        $('a[href="#{{ app.request.get('tab') }}"]').tab('show');
+
+        my_events =     [{
+                          title: 'All Day Event',
+                          start: '2015-12-01'
+                        }, {
+                          title: 'Long Event',
+                          start: '2015-12-07',
+                          backgroundColor: 'blue'
+                        }, {
+                          id: 999,
+                          title: 'Repeating Event',
+                          start: '2015-12-09T16:00:00',
+                          backgroundColor: 'red'
+                        }, {
+                          title: 'Conference',
+                          start: '2015-12-11'
+                        }, {
+                          title: 'Meeting',
+                          start: '2015-12-12T'
+                        }, {
+                          title: 'Lunch',
+                          start: '2015-12-12T'
+                        }];
+        $('#myCalendar').fullCalendar({
+          header: {
+            left: null,
+            center: 'prev,title,next',
+            right: null
+          },
+          selectable: true,
+          // editable: true,
+          eventLimit: true,
+          events: my_events
+        })
+      });
+    </script>
+  {% endif %}  
+
+{% endblock %}

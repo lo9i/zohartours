@@ -1,0 +1,41 @@
+'+1 212 123 444': '+1 212 123 444'   # FIXME
+Address: Direccion   # FIXME
+'Cancellation email': 'Email de Cancelación'   # FIXME
+'Capacity (PAX)': 'Capacidad (PAX)'   # FIXME
+'City (Autocomplete)': 'Ciudad (Autocompletar)'   # FIXME
+'Commission (%)': 'Comisión (%)'   # FIXME
+Content: Content   # FIXME
+'Country (Autocomplete)': 'Pais (Autocompletar)'   # FIXME
+'Cut Off': 'Cut Off'   # FIXME
+'Cut Off (days)': 'Cut Off (dias)'   # FIXME
+Description: Description   # FIXME
+Email: Correo   # FIXME
+'English Description': 'English Description'   # FIXME
+'Extra Person Price ($)': 'Precio por persona extra ($)'   # FIXME
+'Free children age': 'Free children age'   # FIXME
+'Google Maps Coords (Autocomplete)': 'Google Maps Coords (Autocomplete)'   # FIXME
+Lastname: Lastname   # FIXME
+'Maximum Stay': 'Estadia Maxima'   # FIXME
+'Minimum Stay': 'Estadia Minima'   # FIXME
+Name: Nombre   # FIXME
+'Occupancy Tax ($)': 'Occupancy Tax ($)'   # FIXME
+Penalty: Penalty   # FIXME
+Price: Precio   # FIXME
+'Price ($)': 'Precio ($)'   # FIXME
+Profit: Ganancia   # FIXME
+'Reservation email': 'Reservation email'   # FIXME
+'Short Name (USD, EUR)': 'Short Name (USD, EUR)'   # FIXME
+'Spanish Description': 'Spanish Description'   # FIXME
+'Square Feet': 'Square Feet'   # FIXME
+'State (Autocomplete)': 'State (Autocomplete)'   # FIXME
+Stock: Stock   # FIXME
+Subtitle: Subtitle   # FIXME
+'Symbol ($, €)': 'Simbolo ($, €)'   # FIXME
+'Tax (%)': 'Impuesto (%)'   # FIXME
+Title: Title   # FIXME
+'Zip Code (Autocomplete)': 'Codigo Postal (Autocompletar)'   # FIXME
+
+'http://misite':
+    com: 'http://misite.com'   # FIXME
+
+name: name   # FIXME

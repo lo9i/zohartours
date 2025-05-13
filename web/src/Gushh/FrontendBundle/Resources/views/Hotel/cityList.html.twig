@@ -1,0 +1,235 @@
+{% extends 'GushhFrontendBundle::base.html.twig' %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{{ asset('frontend/css/slider-pro.min.css') }}">
+	<style type="text/css">
+		#map-container {
+			position: relative;
+		}
+
+		#map-canvas {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			width: 100%;
+			max-width: 100%;
+			height: 400px;
+		}
+
+		.SearchForm-input {
+			margin-top: 10px;
+		}
+
+		.SearchForm-select {
+			margin-top: 10px;
+		}
+	</style>
+{% endblock %}
+
+
+{% set regionSlug    = hotels|first.region %}
+{% set citySlug      = hotels|first.city|lower|replace({' ' : "-"}) %}
+{% set city 		 = hotels|first.city %}
+{% set state 		 = hotels|first.state %}
+{% set continentSlug = hotels|first.continent|lower|replace({' ' : "-"}) %}
+{% set continent 	 = hotels|first.continent %}
+{% set countrySlug 	 = hotels|first.country|lower|replace({' ' : "-"}) %}
+{% set country 		 = hotels|first.country %}
+{% set hotelCount 	 = hotels|length %}
+
+{% block title %}{{ brand }} | {{ 'hotels.hotelsIn'|trans }} {{ city|title }} {% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div class="clearfix"></div>
+
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<ol class="Breadcrum">
+				  <li><a href="{{ path('hotels') }}">{{ 'hotels.hotels'|trans }}</a></li>
+				  {% if continentSlug == 'europe' %}
+				  	<li>
+				  		<a href="{{ path('hotels_list_continent', {'region': regionSlug, 'continent': continentSlug}) }}">
+				  			{% set continentLang = 'continent.' ~ continent|lower %}
+				  			{{ continentLang|trans }}
+				  		</a>
+				  	</li>
+				  {% endif %}
+				  <li>
+				  	<a href="{{ path('hotels_list_country', {'region': regionSlug, 'continent': continentSlug, 'country': countrySlug}) }}">
+				  		{{ country }}
+				  	</a>
+				  </li>
+				  <li class="active">{{ city }} ({{ hotelCount }})</li>
+				</ol>
+			</div>
+			<div class="col-sm-6 col-md-8">
+				<div class="SearchResult">
+					<h3 class="SearchResult-title">
+						<span>{{ hotelCount }}</span> {{ 'hotels.hotelsIn'|trans }} {{ city }}
+						<span class="zoharicon-list-view"></span>
+					</h3>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<aside class="col-md-4">
+				<div class="CityCard" style="background-image: url('{{ asset(hotels|first.cityImage.image.getWebPath) }}')">
+					<div class="CityCard-wall">
+						<h3 class="CityCard-wall-title">{{ 'hotels.hotelList'|trans|raw }}</h3>
+						<h2 class="CityCard-wall-city">
+							{{ city }}
+							{% if continentSlug == 'america' %}
+								<span>{{ state }}</span>
+							{% elseif continentSlug == 'europe' %}
+								<span>{{ country }}</span>
+							{% endif %}
+							-
+						</h2>
+						<a href="{{ path('hotels_list_country', {'region': regionSlug, 'continent': continentSlug, 'country': countrySlug}) }}" class="CityCard-link">
+							<span></span>
+						</a>
+					</div>
+				</div>
+
+			</aside>
+
+			<section class="col-md-8">
+				<div class="row">
+					{# HOTELCARD #}
+					{% for hotel in hotels %}
+						<article class="col-sm-12">
+							<div class="row no-gutter HotelCard">
+								<div class="col-xsm-12 col-xs-4">
+									{% if hotel.images|length > 0 %}
+										<div class="slider-pro HotelCard-slider" id="HotelCard-slider-{{hotel.id}}">
+											<div class="sp-slides">
+												{% for image in hotel.images %}
+													<div class="sp-slide">
+										                <img alt="Home" class="sp-image" src="{{ asset('frontend/css/images/blank.gif') }}" data-src="{{ asset(image.getWebPath) }}" />
+										            </div>
+										        {% endfor %}
+											</div>
+										</div>
+									{% else %}
+										<div class="HotelCard-no-image" style="background-image: url('{{ asset('img/no-image.png') }}')"></div>
+									{% endif %}
+								</div>
+								<div class="col-xsm-12 col-xs-8">
+									<div class="HotelCard-header">
+										<a href="{{ path('hotel_detail', {'continent': continentSlug, 'country': countrySlug, 'city': citySlug, 'hotel': hotel.slug}) }}" class="HotelCard-link">
+											<h2>
+												{{ hotel.name }}
+												{% if hotel.subtitle != '' %}<span>{{ hotel.subtitle}}.</span>{% endif %}
+											</h2>
+										</a>
+									</div>
+									<div class="ResultHotelCard-description">
+										<p class="ResultHotelCard-description-address">
+											<a href="#" data-lat="{{ hotel.coords }}" data-toggle="modal"
+											   data-target="#myMapModal">
+												<span class="zoharicon-address"></span> {{ hotel.address }}
+											</a>
+										</p>
+										{% if hotel.video != '' %}
+	                                       <p class="ResultHotelCard-description-address">
+	                                          <a target='_blank' href="{{ hotel.video }}"> Video</a>
+        	                               </p>
+                                        {% endif %}
+									</div>
+								</div>
+							</div>
+						</article>
+					{% endfor %}
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+    {# MAP MODAL #}
+	<div class="modal fade modal-fade-in-scale-u" id="myMapModal" aria-hidden="true" aria-labelledby="myMapModal"
+		 role="dialog" tabindex="-1">
+		<div class="modal-dialog modal-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">Hotel Address</h4>
+				</div>
+				<div class="modal-body">
+					<div id="map-container">
+						<div id="map-canvas" class=""></div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer_js %}
+	<script src="{{ asset('frontend/js/jquery.sliderPro.min.js') }}"></script>
+	<script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+
+	<script type='text/javascript'>
+        var map;
+        var marker;
+
+        function initialize(myCenter) {
+            marker = new google.maps.Marker({
+                position: myCenter
+            });
+
+            var mapProp = {
+                center: myCenter,
+                zoom: 13,
+                draggable: true,
+                scrollwheel: false,
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+            marker.setMap(map);
+        }
+        ;
+	</script>
+
+	<script>
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+			$('.slider-pro').sliderPro({
+			  width   : 250,
+			  height  : 155,
+			  arrows  : true,
+			  fade    : false,
+			  buttons : false,
+			  // fullScreen: true,
+			  // autoplay: true
+			  // smallSize: 500,
+			  // startSlide: 0,
+			  // mediumSize: 1000,
+			  // largeSize: 3000,
+			  // thumbnailArrows: false,
+			});
+
+            $('#myMapModal').on('shown.bs.modal', function (e) {
+                var element = $(e.relatedTarget);
+                var data = element.data("lat").split(',');
+                initialize(new google.maps.LatLng(data[0], data[1]));
+            });
+
+            $('#myMapModal').on('hidden.bs.modal', function (e) {
+                marker.setMap(null);
+            });
+	  });
+	</script>
+{% endblock %}

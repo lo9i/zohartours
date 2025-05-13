@@ -1,0 +1,77 @@
+{% extends "GushhBackendBundle::base.html.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-fixedheader/dataTables.fixedHeader.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/global/vendor/datatables-responsive/dataTables.responsive.min.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="page animsition">
+    <div class="page-content">
+      <div class="page-header page-header-bordered">
+        <h1 class="page-title">{{ 'backend.client_files.title'|trans }}</h1>
+        <ol class="breadcrumb">
+          <li><a href="{{ path('dashboard') }}">{{ 'backend.dashboard.title'|trans }}</a></li>
+          <li class="active">{{ 'backend.client_files.title'|trans }}</li>
+        </ol>
+        <div class="page-header-actions">
+          <a href="{{ path('backend_client_file_new') }}" class="btn btn-primary">
+            <i class="icon fa-plus" aria-hidden="true"></i>  {{ 'backend.client_files.singular'|trans }}
+          </a>          
+        </div>
+      </div>
+
+      <!-- Panel Table Individual column searching -->
+      <div class="panel">
+        <div class="panel-body">
+          <table class="table table-hover dataTable table-striped width-full" id="invoiceTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Created</th>
+                <th>Total Sale</th>
+                <th>Total Net</th>
+                <th>Gross Profit</th>
+                <th>Total Commission</th>
+                <th>Total Net Profit</th>
+                <th style="width: 1px">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for entity in entities %}
+                <tr>
+                  <td><a href="{{ path('backend_client_file_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                  <td>{{ entity.clientName }} {{ entity.clientLastName }}</td>
+                  <td>{{ entity.createdAt|date('d M Y h:i:s') }}</td>
+                  <td class="text-right">$ {{ entity.totalSale }}</td>
+                  <td class="text-right">$ {{ entity.totalNet }}</td>
+                  <td class="text-right">$ {{ entity.totalGrossProfit }}</td>
+                  <td class="text-right">$ {{ entity.totalCommission }}</td>
+                  <td class="text-right">$ {{ entity.totalNetProfit }}</td>
+                  <td class="text-center">
+                    {% if entity.isReady %}
+                      <span class="label label-success">Paid</span>
+                    {% else %}
+                    <span class="label label-danger">Unpaid</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>        
+      </div>
+      <!-- End Panel Table Individual column searching -->
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer_js %}
+  <script src="{{ asset('backend/global/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/global/vendor/datatables-bootstrap/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('backend/global/js/components/datatables.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% block subject %}Resetting your password{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+Hello {{ user.username }}!
+
+You can reset your password by accessing {{ confirmationUrl }}
+
+Greetings,
+Zohar Tours
+407 Lincoln Road
+Miami Beach, FL 33139
++1 212 252 8690 Phone
++1 212 252 8695 Fax
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+Hello <strong>{{ user.username }}</strong>
+
+<p>
+  You can reset your password by accessing {{ confirmationUrl }}
+  <br><br>
+  Greetings,
+  <br>
+  <strong>Zohar Tours</strong>
+  <br>
+  407 Lincoln Road
+  <br>
+  Miami Beach, FL 33139
+  <br>
+  +1 212 252 8690 Phone
+  <br>
+  +1 212 252 8695 Fax
+</p>
+{% endblock %}
